@@ -13,7 +13,7 @@ const musicianSchema = new Schema({
     },
     imageLink: {
         type: String,
-        maxLength: 120
+        maxLength: 500
     },
     stageName: {
         type: String,

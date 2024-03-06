@@ -1,14 +1,12 @@
 
 
-export default function Search(){
+export default function AccountSettings(){
 
 
-
+    
     return (
         <div>
 
         </div>
     )
-
-
 }

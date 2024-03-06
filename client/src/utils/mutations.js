@@ -120,7 +120,7 @@ mutation updateMusician(
     }
 `
 
-// Executing add user
+// Executing update user
 export const UPDATE_USER = gql`
     mutation updateUser($userId: ID!) {
         updateUser(

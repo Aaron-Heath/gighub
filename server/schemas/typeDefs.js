@@ -57,12 +57,12 @@ const typeDefs = `
     ): Auth
 
     addMusician(
-      user: User!,
+      user: ID!,
       imageLink: String,
       stageName: String!,
       publicEmail: String!,
       description: String,
-      tags: [Tag],
+      tags: [ID]!,
       city: String!,
       state: String!,
       lat: Float!,
@@ -75,7 +75,7 @@ const typeDefs = `
       stageName: String,
       publicEmail: String,
       description: String,
-      tags: [Tag],
+      tags: [ID],
       city: String,
       state: String,
       minCost: Float

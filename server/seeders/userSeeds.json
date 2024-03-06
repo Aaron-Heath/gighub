@@ -1,0 +1,47 @@
+[
+    {
+      "email": "john.doe@example.com",
+      "username": "johndoe123",
+      "first": "John",
+      "last": "Doe",
+      "password": "securepassword123!",
+      "isMusician": false,
+      "favorites": []
+    },
+    {
+      "email": "jane.smith@company.com",
+      "username": "janesmith88",
+      "first": "Jane",
+      "last": "Smith",
+      "password": "anothersecurepassword",
+      "isMusician": false,
+      "favorites": []
+    },
+    {
+      "email": "michael.lee@university.edu",
+      "username": "mleefan19",
+      "first": "Michael",
+      "last": "Lee",
+      "password": "s3cr3tp@ssw0rd!",
+      "isMusician": false,
+      "favorites": []
+    },
+    {
+      "email": "sarah.jones@gmail.com",
+      "username": "sjones99",
+      "first": "Sarah",
+      "last": "Jones",
+      "password": "supersecurepass",
+      "isMusician": false,
+      "favorites": []
+    },
+    {
+      "email": "david.kim@hotmail.com",
+      "username": "dkim2000",
+      "first": "David",
+      "last": "Kim",
+      "password": "hardtopassguess123",
+      "isMusician": false,
+      "favorites": []
+    }
+  ]

@@ -22,9 +22,12 @@ const resolvers = {
   },
 
   Mutation: {
-    addProfile: async (parent, { name }) => {
-      return Profile.create({ name });
+
+    addUser: async (parent, { userData }) => {
+      const user = await User.create({ userData });
+      const token
     },
+
     addSkill: async (parent, { profileId, skill }) => {
       return Profile.findOneAndUpdate(
         { _id: profileId },

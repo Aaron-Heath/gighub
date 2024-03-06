@@ -1,0 +1,36 @@
+[
+    {
+        "user": [
+            "612345678901234567890123", "612345678901234567890124"
+        ],
+        "imageLink": "https://images.flickdirect.com/entertainment-news/win-trolls-band-together-4k-digital-download-join-poppy-and-branch-s-new-adventure-_7785.jpg",
+        "stageName": "Trolls Band Together",
+        "publicEmail": "trolls@trolls.com",
+        "description": "Bethany's favorite band",
+        "tags": [
+            "612345678901234567890125", "612345678901234567890126"
+        ],
+        "city": "Troll City",
+        "state": "Troll State",
+        "lat": 234,
+        "lon": 123,
+        "minCost": 21
+    },
+    {
+        "user": [
+            "612345678901234567890127", "612345678901234567890128"
+        ],
+        "imageLink": "https://img.itch.zone/aW1nLzMwNTM1NDMucG5n/original/wSIYD4.png",
+        "stageName": "Exploding Penguins",
+        "publicEmail": "penguins@penguins.com",
+        "description": "High school garage metal band",
+        "tags": [
+            "612345678901234567890129", "612345678901234567890130"
+        ],
+        "city": "Penguinopolis",
+        "state": "Antartica (the state)",
+        "lat": 116,
+        "lon": 452,
+        "minCost": 33
+    }
+]

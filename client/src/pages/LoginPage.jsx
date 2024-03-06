@@ -1,6 +1,6 @@
 
 
-export default function Search(){
+export default function LoginForm(){
 
 
 
@@ -9,6 +9,4 @@ export default function Search(){
 
         </div>
     )
-
-
 }

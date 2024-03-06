@@ -1,20 +1,68 @@
 const typeDefs = `
-  type Profile {
+
+  type User {
     _id: ID
-    name: String
-    skills: [String]!
+    email: String!
+    username: String!
+    first: String!
+    last: String!
+    isMusician: Boolean!
+    active: Boolean!
+    favorites: [Musician]
+  }
+
+
+  type Musician {
+    _id: ID
+    user: User!
+    imageLink: String
+    stageName: String!
+    publicEmail: String!
+    description: String
+    tags: [Tag]
+    city: String!
+    state: String!
+    lat: Float!
+    lon: Float!
+    minCost: Float!
+  }
+
+  type Tag {
+    _id: ID
+    tag: String!
   }
 
   type Query {
-    profiles: [Profile]!
-    profile(profileId: ID!): Profile
+    userByUsername(username: String!): User
+    musicianById(musicianId: ID!): Musician
+    musiciansByLocation(lat: Float, lon: Float): [Musician]
+    tags: [Tag]
   }
 
   type Mutation {
-    addProfile(name: String!): Profile
-    addSkill(profileId: ID!, skill: String!): Profile
-    removeProfile(profileId: ID!): Profile
-    removeSkill(profileId: ID!, skill: String!): Profile
+    login(username: String!, password: String!): Auth
+    addUser(
+      email: String,
+      username: String!
+      first: String!,
+      last: String!,
+      isMusician: Boolean!): Auth
+
+    addMusician(
+      user: User!
+      imageLink: String
+      stageName: String!
+      publicEmail: String!
+      description: String
+      tags: [Tag]
+      city: String!
+      state: String!
+      lat: Float!
+      lon: Float!
+      minCost: Float!
+    ): Musician
+
+
   }
 `;
 

@@ -9,6 +9,16 @@ const resolvers = {
     profile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
     },
+
+    // musiciansByLocation: async (parent, {lat, lon}) => {
+    //   const MUSICIANS = await Musician.find({});
+
+    //   return MUSICIANS.sort(() => {
+    //     //sort in ascending order by distance
+
+    //   });
+
+    // }
   },
 
   Mutation: {
@@ -27,6 +37,21 @@ const resolvers = {
         }
       );
     },
+    // addMusician: async (parent, musicianData) => {
+    //   const {lat, lon } = getLatLon(MusicianData.city, MusicianData.state);
+      
+    //   return Musician.create(MusicianData)
+
+    // },
+
+
+
+
+
+
+
+
+
     removeProfile: async (parent, { profileId }) => {
       return Profile.findOneAndDelete({ _id: profileId });
     },

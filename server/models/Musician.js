@@ -2,12 +2,15 @@ const { Schema, model } = require('mongoose');
 
 // Musician Model
 const musicianSchema = new Schema({
-    user: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        }
-    ],
+    user: {
+        type: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ],
+        required: true,
+    },
     imageLink: {
         type: String,
         maxLength: 120
@@ -63,7 +66,7 @@ const musicianSchema = new Schema({
             validator: (value) => {
                 return value >= 0;
             }, message: 'Must be a non-negative number'
-        } 
+        }
     }
 });
 

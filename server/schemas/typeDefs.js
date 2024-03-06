@@ -1,5 +1,11 @@
 const typeDefs = `
 
+  type Auth {
+    token: ID!
+    user: User
+  }
+
+
   type User {
     _id: ID
     email: String!
@@ -43,26 +49,45 @@ const typeDefs = `
     login(username: String!, password: String!): Auth
     
     addUser(
-      email: String,
-      username: String!
+      email: String!,
+      username: String!,
       first: String!,
       last: String!,
-      isMusician: Boolean!): Auth
+      isMusician: Boolean!
+    ): Auth
 
     addMusician(
-      user: User!
-      imageLink: String
-      stageName: String!
-      publicEmail: String!
-      description: String
-      tags: [Tag]
-      city: String!
-      state: String!
-      lat: Float!
-      lon: Float!
+      user: User!,
+      imageLink: String,
+      stageName: String!,
+      publicEmail: String!,
+      description: String,
+      tags: [Tag],
+      city: String!,
+      state: String!,
+      lat: Float!,
+      lon: Float!,
       minCost: Float!
     ): Musician
+    
+    updateMusician(
+      imageLink: String,
+      stageName: String,
+      publicEmail: String,
+      description: String,
+      tags: [Tag],
+      city: String,
+      state: String,
+      minCost: Float
+    ): Musician
 
+    updateUser(
+      email: String,
+      username: String,
+      first: String,
+      last: String,
+      isMusician: Boolean
+    ): Auth
 
   }
 `;

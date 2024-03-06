@@ -83,3 +83,58 @@ mutation addMusician(
         }
     }
 `
+
+// Executing update musician
+export const UPDATE_MUSICIAN = gql`
+mutation updateMusician(
+    $musicianId: ID!,
+    $imageLink: String,
+    $stageName: String,
+    $publicEmail: String,
+    $description: String,
+    $tags: [String],
+    $city: String,
+    $state: String,
+    $minCost: Float
+    ) {
+    updateMusician(
+        musicianId: $musicianId,
+        imageLink: $imageLink,
+        stageName: $stageName,
+        publicEmail: $publicEmail,
+        description: $description,
+        tags: $tags,
+        city: $city,
+        state: $state,
+        minCost: $minCost
+        ) {
+        _id
+        stageName
+        publicEmail
+        description
+        tags
+        city
+        state
+        minCost
+        }
+    }
+`
+
+// Executing update user
+export const UPDATE_USER = gql`
+    mutation updateUser($userId: ID!) {
+        updateUser(
+            userId: $userId,
+            email: $email,
+            username: $username,
+            first: $first,
+            last: $last,
+            isMusician: $isMusician
+        ) {
+            _id
+            username
+            email
+            isMusician
+        }
+    }
+`

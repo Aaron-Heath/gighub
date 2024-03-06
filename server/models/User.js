@@ -29,6 +29,12 @@ const userSchema = new Schema({
         trim: true,
         maxLength: 30
     },
+    password :{
+        type: String,
+        required: true,
+        unique: false,
+        minLength: 5
+    },
     isMusician: {
         type: Boolean,
         required: true,
@@ -49,6 +55,21 @@ const userSchema = new Schema({
         }
     ]
 });
+
+// pre-save middleware for password creation - encrypts password input
+userSchema.pre("save", async function (next) {
+    if(this.isNew || this.isModified('password')) {
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
+    }
+
+    next();
+});
+
+// compare input password with hashed password
+userSchema.methods.isValidPassword = async function (password) {
+    return bcrypt.compare(password, this.password);
+}
 
 const User = model('User', userSchema);
 

@@ -39,6 +39,7 @@ const typeDefs = `
   }
 
   type Query {
+    users: [User]
     userByUsername(username: String!): User
     musicianById(musicianId: ID!): Musician
     musiciansByLocation(lat: Float, lon: Float): [Musician]

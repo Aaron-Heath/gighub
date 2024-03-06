@@ -3,11 +3,15 @@
 .signup-container {
   display: flex;
   justify-content: center;
-  margin-top: 25%;
+  margin-top: 15%;
 
   
 }
 
 .signup-forms{
   margin-top: 15%;
+}
+
+#signupBtn {
+  margin-top: 10%;
 }

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 
 
@@ -30,6 +32,7 @@ export default function SignupPage() {
                     <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense" />
                     <TextField id="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
                 </div>
+                    <Button variant="outlined" id="signupBtn">Submit</Button>
             </Box>
         </div>
     )

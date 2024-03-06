@@ -1,4 +1,6 @@
-const { Profile } = require('../models');
+const { signToken } = require('../../utils/auth');
+const { User, Musician, Tag }= require("../models")
+
 
 const resolvers = {
   Query: {
@@ -22,21 +24,14 @@ const resolvers = {
   },
 
   Mutation: {
-    addProfile: async (parent, { name }) => {
-      return Profile.create({ name });
+
+    addUser: async (parent, { userData }) => {
+      const user = await User.create({ userData });
+      const token = signToken(user);
+      return {token, user};
     },
-    addSkill: async (parent, { profileId, skill }) => {
-      return Profile.findOneAndUpdate(
-        { _id: profileId },
-        {
-          $addToSet: { skills: skill },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
-    },
+
+    
     // addMusician: async (parent, musicianData) => {
     //   const {lat, lon } = getLatLon(MusicianData.city, MusicianData.state);
       

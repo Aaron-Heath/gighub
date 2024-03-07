@@ -1,19 +1,51 @@
 :root {
-  
+  --blue: #204B57;
+  --dark-red: #711F31;
+  --lighter-red: #9E3845;
+  --yellow: #FFE5A1;
+  --pale: #FBF4E6;
+
+}
+
+body {
+  background-color: var(--blue);
+}
+
+h2{
+  font-family: "Bungee", sans-serif;;
+  color: var(--dark-red);
+  font-size: 30px;
+}
+
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px
+}
+
+a {
+  text-decoration: underline;
 }
 
 .signup-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 15%;
+  background-color: var(--blue);
 
   
 }
 
 .signup-forms{
-  margin-top: 15%;
+  background-color: var(--pale);
+  border-radius: 10%;
+  padding: 1% 10% 10% 10%
 }
 
 #signupBtn {
-  margin-top: 10%;
+  margin-top: 7%;
+  color: var(--yellow);
+  background-color: var(--dark-red);
+}
+
+.gighub-logo{
+  /* position: relative;
+  right: 11%;
+  top: 5% */
 }

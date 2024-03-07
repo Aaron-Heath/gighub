@@ -1,7 +1,6 @@
 const { signToken } = require('../utils/auth');
 const { User, Musician, Tag }= require("../models")
-const { milesFromCoord } = require('../utils/helpers');
-
+const { milesFromCoord, geoCode } = require('../utils/helpers');
 
 const resolvers = {
   Query: {
@@ -30,20 +29,6 @@ const resolvers = {
         return 0;
       });
     }
-
-    // profile: async (parent, { profileId }) => {
-    //   return Profile.findOne({ _id: profileId });
-    // },
-
-    // musiciansByLocation: async (parent, {lat, lon}) => {
-    //   const MUSICIANS = await Musician.find({});
-
-    //   return MUSICIANS.sort(() => {
-    //     //sort in ascending order by distance
-
-    //   });
-
-    // }
   },
 
   Mutation: {
@@ -55,12 +40,28 @@ const resolvers = {
     },
 
     
-    // addMusician: async (parent, musicianData) => {
-    //   const {lat, lon } = getLatLon(MusicianData.city, MusicianData.state);
-      
-    //   return Musician.create(MusicianData)
+    addMusician: async (parent, { user: user, stageName, publicEmail, tags, city, state, description=null, imageLink=null, minCost=null }) => {
+      console.log(user);
+      const {lat, lon } = await geoCode(city, state);
+      console.log(lat,lon);
 
-    // },
+      if(lat === null || lon === null) {
+        throw new Error("Location not found");
+      }
+      
+      return Musician.create( {
+        user: user,
+        stageName: stageName,
+        publicEmail: publicEmail,
+        tags: tags,
+        city: city,
+        state: state,
+        lat: lat,
+        lon: lon,
+        minCost: minCost
+      });
+
+    },
 
 
 

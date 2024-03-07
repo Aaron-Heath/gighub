@@ -1,8 +1,6 @@
 [
     {
-        "user": [
-            "612345678901234567890123", "612345678901234567890124"
-        ],
+        "user": "612345678901234567890123",
         "imageLink": "https://images.flickdirect.com/entertainment-news/win-trolls-band-together-4k-digital-download-join-poppy-and-branch-s-new-adventure-_7785.jpg",
         "stageName": "Trolls Band Together",
         "publicEmail": "trolls@trolls.com",
@@ -17,9 +15,7 @@
         "minCost": 21
     },
     {
-        "user": [
-            "612345678901234567890127", "612345678901234567890128"
-        ],
+        "user": "612345678901234567890127",
         "imageLink": "https://img.itch.zone/aW1nLzMwNTM1NDMucG5n/original/wSIYD4.png",
         "stageName": "Exploding Penguins",
         "publicEmail": "penguins@penguins.com",

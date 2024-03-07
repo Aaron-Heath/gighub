@@ -3,12 +3,8 @@ const { Schema, model } = require('mongoose');
 // Musician Model
 const musicianSchema = new Schema({
     user: {
-        type: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'User'
-            }
-        ],
+        type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true,
     },
     imageLink: {
@@ -60,7 +56,7 @@ const musicianSchema = new Schema({
     },
     minCost: {
         type: Number,
-        required: true,
+        required: false, // Changed to false so it is not a part of initial signup
         // Ensures only valid numbers are used
         validate: {
             validator: (value) => {

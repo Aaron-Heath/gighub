@@ -1,26 +1,34 @@
 const { signToken } = require('../utils/auth');
 const { User, Musician, Tag }= require("../models")
-
+const { milesFromCoord, geoCode } = require('../utils/helpers');
 
 const resolvers = {
   Query: {
-    // profiles: async () => {
-    //   return Profile.find();
-    // },
+    users: async () => {
+      return await User.find();
+    },
+    
+    userByUsername: async (parent, { username }) => {
+      return await User.findOne({username: username});
+    },
 
-    // profile: async (parent, { profileId }) => {
-    //   return Profile.findOne({ _id: profileId });
-    // },
+    musicianById: async (parent, { musicianId }) => {
+      return await Musician.findOne({_id: musicianId});
+    },
 
-    // musiciansByLocation: async (parent, {lat, lon}) => {
-    //   const MUSICIANS = await Musician.find({});
+    musiciansByLocation: async (parent, { lat, lon }) => {
+      const MUSICIANS = await Musicians.find({});
 
-    //   return MUSICIANS.sort(() => {
-    //     //sort in ascending order by distance
+      // Sort musicians by their distance from the inputted location
+      return MUSICIANS.sort( (a,b) => {
+        const distanceA = milesFromCoord(a.lat, a.lon, lat, lon);
+        const distanceB = milesFromCoord(b.lat, b.lon, lat, lon);
 
-    //   });
-
-    // }
+        if(distanceA > distanceB) return 1;
+        if(distanceA < distanceB) return -1;
+        return 0;
+      });
+    }
   },
 
   Mutation: {
@@ -32,12 +40,28 @@ const resolvers = {
     },
 
     
-    // addMusician: async (parent, musicianData) => {
-    //   const {lat, lon } = getLatLon(MusicianData.city, MusicianData.state);
-      
-    //   return Musician.create(MusicianData)
+    addMusician: async (parent, { user: user, stageName, publicEmail, tags, city, state, description=null, imageLink=null, minCost=null }) => {
+      console.log(user);
+      const {lat, lon } = await geoCode(city, state);
+      console.log(lat,lon);
 
-    // },
+      if(lat === null || lon === null) {
+        throw new Error("Location not found");
+      }
+      
+      return Musician.create( {
+        user: user,
+        stageName: stageName,
+        publicEmail: publicEmail,
+        tags: tags,
+        city: city,
+        state: state,
+        lat: lat,
+        lon: lon,
+        minCost: minCost
+      });
+
+    },
 
 
 

@@ -25,7 +25,7 @@ export default function SignupPage() {
                 noValidate
                 autoComplete="off"
             >
-                <img src={gighubLogo} className="gighub-logo" />
+                <img src={gighubLogo} />
                 <div className='signup-forms'>
                 <h2>Sign Up</h2>
                     <TextField id="outlined-basic" label="First Name" variant="outlined" margin="dense" />

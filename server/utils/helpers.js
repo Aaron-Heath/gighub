@@ -26,4 +26,29 @@ function milesFromCoord(lat1, lon1, lat2, lon2) {
 
 }
 
-module.exports = { milesFromCoord }
+/**
+ * Makes an API call to OpenWeather API to convert city, state to lat and long for storage.
+ * @param {String} city 
+ * @param {String} state
+ * @param {String} country default value 'US'
+ * @returns an object with latidude and longitude keys with Float values.
+ */
+async function geoCode(city, state, country="US") {
+    
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=1&appid=${process.env.GEOCODE_API_KEY}`);
+    const data = await response.json();
+    // Error Handling
+    if(data.length === 0) {
+        return {
+            lat: null,
+            lon: null
+        }
+    };
+
+    return {
+        lat: data[0].lat,
+        lon: data[0].lon
+    }
+}
+
+module.exports = { milesFromCoord, geoCode }

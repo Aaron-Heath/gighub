@@ -20,7 +20,7 @@ const typeDefs = `
 
   type Musician {
     _id: ID
-    user: User!
+    user: ID!
     imageLink: String
     stageName: String!
     publicEmail: String!
@@ -66,9 +66,7 @@ const typeDefs = `
       tags: [ID]!,
       city: String!,
       state: String!,
-      lat: Float!,
-      lon: Float!,
-      minCost: Float!
+      minCost: Float
     ): Musician
     
     updateMusician(

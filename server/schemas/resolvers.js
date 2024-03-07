@@ -65,7 +65,7 @@ const resolvers = {
 
     updateUser: async (parent, { userId, email, username, first, last, isMusician }) => {
       try {
-        const updatedUser = User.findOneAndUpdate(
+        const updatedUser = await User.findOneAndUpdate(
           {
             _id: userId,
           },
@@ -77,7 +77,7 @@ const resolvers = {
           }
         );
 
-        return updatedUser
+        return updatedUser;
 
       } catch (err) {
         console.error("Error updating user: ", err);
@@ -85,6 +85,31 @@ const resolvers = {
       };
     },
 
+    updateMusician: async (parent, { musicianId, imageLink, stageName, publicEmail, description, tags, city, state, minCost }) => {
+      try {
+        const { lat, lon } = await geoCode(city, state);
+        console.log(lat, lon);
+
+        const updatedMusician = await Musician.findOneAndUpdate(
+          {
+            _id: musicianId,
+          },
+          {
+            imageLink, stageName, publicEmail, description, tags, city, state, lat, lon, minCost
+          },
+          {
+            new: true
+          }
+        );
+
+        return updatedMusician;
+        
+      } catch (err) {
+        console.error("Error updating musician: ", err);
+        throw new Error("Could not update musician.");
+      }
+
+    }
 
 
 

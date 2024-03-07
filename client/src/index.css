@@ -1,3 +1,9 @@
+
+/* Font:
+font-family: "Bungee", sans-serif;
+*/
+
+
 :root {
   --blue: #204B57;
   --dark-red: #711F31;
@@ -12,7 +18,7 @@ body {
 }
 
 h2{
-  font-family: "Bungee", sans-serif;;
+  font-family: "Bungee", sans-serif;
   color: var(--dark-red);
   font-size: 30px;
 }

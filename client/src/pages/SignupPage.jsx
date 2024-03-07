@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import gighubLogo from "../assets/images/Gighub-290px.png";
 
 
 
@@ -12,20 +13,21 @@ export default function SignupPage() {
 
 
     return (
+        
         <div className='signup-container'>
+            
             <Box
-                width={200}
-                my={4}
-                gap={4}
-                borderRadius={10}
-                p={5}
-                sx={{ border: '4px solid grey' }}
+                sx={{
+                    flexGrow: 1,
+                    alignContent: "center"
+                }}
                 component="form"
                 noValidate
                 autoComplete="off"
             >
-                <h2>Sign Up</h2>
+                <img src={gighubLogo} />
                 <div className='signup-forms'>
+                <h2>Sign Up</h2>
                     <TextField id="outlined-basic" label="First Name" variant="outlined" margin="dense" />
                     <TextField id="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
                     <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense" />
@@ -34,6 +36,7 @@ export default function SignupPage() {
                 </div>
                     <Button variant="outlined" id="signupBtn">Submit</Button>
             </Box>
+
         </div>
     )
 }

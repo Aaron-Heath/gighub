@@ -63,6 +63,7 @@ const resolvers = {
 
     },
 
+    // Mutation for updating users
     updateUser: async (parent, { userId, email, username, first, last, isMusician }) => {
       try {
         const updatedUser = await User.findOneAndUpdate(
@@ -85,8 +86,10 @@ const resolvers = {
       };
     },
 
+    // Mutation for updating musicians
     updateMusician: async (parent, { musicianId, imageLink, stageName, publicEmail, description, tags, city, state, minCost }) => {
       try {
+        // Gets lat and lon from provided city and state
         const { lat, lon } = await geoCode(city, state);
         console.log(lat, lon);
 
@@ -103,7 +106,7 @@ const resolvers = {
         );
 
         return updatedMusician;
-        
+
       } catch (err) {
         console.error("Error updating musician: ", err);
         throw new Error("Could not update musician.");

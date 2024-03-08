@@ -92,7 +92,7 @@ const typeDefs = `
 
     addTags(
       musicianId: ID!
-      tagsIds: [ID!]
+      tagIds: [ID!]
     ): Musician
 
     removeTags(

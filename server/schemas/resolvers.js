@@ -168,6 +168,7 @@ const resolvers = {
       };
     },
 
+    // Mutation for login
     login: async (parent, { username, password }) => {
       try {
         // Checks for valid user

@@ -83,7 +83,7 @@ const resolvers = {
             new: true
           }
         );
-
+        const token = signToken(updatedUser);
         return { token, updatedUser };
 
       } catch (err) {

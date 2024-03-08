@@ -90,6 +90,15 @@ const typeDefs = `
       isMusician: Boolean
     ): Auth
 
+    addTags(
+      musicianId: ID!
+      tagsIds: [ID!]
+    ): Musician
+
+    removeTags(
+      musicianId: ID!
+      tagIds: [ID!]
+    ): Musician
   }
 `;
 

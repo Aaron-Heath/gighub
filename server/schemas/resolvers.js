@@ -78,7 +78,7 @@ const resolvers = {
           }
         );
 
-        return updatedUser;
+        return { token, updatedUser };
 
       } catch (err) {
         console.error("Error updating user: ", err);
@@ -86,19 +86,19 @@ const resolvers = {
       };
     },
 
-    // Mutation for updating musicians
-    updateMusician: async (parent, { musicianId, imageLink, stageName, publicEmail, description, tags, city, state, minCost }) => {
+    // Mutation for updating musicians, not including tags
+    updateMusician: async (parent, { musicianId, imageLink, stageName, publicEmail, description, city, state, minCost }) => {
       try {
         // Gets lat and lon from provided city and state
-        // const { lat, lon } = await geoCode(city, state);
-        // console.log(lat, lon);
+        const { lat, lon } = await geoCode(city, state);
+        console.log(lat, lon);
 
         const updatedMusician = await Musician.findOneAndUpdate(
           {
             _id: musicianId,
           },
           {
-            imageLink, stageName, publicEmail, description, tags, city, state, minCost
+            imageLink, stageName, publicEmail, description, city, state, minCost
           },
           {
             new: true
@@ -110,8 +110,54 @@ const resolvers = {
       } catch (err) {
         console.error("Error updating musician: ", err);
         throw new Error("Could not update musician.");
-      }
+      };
+    },
 
+    // Mutation for adding tags by their ids to a musician found by id
+    addTags: async (parent, { musicianId, tagIds }) => {
+      try {
+        const updatedMusician = await Musician.findOneAndUpdate(
+          {
+            _id: musicianId,
+          },
+          {
+            $addToSet: { tags: tagIds }
+          },
+          {
+            new: true
+          }
+        );
+
+        return updatedMusician;
+
+      } catch (err) {
+        console.error("Error adding tags: ", err);
+        throw new Error("Could not add tags.");
+      };
+    },
+
+    // Mutation for removing tags by their ids to a musician found by id
+    removeTags: async (parent, { musicianId, tagIds }) => {
+      try {
+        const updateMusician = await Musician.findOneAndUpdate(
+          {
+            _id: musicianId,
+          },
+          {
+            // $in operator to ensure each tagId within the array is used
+            $pull: { tags: { $in: tagIds }},
+          },
+          {
+            new: true
+          }
+        );
+
+        return updateMusician;
+
+      } catch (err) {
+        console.error("Error removing tags: ", err);
+        throw new Error("Could not remove tags")
+      };
     }
 
 

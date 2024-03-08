@@ -1,5 +1,5 @@
-const { signToken } = require('../utils/auth');
-const { User, Musician, Tag }= require("../models")
+const { signToken, AuthenticationError } = require('../utils/auth');
+const { User, Musician, Tag } = require("../models")
 const { milesFromCoord, geoCode } = require('../utils/helpers');
 
 const resolvers = {
@@ -7,27 +7,31 @@ const resolvers = {
     users: async () => {
       return await User.find();
     },
-    
+
     userByUsername: async (parent, { username }) => {
-      return await User.findOne({username: username});
+      return await User.findOne({ username: username });
     },
 
     musicianById: async (parent, { musicianId }) => {
-      return await Musician.findOne({_id: musicianId});
+      return await Musician.findOne({ _id: musicianId });
     },
 
     musiciansByLocation: async (parent, { lat, lon }) => {
       const MUSICIANS = await Musicians.find({});
 
       // Sort musicians by their distance from the inputted location
-      return MUSICIANS.sort( (a,b) => {
+      return MUSICIANS.sort((a, b) => {
         const distanceA = milesFromCoord(a.lat, a.lon, lat, lon);
         const distanceB = milesFromCoord(b.lat, b.lon, lat, lon);
 
-        if(distanceA > distanceB) return 1;
-        if(distanceA < distanceB) return -1;
+        if (distanceA > distanceB) return 1;
+        if (distanceA < distanceB) return -1;
         return 0;
       });
+    },
+
+    tags: async () => {
+      return await Tag.find();
     }
   },
 
@@ -36,20 +40,20 @@ const resolvers = {
     addUser: async (parent, { userData }) => {
       const user = await User.create({ userData });
       const token = signToken(user);
-      return {token, user};
+      return { token, user };
     },
 
-    
-    addMusician: async (parent, { user: user, stageName, publicEmail, tags, city, state, description=null, imageLink=null, minCost=null }) => {
-      console.log(user);
-      const {lat, lon } = await geoCode(city, state);
-      console.log(lat,lon);
 
-      if(lat === null || lon === null) {
+    addMusician: async (parent, { user: user, stageName, publicEmail, tags, city, state, description = null, imageLink = null, minCost = null }) => {
+      console.log(user);
+      const { lat, lon } = await geoCode(city, state);
+      console.log(lat, lon);
+
+      if (lat === null || lon === null) {
         throw new Error("Location not found");
       }
-      
-      return Musician.create( {
+
+      return Musician.create({
         user: user,
         stageName: stageName,
         publicEmail: publicEmail,
@@ -63,24 +67,130 @@ const resolvers = {
 
     },
 
+    // Mutation for updating users
+    updateUser: async (parent, { userId, email, username, first, last, isMusician }) => {
+      try {
+        const updatedUser = await User.findOneAndUpdate(
+          {
+            _id: userId,
+          },
+          {
+            $set: {
+              email, username, first, last, isMusician
+            }
+          },
+          {
+            new: true
+          }
+        );
 
+        return { token, updatedUser };
 
+      } catch (err) {
+        console.error("Error updating user: ", err);
+        throw new Error("Could not update user.");
+      };
+    },
 
+    // Mutation for updating musicians, not including tags
+    updateMusician: async (parent, { musicianId, imageLink, stageName, publicEmail, description, city, state, minCost }) => {
+      try {
+        // Gets lat and lon from provided city and state
+        const { lat, lon } = await geoCode(city, state);
+        console.log(lat, lon);
 
+        const updatedMusician = await Musician.findOneAndUpdate(
+          {
+            _id: musicianId,
+          },
+          {
+            $set: {
+              imageLink, stageName, publicEmail, description, city, state, lat, lon, minCost
+            }
+          },
+          {
+            new: true
+          }
+        );
 
+        return updatedMusician;
 
+      } catch (err) {
+        console.error("Error updating musician: ", err);
+        throw new Error("Could not update musician.");
+      };
+    },
 
+    // Mutation for adding tags by their ids to a musician found by id
+    addTags: async (parent, { musicianId, tagIds }) => {
+      try {
+        const updatedMusician = await Musician.findOneAndUpdate(
+          {
+            _id: musicianId,
+          },
+          {
+            $addToSet: { tags: tagIds }
+          },
+          {
+            new: true
+          }
+        );
 
-    // removeProfile: async (parent, { profileId }) => {
-    //   return Profile.findOneAndDelete({ _id: profileId });
-    // },
-    // removeSkill: async (parent, { profileId, skill }) => {
-    //   return Profile.findOneAndUpdate(
-    //     { _id: profileId },
-    //     { $pull: { skills: skill } },
-    //     { new: true }
-    //   );
-    // },
+        return updatedMusician;
+
+      } catch (err) {
+        console.error("Error adding tags: ", err);
+        throw new Error("Could not add tags.");
+      };
+    },
+
+    // Mutation for removing tags by their ids to a musician found by id
+    removeTags: async (parent, { musicianId, tagIds }) => {
+      try {
+        const updateMusician = await Musician.findOneAndUpdate(
+          {
+            _id: musicianId,
+          },
+          {
+            // $in operator to ensure each tagId within the array is used
+            $pull: { tags: { $in: tagIds } },
+          },
+          {
+            new: true
+          }
+        );
+
+        return updateMusician;
+
+      } catch (err) {
+        console.error("Error removing tags: ", err);
+        throw new Error("Could not remove tags")
+      };
+    },
+
+    // Mutation for login
+    login: async (parent, { username, password }) => {
+      try {
+        // Checks for valid user
+        const user = await User.findOne({ username });
+        if (!user) {
+          throw AuthenticationError;
+        };
+
+        // Checks for valid password
+        const validPassword = await user.isValidPassword(password);
+        if (!validPassword) {
+          throw AuthenticationError;
+        };
+
+        const token = signToken(user);
+        return { token, user };
+
+      } catch (err) {
+        console.error("Error logging in: ", err);
+        throw new Error("Could not log in.")
+      }
+    }
   },
 };
 

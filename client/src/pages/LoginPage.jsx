@@ -4,7 +4,6 @@ import TextField from '@mui/material/TextField';
 
 export default function LoginPage() {
 
-
     return (
 
         <div>
@@ -22,6 +21,7 @@ export default function LoginPage() {
                     noValidate
                     autoComplete="off"
                 >
+                    
                     <h2>Login</h2>
                     <TextField className="form" id="outlined-basic" label="Email" variant="outlined" />
                     <TextField className="form" id="outlined-basic" label="Password" variant="outlined" />

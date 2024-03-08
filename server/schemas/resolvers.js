@@ -90,15 +90,15 @@ const resolvers = {
     updateMusician: async (parent, { musicianId, imageLink, stageName, publicEmail, description, tags, city, state, minCost }) => {
       try {
         // Gets lat and lon from provided city and state
-        const { lat, lon } = await geoCode(city, state);
-        console.log(lat, lon);
+        // const { lat, lon } = await geoCode(city, state);
+        // console.log(lat, lon);
 
         const updatedMusician = await Musician.findOneAndUpdate(
           {
             _id: musicianId,
           },
           {
-            imageLink, stageName, publicEmail, description, tags, city, state, lat, lon, minCost
+            imageLink, stageName, publicEmail, description, tags, city, state, minCost
           },
           {
             new: true

@@ -70,6 +70,7 @@ const typeDefs = `
     ): Musician
     
     updateMusician(
+      musicianId: ID!
       imageLink: String,
       stageName: String,
       publicEmail: String,
@@ -81,6 +82,7 @@ const typeDefs = `
     ): Musician
 
     updateUser(
+      userId: ID!
       email: String,
       username: String,
       first: String,

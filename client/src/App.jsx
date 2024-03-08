@@ -14,7 +14,7 @@ function App() {
       <LoginPage/>
       <main>
       {/* <SignupPage /> */}
-      <MusicianBio />
+      {/* <MusicianBio /> */}
       </main>
   
     </>

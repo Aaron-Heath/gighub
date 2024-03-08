@@ -5,7 +5,7 @@ body{
   background-color: #204B57;
 }
 
-h2{
+/* h2{
   margin:0px;
   color: #711F31;
   font-family: "Bungee", sans-serif;
@@ -37,9 +37,7 @@ h3{
 }
 
 Font:
-font-family: "Bungee", sans-serif; */
-
-
+font-family: "Bungee", sans-serif; */ */
 
 :root {
   --blue: #204B57;
@@ -53,12 +51,12 @@ font-family: "Bungee", sans-serif; */
 body {
   background-color: var(--blue);
 }
-
+/* 
 h2{
   font-family: "Bungee", sans-serif;
   color: var(--dark-red);
   font-size: 30px;
-}
+} */
 
 p {
   font-family: Arial, Helvetica, sans-serif;

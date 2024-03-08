@@ -1,4 +1,4 @@
-const { signToken } = require('../utils/auth');
+const { signToken, AuthenticationError } = require('../utils/auth');
 const { User, Musician, Tag } = require("../models")
 const { milesFromCoord, geoCode } = require('../utils/helpers');
 
@@ -75,7 +75,9 @@ const resolvers = {
             _id: userId,
           },
           {
-            email, username, first, last, isMusician
+            $set: {
+              email, username, first, last, isMusician
+            }
           },
           {
             new: true
@@ -102,7 +104,9 @@ const resolvers = {
             _id: musicianId,
           },
           {
-            imageLink, stageName, publicEmail, description, city, state, minCost
+            $set: {
+              imageLink, stageName, publicEmail, description, city, state, lat, lon, minCost
+            }
           },
           {
             new: true
@@ -149,7 +153,7 @@ const resolvers = {
           },
           {
             // $in operator to ensure each tagId within the array is used
-            $pull: { tags: { $in: tagIds }},
+            $pull: { tags: { $in: tagIds } },
           },
           {
             new: true
@@ -162,6 +166,29 @@ const resolvers = {
         console.error("Error removing tags: ", err);
         throw new Error("Could not remove tags")
       };
+    },
+
+    login: async (parent, { username, password }) => {
+      try {
+        // Checks for valid user
+        const user = await User.findOne({ username });
+        if (!user) {
+          throw AuthenticationError;
+        };
+
+        // Checks for valid password
+        const validPassword = await user.isValidPassword(password);
+        if (!validPassword) {
+          throw AuthenticationError;
+        };
+
+        const token = signToken(user);
+        return { token, user };
+
+      } catch (err) {
+        console.error("Error logging in: ", err);
+        throw new Error("Could not log in.")
+      }
     }
   },
 };

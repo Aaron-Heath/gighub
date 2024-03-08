@@ -75,7 +75,6 @@ const typeDefs = `
       stageName: String,
       publicEmail: String,
       description: String,
-      tags: [ID],
       city: String,
       state: String,
       minCost: Float

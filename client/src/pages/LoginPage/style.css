@@ -8,11 +8,12 @@
     --yellow: #FFE5A1;
     --pale: #FBF4E6;
   
-  }
+}
 
 img{
     margin-top:0;
 }
+
 body {
     background-color: var(--blue);
 }

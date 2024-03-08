@@ -28,6 +28,10 @@ const resolvers = {
         if (distanceA < distanceB) return -1;
         return 0;
       });
+    },
+
+    tags: async () => {
+      return await Tag.find();
     }
   },
 

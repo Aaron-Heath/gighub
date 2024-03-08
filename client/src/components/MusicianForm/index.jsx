@@ -1,6 +1,7 @@
 
+import './style.css';
 
-export default function ArtistForm(){
+export default function MusicianForm(){
 
 
 

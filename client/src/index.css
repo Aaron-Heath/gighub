@@ -1,45 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
 
-body{
-  background-color: #204B57;
-}
-
-h2{
-  margin:0px;
-  color: #711F31;
-  font-family: "Bungee", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 30px;
-}
-
-h3{
-  font-family: "Zen Maru Gothic", serif;
-  font-weight: 500;
-  font-style: normal;
-}
-.login-container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 55% !important;
-  background-color: antiquewhite;
-}
-
-/* .css-7v75ig {
-  gap: 4px !important;
-} */
-
-/* #root{
-  padding: 13%; */
-
-/* Font:
-font-family: "Bungee", sans-serif;
-*/
-
-
 :root {
   --blue: #204B57;
   --dark-red: #711F31;
@@ -51,39 +12,6 @@ font-family: "Bungee", sans-serif;
 
 body {
   background-color: var(--blue);
-}
-
-h2{
-  font-family: "Bungee", sans-serif;
-  color: var(--dark-red);
-  font-size: 30px;
-}
-
-p {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px
-}
-
-a {
-  text-decoration: underline;
-}
-
-.signup-container {
-  background-color: var(--blue);
-
-  
-}
-
-.signup-forms{
-  background-color: var(--pale);
-  border-radius: 10%;
-  padding: 1% 10% 10% 10%
-}
-
-#signupBtn {
-  margin-top: 7%;
-  color: var(--yellow);
-  background-color: var(--dark-red);
 }
 
 #loginBtn {

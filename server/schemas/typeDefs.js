@@ -70,6 +70,7 @@ const typeDefs = `
     ): Musician
     
     updateMusician(
+      musicianId: ID!
       imageLink: String,
       stageName: String,
       publicEmail: String,
@@ -81,6 +82,7 @@ const typeDefs = `
     ): Musician
 
     updateUser(
+      userId: ID!
       email: String,
       username: String,
       first: String,
@@ -88,6 +90,15 @@ const typeDefs = `
       isMusician: Boolean
     ): Auth
 
+    addTags(
+      musicianId: ID!
+      tagIds: [ID!]
+    ): Musician
+
+    removeTags(
+      musicianId: ID!
+      tagIds: [ID!]
+    ): Musician
   }
 `;
 

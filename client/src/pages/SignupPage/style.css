@@ -1,0 +1,32 @@
+h2{
+    font-family: "Bungee", sans-serif;
+    color: var(--dark-red);
+    font-size: 30px;
+  }
+  
+  p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px
+  }
+  
+  a {
+    text-decoration: underline;
+  }
+  
+  .signup-container {
+    background-color: var(--blue);
+  
+    
+  }
+  
+  .signup-forms{
+    background-color: var(--pale);
+    border-radius: 10%;
+    padding: 1% 10% 10% 10%
+  }
+  
+  #signupBtn {
+    margin-top: 7%;
+    color: var(--yellow);
+    background-color: var(--dark-red);
+  }

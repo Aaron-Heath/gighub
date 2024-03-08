@@ -17,6 +17,7 @@ export default function SignupPage() {
         <div className='signup-container'>
             
             <Box
+                
                 sx={{
                     flexGrow: 1,
                     alignContent: "center"

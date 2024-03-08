@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <LoginPage/>
+      {/* <LoginPage/> */}
       <main>
       {/* <SignupPage /> */}
       <MusicianBio />

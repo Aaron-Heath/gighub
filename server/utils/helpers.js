@@ -51,4 +51,16 @@ async function geoCode(city, state, country="US") {
     }
 }
 
-module.exports = { milesFromCoord, geoCode }
+const sortByDistance = (latLon) => {
+    return (a,b) => {
+        const distanceA = milesFromCoord(a.lat, a.lon, latLon.lat, latLon.lon);
+        const distanceB = milesFromCoord(b.lat, b.lon, latLon.lat, latLon.lon);
+    
+        if (distanceA > distanceB) return 1;
+        if (distanceA < distanceB) return -1;
+        return 0;
+    }
+
+}
+
+module.exports = { milesFromCoord, geoCode, sortByDistance }

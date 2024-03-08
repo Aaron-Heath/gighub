@@ -12,7 +12,7 @@ function App() {
     <>
       <LoginPage/>
       <main>
-      <SignupPage />
+      {/* <SignupPage /> */}
       </main>
     </>
   )

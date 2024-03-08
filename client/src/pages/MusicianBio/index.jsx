@@ -4,6 +4,9 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { GET_MUSICIAN_BY_ID } from "../../utils/queries";
 import { useQuery } from '@apollo/client'
+import AddLocationIcon from '@mui/icons-material/AddLocation';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import './style.css'
 
 
 

@@ -1,8 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
 
-body{
-  background-color: #204B57;
+:root {
+  --blue: #204B57;
+  --dark-red: #711F31;
+  --lighter-red: #9E3845;
+  --yellow: #FFE5A1;
+  --pale: #FBF4E6;
+
+}
+
+body {
+  background-color: var(--blue);
 }
 
 /* h2{
@@ -38,52 +47,6 @@ h3{
 
 Font:
 font-family: "Bungee", sans-serif; */ */
-
-:root {
-  --blue: #204B57;
-  --dark-red: #711F31;
-  --lighter-red: #9E3845;
-  --yellow: #FFE5A1;
-  --pale: #FBF4E6;
-
-}
-
-body {
-  background-color: var(--blue);
-}
-/* 
-h2{
-  font-family: "Bungee", sans-serif;
-  color: var(--dark-red);
-  font-size: 30px;
-} */
-
-p {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px
-}
-
-a {
-  text-decoration: underline;
-}
-
-.signup-container {
-  background-color: var(--blue);
-
-  
-}
-
-.signup-forms{
-  background-color: var(--pale);
-  border-radius: 10%;
-  padding: 1% 10% 10% 10%
-}
-
-#signupBtn {
-  margin-top: 7%;
-  color: var(--yellow);
-  background-color: var(--dark-red);
-}
 
 #loginBtn {
   margin-top: 7%;

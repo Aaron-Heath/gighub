@@ -159,25 +159,6 @@ const resolvers = {
         throw new Error("Could not remove tags")
       };
     }
-
-
-
-
-
-
-
-
-
-    // removeProfile: async (parent, { profileId }) => {
-    //   return Profile.findOneAndDelete({ _id: profileId });
-    // },
-    // removeSkill: async (parent, { profileId, skill }) => {
-    //   return Profile.findOneAndUpdate(
-    //     { _id: profileId },
-    //     { $pull: { skills: skill } },
-    //     { new: true }
-    //   );
-    // },
   },
 };
 

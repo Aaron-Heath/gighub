@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
+import { storePage } from "../../utils/pages";
 // import { useParams } from 'react-router-dom';
 
 
 const MusicianBio = () => {
+
+  storePage();
+
   const [musicianData, setMusicianData] = useState({
     user: 'John Doe',
     stageName: 'The Doodlebobs',

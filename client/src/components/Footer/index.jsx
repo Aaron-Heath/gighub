@@ -1,72 +1,71 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'
-import clsx from 'clsx';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
-  },
-  linkStyle: {
-    'color': 'white',
-    'textDecoration': 'none'
-  },
-  signedInUser: {
-    padding: theme.spacing(1),
-  },
-}));
+import AppBar from '@mui/material/AppBar';
+import { Toolbar } from '@mui/material';
+import { IconButton } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import Button from '@mui/material/Button';
+import './style.css'
 
 function Header() {
-  const classes = useStyles();
+  const [user, setUser] = useState(null);
+
+  const headerStyle = {
+    flexGrow: 1,
+  };
+
+  const menuButtonStyle = {
+    marginRight: '-900px',
+    color: '#204B57' // Adjust the value according to your preference
+  };
+
+  const titleStyle = {
+    flexGrow: 1,
+    color: '#711F31',
+    fontFamily: 'Bungee' //text color   
+  };
+
+  const linkStyle = {
+    color: '#711F31',
+    textDecoration: 'none',
+    // fontFamily: 'Bungee'
+  };
+
+  const signedInUserStyle = {
+    padding: '8px',
+  };
+
+  const handleAuthentication = () => {
+    // Simulate signing out by updating the user state
+    setUser(null);
+  };
 
   return (
-    <div className={classes.root}>
-
+    <div style={headerStyle}>
       {/* App Bar */}
-
-      <AppBar
-        position="relative"
-        background="#000000"
-        className={clsx(classes.appBar)}
-      >
+      <AppBar position="relative" style={{ ...titleStyle, background: '#FFE5A1' }}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" style={menuButtonStyle} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" className={classes.title}>
-           Gighub 
-          </Typography>
-
-          {/* The following lines are commented out
-          <div className={classes.signedInUser}>Hello, {user ? user.email.split("@")[0] : 'Guest'}</div>
+          <h3 style={titleStyle}>Gighub</h3>
+          <div style={signedInUserStyle}>Hello, {user ? user.email.split("@")[0] : 'Guest'}</div>
           {user ? (
-            <div className={classes.signedInUser}>
-              <Button color="inherit" onClick={handleAuthentication}>Logout</Button>
+            <div style={signedInUserStyle}>
+              <Button color="inherit"  onClick={handleAuthentication}>Logout</Button>
             </div>
           ) : (
             <div>
-              <Link to="/login" className={classes.linkStyle}>
-                <Button color="inherit">Login</Button>
+              <Link to="/login" style={linkStyle}>
+                <Button color="inherit" style={{fontFamily: 'Bungee', fontSize: '10px', color: '#204B57'}}>Login</Button>
               </Link>
             </div>
-          )} */}
-
+          )}
         </Toolbar>
       </AppBar>
     </div>
-  )
+  );
 }
 
 export default Header;
+

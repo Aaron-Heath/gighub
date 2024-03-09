@@ -20,11 +20,11 @@ export default function MusicianForm() {
                     autoComplete="off"
                 >
                     <div className='musicianForms'>
-                    <TextField id="outlined-basic" label="First Name" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
+                    <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" />
+                    <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" />
+                    <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" />
+                    <TextField id="outlined-basic" label="State" variant="outlined" margin="dense" />
+                    <p>*This will be shown on your profile</p>
                     </div>
                 </Box>
             </div>

@@ -34,10 +34,14 @@ export default function SignupPage() {
                     noValidate
                     autoComplete="off"
                 >
+                    {/* Gighub Logo */}
                     <img src={gighubLogo} />
+                    
+                    {/* Sign up form */}
                     <div className='signup-forms'>
                         <h2>Sign Up</h2>
                         <p>Are you a musician?</p>
+                        {/* Checkbox for checking if user is a musician */}
                         <input
                             type="checkbox"
                             id="yesCheck"
@@ -54,15 +58,17 @@ export default function SignupPage() {
                             value="No"
                         />
                         <label for="noCheck">No</label>
+                        {/* Input Forms */}
                         <TextField id="outlined-basic" label="First Name" variant="outlined" margin="dense" />
                         <TextField id="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
                         <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense" />
                         <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense" />
                         <TextField id="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
                     </div>
-                    
                 </Box>
+                {/* If "yes" is checked, musician sign up form will render */}
                 <MuscianForm />
+                {/* Submit button */}
                 <Button variant="outlined" id="signupBtn">Submit</Button>
             </div>
         )

@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
-import { GET_MUSICIAN_BY_ID } from "../../utils/queries";
-import { useQuery } from '@apollo/client'
-import AddLocationIcon from '@mui/icons-material/AddLocation';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import './style.css'
-
+import { storePage } from "../../utils/pages";
+// import { useParams } from 'react-router-dom';
 
 
 const MusicianBio = () => {
+
+  storePage();
+
   const [musicianData, setMusicianData] = useState({
     user: 'John Doe',
     stageName: 'The Doodlebobs',

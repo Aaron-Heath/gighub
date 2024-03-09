@@ -6,11 +6,7 @@ import Button from '@mui/material/Button';
 import gighubLogo from "../../assets/images/Gighub-290px.png";
 
 
-
-
 export default function SignupPage() {
-
-
 
     return (
         

@@ -9,9 +9,9 @@ h2{
     font-size: 15px
   }
   
-  a {
+  /* a {
     text-decoration: underline;
-  }
+  } */
   
   .signup-container {
     background-color: var(--blue);
@@ -25,6 +25,10 @@ h2{
     padding: 1% 10% 10% 10%
   }
   
+  .radio-container {
+    margin-top: 5%;
+  }
+
   #signupBtn {
     margin-top: 7%;
     color: var(--yellow);

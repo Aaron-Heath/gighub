@@ -3,8 +3,17 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './style.css';
 import gighubLogo from "../../assets/images/Gighub-290px.png";
+import { redirectToLast } from '../../utils/pages';
 
 export default function LoginPage() {
+
+    const handleLogin = (e) => {
+        //Login logic goes here
+
+        
+        // Redirects to last stored page or home
+        redirectToLast();
+    }
 
     return (
 

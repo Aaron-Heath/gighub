@@ -13,7 +13,7 @@ const userEmail = {
     return new Promise((resolve, reject) => {
       // Simulate a delay for the request
       setTimeout(() => {
-        // Replace the following with your actual backend response handling
+        // Replace with our actual backend
         if (email === 'example@example.com' && password === 'password123') {
           resolve({ email: 'example@example.com' });
         } else {
@@ -30,7 +30,7 @@ function App() {
   useEffect(() => {
     const authenticateUser = async () => {
       try {
-        // Replace the following with your actual login form data
+        // replace with our actual form data
         const email = 'example@example.com';
         const password = 'password123';
 

@@ -32,3 +32,7 @@ h2{
     color: var(--yellow);
     background-color: var(--dark-red);
   }
+
+  #noCheck {
+    margin-bottom: 7%
+  }

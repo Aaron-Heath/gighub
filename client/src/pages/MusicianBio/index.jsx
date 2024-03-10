@@ -3,12 +3,30 @@ import Button from "@mui/material/Button";
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { storePage } from "../../utils/pages";
+import { useParams } from 'react-router-dom';
+import { GET_MUSICIAN_BY_ID } from "../../utils/queries";
+import { useQuery } from '@apollo/client';
 // import { useParams } from 'react-router-dom';
+import Footer from "../../components/Footer"
 
 
 const MusicianBio = () => {
 
   storePage();
+
+  const { musicianId } = useParams();
+
+  // query Musician ID
+  const { loading, data } = useQuery(
+    GET_MUSICIAN_BY_ID,
+    {
+      variables: { musicianId: musicianId }
+    });
+
+
+  console.log(data);
+
+
 
   const [musicianData, setMusicianData] = useState({
     user: 'John Doe',
@@ -23,6 +41,35 @@ const MusicianBio = () => {
 
   // useEffect(() => {
   //   const response = { user: 'John Doe', stageName: 'The DoodleBobs', city: 'City', state: 'State', minCost: 'minCost', imageLink: 'string', description: 'string', tags: 'tags' }; 
+
+  //   // const fetchMusicianData = async () => {
+  //   //     try {
+  //   //       const response = await fetch('/api/musician', {
+  //   //         method: 'GET',
+  //   //         // You can include headers if needed, such as authorization headers
+  //   //       });
+  //   //       const data = await response.json();
+  //   //       setMusicianData(data);
+  //   //     } catch (error) {
+  //   //       console.error('Error fetching musician data:', error);
+  //   //     }
+  //   //   };
+
+    
+  //   setMusicianData(response); // Replace with actual response data
+  //       const fetchMusicianData = async () => {
+  //           try {
+  //               // const response = await fetch('/api/musician'); // Replace with the actual API endpoint
+  //               const data = await response.json();
+  //               setMusicianData(data);
+  //           } catch (error) {
+  //               console.error('Error fetching musician data:', error);
+  //           }
+  //       };
+
+  //       fetchMusicianData();
+
+  // }, []);
 
     // const { loading, data } = useQuery(GET_MUSICIAN_BY_ID)
     // {
@@ -70,6 +117,7 @@ const MusicianBio = () => {
           </div>
         </Box>
       </div>
+      <Footer />
     </div>
   );
 };

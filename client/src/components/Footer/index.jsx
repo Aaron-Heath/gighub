@@ -1,13 +1,10 @@
 import './style.css';
 import React, { useState } from "react";
-// import { useHistory } from "react-router-dom";
 import { ThemeProvider, Box, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { createTheme } from '@mui/material/styles';
 import FavoritesIcon from './FavoritesIcon';
 import SearchIcon from './SearchIcon';
 import SettingsIcon from './SettingsIcon';
-// import Link from '@mui/material/Link';
-// import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import "./style.css"
 

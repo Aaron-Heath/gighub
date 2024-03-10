@@ -6,6 +6,9 @@ import { storePage } from "../../utils/pages";
 import { useParams } from 'react-router-dom';
 import { GET_MUSICIAN_BY_ID } from "../../utils/queries";
 import { useQuery } from '@apollo/client';
+// import { useParams } from 'react-router-dom';
+import Footer from "../../components/Footer"
+
 
 const MusicianBio = () => {
 
@@ -103,6 +106,7 @@ const MusicianBio = () => {
           </div>
         </Box>
       </div>
+      <Footer />
     </div>
   );
 };

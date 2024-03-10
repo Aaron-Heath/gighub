@@ -42,7 +42,6 @@ function App() {
       <main>
         <Header />
         <Outlet />
-        <Footer />
       </main>
       </ApolloProvider>
   

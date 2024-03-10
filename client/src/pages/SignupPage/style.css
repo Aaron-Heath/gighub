@@ -9,8 +9,9 @@ h2{
     font-size: 15px
   }
   
-  a {
-    text-decoration: underline;
+  label {
+    font-family: Arial, Helvetica, sans-serif;
+    
   }
   
   .signup-container {
@@ -24,9 +25,14 @@ h2{
     border-radius: 10%;
     padding: 1% 10% 10% 10%
   }
+
   
   #signupBtn {
     margin-top: 7%;
     color: var(--yellow);
     background-color: var(--dark-red);
+  }
+
+  #noCheck {
+    margin-bottom: 7%
   }

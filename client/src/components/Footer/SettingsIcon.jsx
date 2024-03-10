@@ -1,4 +1,4 @@
-import recents from "../../assets/images/recents.png";
+import recents from "../../assets/images/settings.png";
 import "./style.css"
 
 export default function RecentsIcon() {

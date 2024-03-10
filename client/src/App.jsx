@@ -14,7 +14,7 @@ function App() {
       <main>
         <Header />
         <Outlet />
-        <Footer />
+        {/* <Footer /> */}
       </main>
   
     </>

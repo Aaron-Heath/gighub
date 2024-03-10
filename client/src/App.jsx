@@ -11,6 +11,7 @@ import {
   InMemoryCache 
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
+import { useStateValue } from './StateProvider';
 // import LoginPage from './pages/LoginPage'
 // import SignupPage from './pages/SignupPage'
 // import MusicianBio from './pages/MusicianBio'
@@ -99,20 +100,3 @@ function App() {
 export default App;
 
 
-{/* // mock backend for now
-const userEmail = {
-  authenticate: async (email, password) => {
-    // Simulate a request to your backend authentication endpoint
-    return new Promise((resolve, reject) => {
-      // Simulate a delay for the request
-      setTimeout(() => {
-        // Replace with our actual backend
-        if (email === 'example@example.com' && password === 'password123') {
-          resolve({ email: 'example@example.com' });
-        } else {
-          reject(new Error('Invalid credentials'));
-        }
-      }, 500);
-    });
-  },
-}; */}

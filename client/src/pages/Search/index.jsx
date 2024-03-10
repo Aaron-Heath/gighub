@@ -5,11 +5,4 @@ export default function Search(){
 
     storePage();
 
-    return (
-        <div>
-
-        </div>
-    )
-
-
 }

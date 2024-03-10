@@ -1,8 +1,8 @@
-import recents from "../../assets/images/settings.png";
+import settings from "../../assets/images/settings.png";
 import "./style.css"
 
-export default function RecentsIcon() {
+export default function SettingsIcon() {
 
-    return <img src={recents} className="recents-icon"/>
+    return <img src={settings} className="settings-icon"/>
     
 }

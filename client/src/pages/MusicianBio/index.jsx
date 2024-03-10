@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { storePage } from "../../utils/pages";
 // import { useParams } from 'react-router-dom';
+import Footer from "../../components/Footer"
 
 
 const MusicianBio = () => {
@@ -88,6 +89,7 @@ const MusicianBio = () => {
           </div>
         </Box>
       </div>
+      <Footer />
     </div>
   );
 };

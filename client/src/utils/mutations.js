@@ -138,3 +138,32 @@ export const UPDATE_USER = gql`
         }
     }
 `
+export const ADD_TAGS = gql`
+    mutation addTags($musicianId: ID!, $tagIds: [ID!]) {
+        addTags(musicianId: $musicianId, tagIds: $tagIds) {
+            _id
+            stageName
+            publicEmail
+            description
+            tags
+            city
+            state
+            minCost
+        }
+    }
+`
+
+export const REMOVE_TAGS = gql`
+    mutation removeTags($musicianId: ID!, $tagIds: [ID!]) {
+        removeTags(musicianId: $musicianId, tagIds: $tagIds) {
+            _id
+            stageName
+            publicEmail
+            description
+            tags
+            city
+            state
+            minCost
+    }
+}
+`

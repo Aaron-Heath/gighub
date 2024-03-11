@@ -43,6 +43,7 @@ const typeDefs = `
     userByUsername(username: String!): User
     musicianById(musicianId: ID!): Musician
     musiciansByLocation(lat: Float, lon: Float): [Musician]
+    musiciansByTags(tags: [Tag!]): [Musician]
     tags: [Tag]
   }
 

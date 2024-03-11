@@ -25,6 +25,16 @@ const resolvers = {
 
     tags: async () => {
       return await Tag.find();
+    },
+
+    // For finding musicians that match ALL selected tags
+    musiciansByTags: async (parent, { tags }) => {
+      try {
+        return await Musician.find({ tags: { $all: tags }}).populate('tags');
+      } catch (err) {
+        console.error('Error searching by tags: ', err);
+        throw new Error('Error searching by tags')
+      }
     }
   },
 

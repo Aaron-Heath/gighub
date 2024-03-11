@@ -45,7 +45,7 @@ export default function AccountSettings(){
                    
             
                     
-                <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '100px'}}/>
+                <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee'}}/>
 
                     
                     <TextField className="form" id="publicEmail" label=" Email" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}}/>
@@ -70,7 +70,7 @@ export default function AccountSettings(){
                     <TextField className="form" id="tags" label="Search for Tags" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} />
 
                     <div className='save-button'>
-                        <Button variant="contained" style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginBottom: '10px'}}>
+                        <Button variant="contained" style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px',marginBottom: '50px'}}>
                             Save Changes
                         </Button>
                     </div>

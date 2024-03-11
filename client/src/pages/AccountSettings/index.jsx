@@ -30,19 +30,19 @@ export default function AccountSettings(){
                     <h2>Settings</h2>
                     
                     {/* Change/Update Stage Name */}
-                    <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" />
+                    <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1', borderRadius: '10px' }}/>
 
                     {/* Change/Update Public Email */}
-                    <TextField className="form" id="publicEmail" label=" Email" variant="outlined" />
+                    <TextField className="form" id="publicEmail" label=" Email" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px'}}/>
 
                     {/* Change/Update City */}
-                    <TextField className="form" id="city" label="City" variant="outlined" />
+                    <TextField className="form" id="city" label="City" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px'}} />
 
                     {/* Change/Update State */}
-                    <TextField className="form" id="state" label="State" variant="outlined" />
+                    <TextField className="form" id="state" label="State" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px'}} />
 
                     {/* Change/Update Image Link */}
-                    <TextField className="form" id="imageLink" label="Image Link" variant="outlined" />
+                    <TextField className="form" id="imageLink" label="Image Link" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px'}} />
 
                     {/* Change/Update Description */}
                     <TextField
@@ -52,13 +52,14 @@ export default function AccountSettings(){
                         multiline
                         rows={4}
                         variant="outlined"
+                        style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px'}}
                     />
 
                     {/* Choose from Tags */}
-                    <TextField className="form" id="tags" label="Choose from Tags" variant="outlined" />
+                    <TextField className="form" id="tags" label="Choose from Tags" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px'}} />
 
                     <div className='save-button'>
-                        <Button variant="contained" color="primary">
+                        <Button variant="contained" style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px'}}>
                             Save Changes
                         </Button>
                     </div>

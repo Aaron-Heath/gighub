@@ -49,8 +49,8 @@ function Header() {
           <IconButton edge="start" style={menuButtonStyle} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <h3 style={titleStyle}>Gighub</h3>
-          <div style={signedInUserStyle}>Hello, {user ? user.email.split("@")[0] : 'Guest'}</div>
+          <h3 className='title' style={titleStyle}>Gighub</h3>
+          <div className='greetings' style={signedInUserStyle}>Hello, {user ? user.email.split("@")[0] : 'Guest'}</div>
           {user ? (
             <div style={signedInUserStyle}>
               <Button color="inherit"  onClick={handleAuthentication}>Logout</Button>

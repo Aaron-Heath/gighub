@@ -31,8 +31,25 @@ export const GET_MUSICIAN_BY_ID = gql`
 `
 
 export const GET_MUSICIANS_BY_LOCATION = gql`
-    query musicianByLocation($lat: Float, $lon: Float) {
+    query musiciansByLocation($lat: Float, $lon: Float) {
         musician(lat: $lat, lon: $lon) {
+            _id
+            stageName
+            publicEmail
+            description
+            tags
+            city
+            state
+            lat
+            lon
+            minCost
+        }
+    }
+`
+
+export const GET_MUSICIANS_BY_TAGS = gql`
+    query musiciansByTags($tags: [Tag!]) {
+        musician(tags: $tags) {
             _id
             stageName
             publicEmail
@@ -54,5 +71,4 @@ export const GET_TAGS = gql`
             tag
         }
     }
-
 `

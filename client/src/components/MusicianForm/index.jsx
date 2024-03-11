@@ -3,10 +3,18 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './style.css';
 
+import * as React from 'react';
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
+// import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
 export default function MusicianForm() {
 
+    
 
+      
+    const options = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+    const defaultOption = "State";
 
     return (
         <div>
@@ -21,11 +29,11 @@ export default function MusicianForm() {
                     autoComplete="off"
                 >
                     <div className='musicianForms'>
-                    <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="State" variant="outlined" margin="dense" />
-                    <p>*This will be shown on your profile</p>
+                        <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" />
+                        <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" />
+                        <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" />
+                        <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" />
+                        <p>*This will be shown on your profile</p>
                     </div>
                 </Box>
             </div>

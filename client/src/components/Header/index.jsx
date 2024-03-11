@@ -6,6 +6,7 @@ import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import './style.css'
+// import Header from './Header'
 
 function Header() {
   const [user, setUser] = useState(null);

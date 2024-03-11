@@ -8,6 +8,7 @@ import { GET_MUSICIAN_BY_ID } from "../../utils/queries";
 import { useQuery } from '@apollo/client';
 // import { useParams } from 'react-router-dom';
 import Footer from "../../components/Footer"
+import Header from "../../components/Header"
 
 
 const MusicianBio = () => {
@@ -77,6 +78,7 @@ const MusicianBio = () => {
     // }
   return (
     <div>
+      <Header />
       <div className="musician-bio">
         <Box
             height={300}

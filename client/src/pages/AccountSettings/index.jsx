@@ -18,7 +18,8 @@ export default function AccountSettings(){
                     className="settings-container"
                     gap={4}
                     sx={{
-                        border: '4px solid #FBF4E6',
+                        border: '4px solid #FFE5A1',
+                        borderRadius: 2,
                         flexGrow: 1,
                         alignContent: "center",
                     }}
@@ -29,25 +30,25 @@ export default function AccountSettings(){
                     <h2>Settings</h2>
                     
                     {/* Change/Update Stage Name */}
-                    <TextField className="form" id="stageName" label="Change/Update Stage Name" variant="outlined" />
+                    <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" />
 
                     {/* Change/Update Public Email */}
-                    <TextField className="form" id="publicEmail" label="Change/Update Public Email" variant="outlined" />
+                    <TextField className="form" id="publicEmail" label=" Email" variant="outlined" />
 
                     {/* Change/Update City */}
-                    <TextField className="form" id="city" label="Change/Update City" variant="outlined" />
+                    <TextField className="form" id="city" label="City" variant="outlined" />
 
                     {/* Change/Update State */}
-                    <TextField className="form" id="state" label="Change/Update State" variant="outlined" />
+                    <TextField className="form" id="state" label="State" variant="outlined" />
 
                     {/* Change/Update Image Link */}
-                    <TextField className="form" id="imageLink" label="Change/Update Image Link" variant="outlined" />
+                    <TextField className="form" id="imageLink" label="Image Link" variant="outlined" />
 
                     {/* Change/Update Description */}
                     <TextField
                         className="form"
                         id="description"
-                        label="Change/Update Description"
+                        label=" Description"
                         multiline
                         rows={4}
                         variant="outlined"

@@ -1,3 +1,4 @@
 .chip {
     background-color: var(--lighter-red) !important;
+    margin-left: 5px !important;
 }

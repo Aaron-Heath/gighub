@@ -13,20 +13,51 @@ import { useStateValue } from './StateProvider';
 // import SignupPage from './pages/SignupPage'
 // import MusicianBio from './pages/MusicianBio'
 
-// Creates instance of graphql endpoint
-const client = new ApolloClient({
+// mock backend for now
+const userEmail = {
+  authenticate: async (email, password) => {
+    // Simulate a request to your backend authentication endpoint
+    return new Promise((resolve, reject) => {
+      // Simulate a delay for the request
+      setTimeout(() => {
+        // Replace with our actual backend
+        if (email === 'example@example.com' && password === 'password123') {
+          resolve({ email: 'example@example.com' });
+        } else {
+          reject(new Error('Invalid credentials'));
+        }
+      }, 500);
+    });
+  },
+};
+
+const httpLink = createHttpLink({
   uri: '/graphql',
-  cache: new InMemoryCache()
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    }
+  }
+})
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
 });
 
 function App() {
+
   return (
     <ApolloProvider client={client}>
     <>
       <main>
         <Header />
-        {/* <MusicianBio /> */}
-        < AccountSettings />
         <Outlet />
       </main>
     </>

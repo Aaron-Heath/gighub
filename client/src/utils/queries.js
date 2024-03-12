@@ -49,7 +49,8 @@ export const GET_MUSICIANS_BY_LOCATION = gql`
 // Executing get tags array
 export const GET_TAGS = gql`
     query tags{
-        tag{
+        tags{
+            _id
             tag
         }
     }

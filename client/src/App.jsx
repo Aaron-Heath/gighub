@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from "./components/Header"
 import Footer from "./components/Footer"
-import AccountSettings from './pages/AccountSettings';
+// import AccountSettings from './pages/AccountSettings';
 import './App.css'
 import { 
   ApolloClient,
@@ -15,7 +15,8 @@ import { setContext } from '@apollo/client/link/context'
 import { useStateValue } from './StateProvider';
 // import LoginPage from './pages/LoginPage'
 // import SignupPage from './pages/SignupPage'
-import MusicianBio from './pages/MusicianBio'
+// import MusicianBio from './pages/MusicianBio'
+import SettingsForm from "./components/SettingsForm";
 
 // mock backend for now
 const userEmail = {
@@ -91,8 +92,10 @@ function App() {
       <main>
         <Header />
         {/* <MusicianBio /> */}
-        < AccountSettings />
+        {/* < AccountSettings /> */}
+      
         <Outlet />
+        <SettingsForm />
       </main>
       </ApolloProvider>
   

@@ -1,0 +1,21 @@
+.dropdown {
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 3%;
+  background-color: var(--yellow) !important;
+  border: solid rgb(183, 184, 179) 1px !important;
+  color: rgb(93, 94, 96) !important;
+  text-align: start;
+  width: 200px;
+  margin-left: 8%;
+}
+
+.form {
+
+  background-color: "#711F31" !important; 
+  color: "#FFE5A1"; 
+  border-radius: '10px'; 
+  width: '80%';
+  margin-bottom: '10px'; 
+  margin-top: '50px';
+  font-family: 'Bungee';
+}

@@ -35,63 +35,33 @@ const userEmail = {
   },
 };
 
-function App() {
-  const [{ user }, dispatch] = useStateValue();
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
 
-  useEffect(() => {
-    const authenticateUser = async () => {
-      try {
-        // replace with our actual form data
-        const email = 'example@example.com';
-        const password = 'password123';
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
 
-        // Simulate authentication with the backend
-        const authenticatedUser = await userEmail.authenticate(email, password);
-
-        dispatch({
-          type: 'SET_USER',
-          user: authenticatedUser,
-        });
-      } catch (error) {
-        console.error('Authentication failed:', error.message);
-        dispatch({
-          type: 'SET_USER',
-          user: null,
-        });
-      }
-    };
-
-    // Simulate the effect of authentication state changes
-    authenticateUser();
-  }, [dispatch]);
-
-  const httpLink = createHttpLink({
-    uri: '/graphql',
-  });
-
-  const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('id_token');
-
-    return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : '',
-      }
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
     }
-  })
+  }
+})
 
-  const client = new ApolloClient({
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
-  });
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
+function App() {
 
   return (
     <>
     <ApolloProvider client={client}>
       <main>
         <Header />
-        {/* <MusicianBio /> */}
-        < AccountSettings />
         <Outlet />
       </main>
       </ApolloProvider>

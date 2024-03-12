@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import { storePage } from "../../utils/pages";
 import { useParams } from 'react-router-dom';
-import { GET_MUSICIAN_BY_ID } from "../../utils/queries";
+import{ GET_MUSICIAN_BY_ID} from '../../utils/queries' 
 import { useQuery } from '@apollo/client';
 // import { useParams } from 'react-router-dom';
 import Footer from "../../components/Footer"

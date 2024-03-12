@@ -13,11 +13,11 @@ import { GET_USER, GET_MUSICIAN_BY_ID } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 
-export default function AccountSettings(){
+export default function AccountSettings() {
 
     const [updateUser] = useMutation(UPDATE_USER);
     const [updateMusician] = useMutation(UPDATE_MUSICIAN);
-    const [createMusician]= useMutation(ADD_MUSICIAN);
+    const [createMusician] = useMutation(ADD_MUSICIAN);
 
     const getUser = useQuery(GET_USER);
     const getMusicianById = useQuery(GET_MUSICIAN_BY_ID);
@@ -28,7 +28,7 @@ export default function AccountSettings(){
 
         try {
             // Gets data for user before update, used to check if is musician already
-            const checkUser = await getUser({ variables: { username: username }});
+            const checkUser = await getUser({ variables: { username: username } });
             const { checkUserData } = await checkUser.data.getUser;
             console.log(checkUserData)
 
@@ -58,7 +58,7 @@ export default function AccountSettings(){
                 });
 
                 console.log(musicianResponse)
-            // If user changes to a musician, allow form for creating a new musician bio
+                // If user changes to a musician, allow form for creating a new musician bio
             } else if (userResponse.isMusician === 'true') {
                 const musicianResponse = await createMusician({
                     variables: {
@@ -76,7 +76,7 @@ export default function AccountSettings(){
                 console.log(musicianResponse)
             };
 
-            
+
             if (response.error) {
                 throw new Error('Something went wrong')
             };
@@ -92,11 +92,11 @@ export default function AccountSettings(){
         }
     }
 
-    
+
 
 
     storePage();
-   
+
     return (
         <div>
             <div>
@@ -115,19 +115,34 @@ export default function AccountSettings(){
                     noValidate
                     autoComplete="off"
                 >
-                    
+
                     <motion.div
-  className="settings"
-  variants={settingVariants}
-//   initial="animate"
-  animate='animate'
-  whileHover='whileHover'
-  style={{ marginTop: '60px', color: 'white' }}
->
-  Settings
-</motion.div>
-     
-                   
+                        className="settings"
+                        variants={settingVariants}
+                        //   initial="animate"
+                        animate='animate'
+                        whileHover='whileHover'
+                        style={{ marginTop: '60px', color: 'white' }}
+                    >
+                        Settings
+                    </motion.div>
+
+
+                    <TextField className="form" id="username" label="Username" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+
+                    <TextField className="form" id="email" label="Email" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+
+                    <TextField className="form" id="first" label="First" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+
+                    <TextField className="form" id="last" label="Last" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+
+                    <div class="checkbox-container">
+                        <input type="checkbox" id="checkbox" class="checkbox-input" />
+                        <label for="checkbox" class="checkbox-label">Are you a musician?</label>
+                    </div>
+
+
+                    {/*                    
             
                     
                 <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee'}}/>
@@ -152,10 +167,10 @@ export default function AccountSettings(){
                         style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}}
                     />
 
-                    <TextField className="form" id="tags" label="Search for Tags" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} />
+                    <TextField className="form" id="tags" label="Search for Tags" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} /> */}
 
                     <div className='save-button'>
-                        <Button variant="contained" style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px',marginBottom: '50px'}}>
+                        <Button variant="contained" onSubmit={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                             Save Changes
                         </Button>
                     </div>
@@ -164,4 +179,4 @@ export default function AccountSettings(){
         </div>
     );
 }
-  
+

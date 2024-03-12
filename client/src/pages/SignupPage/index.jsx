@@ -11,10 +11,13 @@ import "./style.css";
 
 
 
+
+
 export default function SignupPage() {
 
 
     const [isChecked, setIsChecked] = useState(false);
+
 
     const handleOnChange = () => {
         setIsChecked(!isChecked);

@@ -5,9 +5,7 @@
         "stageName": "Trolls Band Together",
         "publicEmail": "trolls@trolls.com",
         "description": "Bethany's favorite band",
-        "tags": [
-            "612345678901234567890125", "612345678901234567890126"
-        ],
+        "tags": [],
         "city": "Troll City",
         "state": "Troll State",
         "lat": 234,
@@ -20,9 +18,7 @@
         "stageName": "Exploding Penguins",
         "publicEmail": "penguins@penguins.com",
         "description": "High school garage metal band",
-        "tags": [
-            "612345678901234567890129", "612345678901234567890130"
-        ],
+        "tags": [],
         "city": "Penguinopolis",
         "state": "Antartica (the state)",
         "lat": 116,

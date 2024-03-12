@@ -89,9 +89,9 @@ function App() {
     <>
     <ApolloProvider client={client}>
       <main>
-        <Header />
+        {/* <Header /> */}
         {/* <MusicianBio /> */}
-        < AccountSettings />
+        {/* < AccountSettings /> */}
         <Outlet />
       </main>
       </ApolloProvider>

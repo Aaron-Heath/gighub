@@ -13,11 +13,11 @@ const resolvers = {
     },
 
     musicianById: async (parent, { musicianId }) => {
-      return await Musician.findOne({ _id: musicianId }).populate('tags');
+      return await Musician.findOne({ _id: musicianId });
     },
 
     musiciansByLocation: async (parent, { lat, lon }) => {
-      const MUSICIANS = await Musicians.find({}).populate('tags');
+      const MUSICIANS = await Musicians.find({});
 
       // Sort musicians by their distance from the inputted location
       return MUSICIANS.sort(sortByDistance({lat, lon}));
@@ -30,7 +30,7 @@ const resolvers = {
     // For finding musicians that match ALL selected tags
     musiciansByTags: async (parent, { tags }) => {
       try {
-        return await Musician.find({ tags: { $all: tags }}).populate('tags');
+        return await Musician.find({ tags: { $all: tags }});
       } catch (err) {
         console.error('Error searching by tags: ', err);
         throw new Error('Error searching by tags')
@@ -66,7 +66,7 @@ const resolvers = {
         lat: lat,
         lon: lon,
         minCost: minCost
-      }).populate('tags');
+      });
 
     },
 
@@ -114,7 +114,7 @@ const resolvers = {
           {
             new: true
           }
-        ).populate('tags');
+        );
 
         return updatedMusician;
 
@@ -137,7 +137,7 @@ const resolvers = {
           {
             new: true
           }
-        ).populate('tags');
+        );
 
         return updatedMusician;
 
@@ -161,7 +161,7 @@ const resolvers = {
           {
             new: true
           }
-        ).populate('tags');
+        );
 
         return updateMusician;
 

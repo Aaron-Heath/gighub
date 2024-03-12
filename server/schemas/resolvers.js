@@ -8,8 +8,8 @@ const resolvers = {
       return await User.find();
     },
 
-    userByUsername: async (parent, { username }) => {
-      return await User.findOne({ username: username });
+    userById: async (parent, { userId }) => {
+      return await User.findOne({ _id: userId });
     },
 
     musicianById: async (parent, { musicianId }) => {

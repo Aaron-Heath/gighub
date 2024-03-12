@@ -3,8 +3,10 @@ import Dropdown from 'react-dropdown';
 import { GET_TAGS } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import { Box, TextField, Button } from '@mui/material';
-import Chip from '@mui/material/Chip';
+import SettingsChips from "../SettingsChips";
 import Stack from '@mui/material/Stack';
+
+
 import "./style.css";
 
 
@@ -32,8 +34,14 @@ export default function SettingsForm() {
 
     // --------------------------------------------------------------------------
 
+    // Need code for adding selectedTags to musician bio
+
 
     // Return statement
+
+    // Need code for regular user settings
+
+    
     return (
         <div>
             <Box
@@ -52,7 +60,7 @@ export default function SettingsForm() {
             >
  
             {/* Forms for users to fill out */}
-                <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: "20px" }} />
+                <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{ backgroundColor: "var(--dark-red)", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: "20px" }} />
 
 
                 <TextField className="form" id="publicEmail" label=" Email" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }} />
@@ -73,6 +81,10 @@ export default function SettingsForm() {
                     variant="outlined"
                     style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}
                 />
+            {/* Where chips will appear after user chooses them */}
+                <Stack className="chip-container" direction="row" spacing={1}>
+                    <SettingsChips selectedTags={selectedTags} />
+                </Stack>
             {/* Dropdown that users use to pick 3 tags */}
                 <Dropdown
                     controlClassName="dropdown"
@@ -95,6 +107,7 @@ export default function SettingsForm() {
         </div>
     );
 }
+
 
 
 

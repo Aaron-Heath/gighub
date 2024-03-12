@@ -14,12 +14,12 @@ export const GET_USER = gql`
 
 export const GET_MUSICIAN_BY_ID = gql`
     query musicianById($musicianId: ID!) {
-        musician(musicianId: $musicianId) {
+        musicianById(musicianId: $musicianId) {
             _id
             stageName
             publicEmail
             description
-            tags
+
             city
             state
             lat
@@ -31,12 +31,12 @@ export const GET_MUSICIAN_BY_ID = gql`
 
 export const GET_MUSICIANS_BY_LOCATION = gql`
     query musicianByLocation($lat: Float, $lon: Float) {
-        musician(lat: $lat, lon: $lon) {
+        musicianByLocation(lat: $lat, lon: $lon) {
             _id
             stageName
             publicEmail
             description
-            tags
+
             city
             state
             lat

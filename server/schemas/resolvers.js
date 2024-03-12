@@ -17,7 +17,7 @@ const resolvers = {
     },
 
     musiciansByLocation: async (parent, { lat, lon }) => {
-      const MUSICIANS = await Musicians.find({});
+      const MUSICIANS = await Musician.find({});
 
       // Sort musicians by their distance from the inputted location
       return MUSICIANS.sort(sortByDistance({lat, lon}));

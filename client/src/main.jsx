@@ -9,6 +9,9 @@ import FavoritesPage from "./pages/Favorites"
 import SettingsPage from "./pages/AccountSettings"
 import MusicianBio from './pages/MusicianBio';
 import './index.css';
+import { StateProvider } from './StateProvider';
+import reducer, { initialState } from './reducer'
+
 
 
 
@@ -46,6 +49,15 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+const rootElement = document.getElementById('root');
+
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <RouterProvider router={router} />
+// );
+ReactDOM.createRoot(rootElement).render(
+ 
+    <StateProvider reducer={reducer} initialState={initialState}>
+      <RouterProvider router={router} />
+    </StateProvider>
+  
 );

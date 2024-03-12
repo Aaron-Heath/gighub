@@ -8,6 +8,7 @@ import{ GET_MUSICIAN_BY_ID} from '../../utils/queries'
 import { useQuery } from '@apollo/client';
 // import { useParams } from 'react-router-dom';
 import Footer from "../../components/Footer"
+import Header from "../../components/Header"
 
 
 const MusicianBio = () => {
@@ -71,14 +72,26 @@ const MusicianBio = () => {
 
   // }, []);
 
+    // const { loading, data } = useQuery(GET_MUSICIAN_BY_ID)
+    // {
+    //   // variables: { id: musicianId },
+    // }
   return (
     <div>
+      <Header />
       <div className="musician-bio">
         <Box
-          sx={{
-            flexGrow: 1,
-            alignContent: 'center',
-          }}
+            height={300}
+            width={300}
+            my={4}
+            gap={2}
+            borderRadius={10}
+            p={5}
+            sx={{ 
+              border: '4px solid #FBF4E6' ,
+              flexGrow: 1,
+              alignContent: 'center',}}
+        
           component="form"
           noValidate
           autoComplete="off"
@@ -110,5 +123,6 @@ const MusicianBio = () => {
     </div>
   );
 };
+
 
 export default MusicianBio;

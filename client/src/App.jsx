@@ -1,6 +1,9 @@
+// export default App
+import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import AccountSettings from './pages/AccountSettings';
 import './App.css'
 import { 
   ApolloClient,
@@ -9,9 +12,28 @@ import {
   InMemoryCache 
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
+import { useStateValue } from './StateProvider';
 // import LoginPage from './pages/LoginPage'
 // import SignupPage from './pages/SignupPage'
-// import MusicianBio from './pages/MusicianBio'
+import MusicianBio from './pages/MusicianBio'
+
+// mock backend for now
+const userEmail = {
+  authenticate: async (email, password) => {
+    // Simulate a request to your backend authentication endpoint
+    return new Promise((resolve, reject) => {
+      // Simulate a delay for the request
+      setTimeout(() => {
+        // Replace with our actual backend
+        if (email === 'example@example.com' && password === 'password123') {
+          resolve({ email: 'example@example.com' });
+        } else {
+          reject(new Error('Invalid credentials'));
+        }
+      }, 500);
+    });
+  },
+};
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -45,7 +67,9 @@ function App() {
       </ApolloProvider>
   
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
+

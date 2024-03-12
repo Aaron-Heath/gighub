@@ -14,26 +14,45 @@ import Auth from '../../utils/auth';
 
 
 export default function AccountSettings() {
+    const userId = Auth.getUser().data._id
+    console.log(userId)
 
     const [updateUser] = useMutation(UPDATE_USER);
     const [updateMusician] = useMutation(UPDATE_MUSICIAN);
     const [createMusician] = useMutation(ADD_MUSICIAN);
 
-    const getUser = useQuery(GET_USER);
+    const { loading, data } = useQuery(GET_USER, {
+        variables: { _id: userId}
+    });
+    const users = data?.user || []
+    console.log(users)
     const getMusicianById = useQuery(GET_MUSICIAN_BY_ID);
 
-    const userId = Auth.getUser().data._id
+    // Gets data for user before update
+    const getUserDetails = async (userId) => {
+        try {
+            const checkUser = await getUserData({ variables: { _id: userId } });
+            const { checkUserData } = await checkUser.data.getUser;
+            console.log(checkUserData)
+
+            if (response.error) {
+                throw new Error('Something went wrong')
+            }
+
+            return { checkUserData };
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     const handleFormSubmit = async (e) => {
 
         e.preventDefault();
 
-        try {
-            // Gets data for user before update, used to check if is musician already
-            const checkUser = await getUser({ variables: { username: username } });
-            const { checkUserData } = await checkUser.data.getUser;
-            console.log(checkUserData)
+        getUserDetails();
 
+        try {
             // User update function
             const userResponse = await updateUser({
                 variables: {
@@ -138,11 +157,10 @@ export default function AccountSettings() {
 
                     <TextField className="form" id="last" label="Last" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="checkbox" class="checkbox-input" />
-                        <label for="checkbox" class="checkbox-label">Are you a musician?</label>
+                    <div className="checkbox-container">
+                        <input type="checkbox" id="checkbox" className="checkbox-input" />
+                        <label htmlFor="checkbox" className="checkbox-label">Are you a musician?</label>
                     </div>
-
 
                     {/*                    
             
@@ -172,7 +190,7 @@ export default function AccountSettings() {
                     <TextField className="form" id="tags" label="Search for Tags" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} /> */}
 
                     <div className='save-button'>
-                        <Button variant="contained" onSubmit={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
+                        <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                             Save Changes
                         </Button>
                     </div>

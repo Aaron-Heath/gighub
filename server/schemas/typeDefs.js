@@ -44,7 +44,7 @@ const typeDefs = `
 
   type Query {
     users: [User]
-    userById(userId: Id!): User
+    userById(userId: ID!): User
     musicianById(musicianId: ID!): Musician
     musiciansByLocation(lat: Float, lon: Float): [Musician]
     musiciansByTags(tags: [TagInput!]): [Musician]

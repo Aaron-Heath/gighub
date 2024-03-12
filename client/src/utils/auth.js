@@ -1,4 +1,5 @@
-import decode from 'jwt-decode';
+import * as jwtDecode from 'jwt-decode';
+const decode = jwtDecode.default || jwtDecode;
 
 class AuthService {
     getUser() {
@@ -35,17 +36,14 @@ class AuthService {
     login(idToken) {
         // Save token to localStorage
         localStorage.setItem('id_token', idToken);
-        // Returns user to homepage
-        // TODO?: Update for react once pages are decided 
-        window.location.assign('/')
     };
 
     // For removing user token from localStorage on user logout
     logout() {
         // Removes token from localStorage
         localStorage.removeItem('id_token')
-        // Returns user to homepage
-        // TODO?: Update for react once pages are decided
-        window.location.assign('/')
+
     }
-}
+};
+
+export default new AuthService();

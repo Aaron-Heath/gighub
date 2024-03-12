@@ -22,6 +22,8 @@ export default function AccountSettings() {
     const getUser = useQuery(GET_USER);
     const getMusicianById = useQuery(GET_MUSICIAN_BY_ID);
 
+    const userId = Auth.getUser().data._id
+
     const handleFormSubmit = async (e) => {
 
         e.preventDefault();

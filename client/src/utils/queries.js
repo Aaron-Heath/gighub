@@ -2,9 +2,12 @@ import { gql } from '@apollo/client';
 
 // Executing get user
 export const GET_USER = gql`
-    query user($username: String!) {
-        user(username: $username) {
+    query userById($userId: ID!) {
+        userById(userId: $userId) {
             _id
+            username
+            first
+            last
             email
             isMusician
             active

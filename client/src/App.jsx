@@ -3,19 +3,16 @@ import React, { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
 import AccountSettings from './pages/AccountSettings';
 import './App.css'
-import { 
-  ApolloClient,
-  createHttpLink,
-  ApolloProvider,
-  InMemoryCache 
-} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
 import { useStateValue } from './StateProvider';
+import { createHttpLink } from '@apollo/client';
 // import LoginPage from './pages/LoginPage'
 // import SignupPage from './pages/SignupPage'
-import MusicianBio from './pages/MusicianBio'
+// import MusicianBio from './pages/MusicianBio'
 
 // mock backend for now
 const userEmail = {
@@ -58,16 +55,15 @@ const client = new ApolloClient({
 function App() {
 
   return (
-    <>
     <ApolloProvider client={client}>
+    <>
       <main>
         <Header />
         <Outlet />
       </main>
-      </ApolloProvider>
-  
     </>
-  );
+    </ApolloProvider>
+  )
 }
 
 export default App;

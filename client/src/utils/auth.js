@@ -38,7 +38,7 @@ class AuthService {
         localStorage.setItem('id_token', idToken);
         // Returns user to homepage
         // TODO?: Update for react once pages are decided 
-        window.location.assign('/')
+        // window.location.assign('/')
     };
 
     // For removing user token from localStorage on user logout

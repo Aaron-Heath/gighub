@@ -7,12 +7,6 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 
 import AccountSettings from './pages/AccountSettings';
 import './App.css'
-import { 
-  ApolloClient,
-  createHttpLink,
-  ApolloProvider,
-  InMemoryCache 
-} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context'
 import { useStateValue } from './StateProvider';
 // import LoginPage from './pages/LoginPage'

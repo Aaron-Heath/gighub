@@ -36,14 +36,13 @@ class AuthService {
     login(idToken) {
         // Save token to localStorage
         localStorage.setItem('id_token', idToken);
-        // Returns user to homepage
     };
 
     // For removing user token from localStorage on user logout
     logout() {
         // Removes token from localStorage
         localStorage.removeItem('id_token')
-        // Returns user to homepage
+
     }
 };
 

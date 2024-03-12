@@ -19,7 +19,7 @@ export const GET_MUSICIAN_BY_ID = gql`
             stageName
             publicEmail
             description
-
+            tags
             city
             state
             lat
@@ -36,7 +36,7 @@ export const GET_MUSICIANS_BY_LOCATION = gql`
             stageName
             publicEmail
             description
-
+            tags
             city
             state
             lat

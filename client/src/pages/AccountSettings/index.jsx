@@ -11,9 +11,12 @@ import SettingsForm from "../../components/SettingsForm";
 import { useState } from "react";
 import Dropdown from 'react-dropdown';
 import { GET_TAGS } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import Auth from '../../utils/auth';
+import { UPDATE_USER, UPDATE_MUSICIAN, ADD_MUSICIAN } from "../../utils/mutations";
+import { GET_USER, GET_MUSICIAN_BY_ID } from "../../utils/queries";
 
 
 export default function AccountSettings() {
@@ -27,8 +30,8 @@ export default function AccountSettings() {
     const { loading, data } = useQuery(GET_USER, {
         variables: { _id: userId}
     });
-    const users = data?.user || []
-    console.log(users)
+    const user = data ? data.user : []
+    console.log(user)
     const getMusicianById = useQuery(GET_MUSICIAN_BY_ID);
 
     // Gets data for user before update

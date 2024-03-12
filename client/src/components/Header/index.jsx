@@ -8,19 +8,29 @@ import Button from '@mui/material/Button';
 import './style.css'
 
 import Auth from '../../utils/auth'
+import { useQuery } from '@apollo/client';
+import { GET_USER } from '../../utils/queries';
 // import Header from './Header'
 
 function Header() {
-  const [user, setUser] = useState(null);
+
+  // Store current user from token or null
+  console.log(Auth.getToken());
+  const curUserId = Auth.getToken() ? Auth.getUser().data._id : null;
   
+  const { loading, data } = useQuery(GET_USER, {
+    variables: {userId: curUserId}
+  });
+  console.log(data);
+  
+  // set queried user to null if no data returned
+  const queriedUser = data ? data.userById : null
 
   //handle logout
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   }
-
-  console.log(Auth.getUser().data)
 
   const headerStyle = {
     flexGrow: 1,
@@ -49,7 +59,6 @@ function Header() {
 
   const handleAuthentication = () => {
     // Simulate signing out by updating the user state
-    setUser(null);
   };
 
   return (
@@ -61,7 +70,7 @@ function Header() {
             <MenuIcon />
           </IconButton>
           <h3 className='title' style={titleStyle}>Gighub</h3>
-          <div className='greetings' style={signedInUserStyle}>Hello, {Auth.loggedIn() ? Auth.getUser().data.first : 'Guest'}</div>
+          <div className='greetings' style={signedInUserStyle}>Hello, {queriedUser ? queriedUser.first : 'Guest'}</div>
           {Auth.loggedIn() ? (
             <div style={signedInUserStyle}>
               <Button color="inherit" style={{fontFamily: 'Bungee', fontSize: '10px', color: '#204B57'}}  onClick={logout}>Logout</Button>

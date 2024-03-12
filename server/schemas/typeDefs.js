@@ -25,6 +25,7 @@ const typeDefs = `
     stageName: String!
     publicEmail: String!
     description: String
+    tags: [String]
     city: String!
     state: String!
     lat: Float!
@@ -67,7 +68,7 @@ const typeDefs = `
       stageName: String!,
       publicEmail: String!,
       description: String,
-      tags: [ID]!,
+      tags: [ID],
       city: String!,
       state: String!,
       minCost: Float
@@ -79,6 +80,7 @@ const typeDefs = `
       stageName: String,
       publicEmail: String,
       description: String,
+      tags: [ID]
       city: String,
       state: String,
       minCost: Float

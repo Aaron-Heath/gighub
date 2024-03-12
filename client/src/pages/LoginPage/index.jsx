@@ -47,10 +47,13 @@ export default function LoginPage() {
             if (response.error) {
                 throw new Error('Something went wrong')
             };
-
-            const { token, user } = await response.data;
+           
+            console.log(response)
+            const { token, user } = await response.data.login;
             console.log(user);
             Auth.login(token);
+            console.log(token);
+            redirectToLast();
             
         } catch (err) {
             console.error(err);

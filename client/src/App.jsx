@@ -9,6 +9,7 @@ import AccountSettings from './pages/AccountSettings';
 import './App.css'
 import { setContext } from '@apollo/client/link/context'
 import { useStateValue } from './StateProvider';
+import { createHttpLink } from '@apollo/client';
 // import LoginPage from './pages/LoginPage'
 // import SignupPage from './pages/SignupPage'
 // import MusicianBio from './pages/MusicianBio'

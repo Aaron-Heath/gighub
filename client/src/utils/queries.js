@@ -67,6 +67,7 @@ export const GET_MUSICIANS_BY_TAGS = gql`
 export const GET_TAGS = gql`
     query tags{
         tags{
+            _id
             tag
         }
     }

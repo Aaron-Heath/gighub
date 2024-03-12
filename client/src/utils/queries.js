@@ -27,8 +27,7 @@ export const GET_MUSICIAN_BY_ID = gql`
             minCost
         }
     }
-
-`
+`;
 
 export const GET_MUSICIANS_BY_LOCATION = gql`
     query musicianByLocation($lat: Float, $lon: Float) {

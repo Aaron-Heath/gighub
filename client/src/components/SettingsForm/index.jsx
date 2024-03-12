@@ -33,6 +33,7 @@ export default function SettingsForm() {
     // --------------------------------------------------------------------------
 
 
+    // Return statement
     return (
         <div>
             <Box
@@ -49,8 +50,9 @@ export default function SettingsForm() {
                 noValidate
                 autoComplete="off"
             >
-
-                <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{  }} />
+ 
+            {/* Forms for users to fill out */}
+                <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: "20px" }} />
 
 
                 <TextField className="form" id="publicEmail" label=" Email" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }} />
@@ -71,7 +73,7 @@ export default function SettingsForm() {
                     variant="outlined"
                     style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}
                 />
-
+            {/* Dropdown that users use to pick 3 tags */}
                 <Dropdown
                     controlClassName="dropdown"
                     menuClassName="dropdown"
@@ -81,7 +83,7 @@ export default function SettingsForm() {
                     onChange={handleTagClick}
                 />
 
-
+            {/* Save button */}
                 <div className='save-button'>
                     <Button variant="contained" style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                         Save Changes

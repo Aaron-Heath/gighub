@@ -7,6 +7,7 @@ import { Box, TextField, Button } from '@mui/material';
 import './style.css';
 import { settingVariants } from "./indexVariants";
 import { motion } from 'framer-motion'
+import SettingsForm from "../../components/SettingsForm";
 import { useState } from "react";
 import Dropdown from 'react-dropdown';
 import { GET_TAGS } from "../../utils/queries";
@@ -22,6 +23,7 @@ export default function AccountSettings() {
 
     return (
         <div>
+            <Header />
             {/* {loading ? (<p>loading</p>) : ( */}
             <div>
 
@@ -47,11 +49,11 @@ export default function AccountSettings() {
                         //   initial="animate"
                         animate='animate'
                         whileHover='whileHover'
-                        style={{ marginTop: '60px', color: 'white' }}
+                        style={{ marginTop: '30px', color: 'white' }}
                     >
                         Settings
                     </motion.div>
-
+                    <SettingsForm />
                 </Box>
             </div>
             {/* )} */}

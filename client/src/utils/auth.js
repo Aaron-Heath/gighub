@@ -1,4 +1,5 @@
-import decode from 'jwt-decode';
+import * as jwtDecode from 'jwt-decode';
+const decode = jwtDecode.default || jwtDecode;
 
 class AuthService {
     getUser() {
@@ -48,4 +49,6 @@ class AuthService {
         // TODO?: Update for react once pages are decided
         window.location.assign('/')
     }
-}
+};
+
+export default new AuthService();

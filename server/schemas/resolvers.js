@@ -172,10 +172,10 @@ const resolvers = {
     },
 
     // Mutation for login
-    login: async (parent, { username, password }) => {
+    login: async (parent, { email, password }) => {
       try {
         // Checks for valid user
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (!user) {
           throw AuthenticationError;
         };

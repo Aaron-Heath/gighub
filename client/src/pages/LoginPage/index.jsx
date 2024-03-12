@@ -4,15 +4,57 @@ import TextField from '@mui/material/TextField';
 import './style.css';
 import gighubLogo from "../../assets/images/Gighub-290px.png";
 import { redirectToLast } from '../../utils/pages';
+import { useState } from 'react';
+import { LOGIN_USER } from '../../utils/mutations';
+import { useMutation } from '@apollo/client';
+import { Button } from '@mui/material';
+import Auth from '../../utils/auth'
 
 export default function LoginPage() {
 
-    const handleLogin = (e) => {
-        //Login logic goes here
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
+
+    // Define mutation
+    const [loginUser] = useMutation(LOGIN_USER);
+
+    const handleInputChange = (e) => {
+        //Login logic goes here
+        const { target } = e;
+        const inputType = target.name;
+        const inputValue = target.value;
+
+        if (inputType === 'email') {
+            setEmail(inputValue);
+        } else {
+            setPassword(inputValue);
+        };
+    };
+
+    const handleFormSubmit = async (e) => {
+
+        e.preventDefault();
         
-        // Redirects to last stored page or home
-        redirectToLast();
+        try {
+            console.log(email, password);
+            const response = await loginUser({
+                variables: {
+                 email: email, password: password
+                }
+                });
+
+            if (response.error) {
+                throw new Error('Something went wrong')
+            };
+
+            const { token, user } = await response.data;
+            console.log(user);
+            Auth.login(token);
+            
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return (
@@ -31,13 +73,17 @@ export default function LoginPage() {
                 >
                     
                     <h2>Login</h2>
-                    <TextField className="form" id="outlined-basic" label="Email" variant="outlined" />
-                    <TextField className="form" id="outlined-basic" type="password" label="Password" variant="outlined" />
+                    <TextField className="form" id="outlined-basic" name='email' type="email" value={email} label="Email" variant="outlined" onChange={handleInputChange}/>
+                    <TextField className="form" id="outlined-basic" name='password' type="password" value={password} label="Password" variant="outlined" onChange={handleInputChange}/>
 
                     <div className='sign-up-text'>
                     <h3>Don't Have an Account?</h3>
                     <h4>Sign up Here!</h4>
                     </div>
+
+                    <Button type="submit" variant="contained" color="primary" onClick={handleFormSubmit}>
+                    Submit
+                    </Button>
                 </Box>
 
             </div>

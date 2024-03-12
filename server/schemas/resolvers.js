@@ -25,6 +25,16 @@ const resolvers = {
 
     tags: async () => {
       return await Tag.find();
+    },
+
+    // For finding musicians that match ALL selected tags
+    musiciansByTags: async (parent, { tags }) => {
+      try {
+        return await Musician.find({ tags: { $all: tags }});
+      } catch (err) {
+        console.error('Error searching by tags: ', err);
+        throw new Error('Error searching by tags')
+      }
     }
   },
 
@@ -162,10 +172,10 @@ const resolvers = {
     },
 
     // Mutation for login
-    login: async (parent, { username, password }) => {
+    login: async (parent, { email, password }) => {
       try {
         // Checks for valid user
-        const user = await User.findOne({ username });
+        const user = await User.findOne({ email });
         if (!user) {
           throw AuthenticationError;
         };

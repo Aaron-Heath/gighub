@@ -25,7 +25,6 @@ const typeDefs = `
     stageName: String!
     publicEmail: String!
     description: String
-    tags: [Tag]
     city: String!
     state: String!
     lat: Float!
@@ -38,16 +37,21 @@ const typeDefs = `
     tag: String!
   }
 
+  input TagInput {
+    name: String!
+  }
+
   type Query {
     users: [User]
     userByUsername(username: String!): User
     musicianById(musicianId: ID!): Musician
     musiciansByLocation(lat: Float, lon: Float): [Musician]
+    musiciansByTags(tags: [TagInput!]): [Musician]
     tags: [Tag]
   }
 
   type Mutation {
-    login(username: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
     
     addUser(
       email: String!,

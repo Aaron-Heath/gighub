@@ -2,8 +2,8 @@ import { gql } from '@apollo/client';
 
 // Executing user login
 export const LOGIN_USER = gql`
-    mutation login($username: String!, $password: String!) {
-        login(username: $username, password: $password) {
+    mutation login($email: String!, $password: String!) {
+        login(email: $email, password: $password) {
             token
             user {
                 _id
@@ -42,47 +42,46 @@ export const ADD_USER = gql`
 
 // Executing add musician
 export const ADD_MUSICIAN = gql`
-mutation addMusician(
-    $user: UserInput!,
-    $imageLink: String!,
-    $stageName: String!,
-    $publicEmail: String!,
-    $description: String,
-    $tags: [String]!,
-    $city: String!,
-    $state: String!,
-    $lat: Float!,
-    $lon: Float!,
-    $minCost: Float!
-) {
-    addMusician(
-        user: $user,
-        imageLink: $imageLink,
-        stageName: $stageName,
-        publicEmail: $publicEmail,
-        description: $description,
-        tags: $tags,
-        city: $city,
-        state: $state,
-        lat: $lat,
-        lon: $lon,
-        minCost: $minCost
+    mutation addMusician(
+        $user: UserInput!,
+        $imageLink: String!,
+        $stageName: String!,
+        $publicEmail: String!,
+        $description: String,
+        $tags: [String]!,
+        $city: String!,
+        $state: String!,
+        $lat: Float!,
+        $lon: Float!,
+        $minCost: Float!
     ) {
-        _id
-        stageName
-        publicEmail
-        description
-        tags
-        city
-        state
-        lat
-        lon
-        minCost
-                }
-            }
+        addMusician(
+            user: $user,
+            imageLink: $imageLink,
+            stageName: $stageName,
+            publicEmail: $publicEmail,
+            description: $description,
+            tags: $tags,
+            city: $city,
+            state: $state,
+            lat: $lat,
+            lon: $lon,
+            minCost: $minCost
+        ) {
+            _id
+            stageName
+            publicEmail
+            description
+            tags
+            city
+            state
+            lat
+            lon
+            minCost
         }
     }
-`
+`;
+
 
 // Executing update musician
 export const UPDATE_MUSICIAN = gql`
@@ -137,4 +136,33 @@ export const UPDATE_USER = gql`
             isMusician
         }
     }
+`
+export const ADD_TAGS = gql`
+    mutation addTags($musicianId: ID!, $tagIds: [ID!]) {
+        addTags(musicianId: $musicianId, tagIds: $tagIds) {
+            _id
+            stageName
+            publicEmail
+            description
+            tags
+            city
+            state
+            minCost
+        }
+    }
+`
+
+export const REMOVE_TAGS = gql`
+    mutation removeTags($musicianId: ID!, $tagIds: [ID!]) {
+        removeTags(musicianId: $musicianId, tagIds: $tagIds) {
+            _id
+            stageName
+            publicEmail
+            description
+            tags
+            city
+            state
+            minCost
+    }
+}
 `

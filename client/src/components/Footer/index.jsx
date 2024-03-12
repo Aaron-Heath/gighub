@@ -8,7 +8,16 @@ import SettingsIcon from './SettingsIcon';
 import { useNavigate } from "react-router-dom";
 import "./style.css"
 
+  const menuButtonStyle = {
+    marginRight: '-900px',
+    color: '#204B57' // Adjust the value according to your preference
+  };
 
+  const titleStyle = {
+    flexGrow: 1,
+    color: '#711F31',
+    fontFamily: 'Bungee' //text color   
+  };
 
 
 export default function Footer() {

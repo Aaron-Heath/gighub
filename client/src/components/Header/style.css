@@ -1,0 +1,12 @@
+h2{
+    font-family: "Bungee, sans-serif";
+    color: var(--dark-red);
+}
+
+.title {
+    font-size: 10px;
+}
+
+.greetings {
+    font-size: 10px;
+}

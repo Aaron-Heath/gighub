@@ -6,10 +6,95 @@ import { Box, TextField, Button } from '@mui/material';
 import gighubLogo from "../../assets/images/Gighub-290px.png";
 import './style.css';
 import { settingVariants } from "./indexVariants";
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+import { useMutation, useQuery } from "@apollo/client";
+import { UPDATE_MUSICIAN, UPDATE_USER, ADD_MUSICIAN } from '../../utils/mutations';
+import { GET_USER, GET_MUSICIAN_BY_ID } from '../../utils/queries';
+import Auth from '../../utils/auth';
 
 
 export default function AccountSettings(){
+
+    const [updateUser] = useMutation(UPDATE_USER);
+    const [updateMusician] = useMutation(UPDATE_MUSICIAN);
+    const [createMusician]= useMutation(ADD_MUSICIAN);
+
+    const getUser = useQuery(GET_USER);
+    const getMusicianById = useQuery(GET_MUSICIAN_BY_ID);
+
+    const handleFormSubmit = async (e) => {
+
+        e.preventDefault();
+
+        try {
+            // Gets data for user before update, used to check if is musician already
+            const checkUser = await getUser({ variables: { username: username }});
+            const { checkUserData } = await checkUser.data.getUser;
+            console.log(checkUserData)
+
+            // User update function
+            const userResponse = await updateUser({
+                variables: {
+                    email: email,
+                    username: username,
+                    first: first,
+                    last: last,
+                    isMusician: isMusician
+                }
+            });
+
+            // If user was already a musician, allow that form to be updated
+            if (checkUserData.isMusician === 'true') {
+                const musicianResponse = await updateMusician({
+                    variables: {
+                        imageLink: imageLink,
+                        stageName: stageName,
+                        publicEmail: publicEmail,
+                        description: description,
+                        city: city,
+                        state: state,
+                        minCost: minCost
+                    }
+                });
+
+                console.log(musicianResponse)
+            // If user changes to a musician, allow form for creating a new musician bio
+            } else if (userResponse.isMusician === 'true') {
+                const musicianResponse = await createMusician({
+                    variables: {
+                        imageLink: imageLink,
+                        stageName: stageName,
+                        publicEmail: publicEmail,
+                        description: description,
+                        tags: tags,
+                        city: city,
+                        state: state,
+                        minCost: minCost
+                    }
+                });
+
+                console.log(musicianResponse)
+            };
+
+            
+            if (response.error) {
+                throw new Error('Something went wrong')
+            };
+
+            const { token, user } = await response.data.updateUser;
+            Auth.login(token)
+            console.log('User: ', user)
+            console.log('Token: ', token)
+            console.log('Musician: ', musicianResponse)
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    
+
+
     storePage();
    
     return (

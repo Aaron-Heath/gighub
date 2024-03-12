@@ -6,10 +6,21 @@ import { IconButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import './style.css'
+
+import Auth from '../../utils/auth'
 // import Header from './Header'
 
 function Header() {
   const [user, setUser] = useState(null);
+  
+
+  //handle logout
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+  }
+
+  console.log(Auth.getUser().data)
 
   const headerStyle = {
     flexGrow: 1,
@@ -50,10 +61,10 @@ function Header() {
             <MenuIcon />
           </IconButton>
           <h3 className='title' style={titleStyle}>Gighub</h3>
-          <div className='greetings' style={signedInUserStyle}>Hello, {user ? user.email.split("@")[0] : 'Guest'}</div>
-          {user ? (
+          <div className='greetings' style={signedInUserStyle}>Hello, {Auth.loggedIn() ? Auth.getUser().data.first : 'Guest'}</div>
+          {Auth.loggedIn() ? (
             <div style={signedInUserStyle}>
-              <Button color="inherit"  onClick={handleAuthentication}>Logout</Button>
+              <Button color="inherit" style={{fontFamily: 'Bungee', fontSize: '10px', color: '#204B57'}}  onClick={logout}>Logout</Button>
             </div>
           ) : (
             <div>

@@ -4,8 +4,15 @@ import Header from "../../components/Header"
 
 
 export default function Search(){
+    
 
     storePage();
+
+    return(
+        <>
+        <Header/>
+        </>
+    )
 
     
 }

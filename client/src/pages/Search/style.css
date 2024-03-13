@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+
+:root {
+    --blue: #204B57;
+    --dark-red: #711F31;
+    --lighter-red: #9E3845;
+    --yellow: #FFE5A1;
+    --pale: #FBF4E6;
+  
+}
+
+.search{
+    margin: 15px; 
+    margin-top: 2px;
+    padding: 30px;
+    background-color: #FBF4E6;
+   
+}
+
+.search-button{
+    background-color: #9E3845;
+    color: white;
+    border-radius: 9px;
+    border: none;
+    padding: 6px !important;
+    font-family: "Zen Maru Gothic", serif;
+    text-decoration: none;
+    font-size: 13px;
+}
+.dropdown{
+    background-color: white !important;
+    padding: 9px !important;
+    margin-left: 10%;
+    font-size: 14px;
+}
+
+.Dropdown-arrow{
+    top: 12px;
+}
+
+.result-list{
+    border-radius: 5%;
+}
+#site-search{
+    padding-top: 6px;
+    padding-bottom: 4px;
+    margin: 2px;
+}

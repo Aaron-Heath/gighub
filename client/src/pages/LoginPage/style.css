@@ -55,6 +55,13 @@ h4{
   padding: 1% 10% 10% 10%
 }
 
+.login-button{
+  background-color: #711F31 !important;
+  font-family:"Zen Maru Gothic", serif !important;
+  font-weight: 700 !important; 
+  font-size: 18px !important;
+}
+
 #root{
   padding: 6%; 
 }

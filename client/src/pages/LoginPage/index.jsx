@@ -54,7 +54,7 @@ export default function LoginPage() {
             Auth.login(token);
             console.log(token);
             console.log(Auth.getUser().data._id)
-            redirectToLast();
+            // redirectToLast();
             
         } catch (err) {
             console.error(err);

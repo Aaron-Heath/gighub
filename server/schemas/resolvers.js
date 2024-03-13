@@ -71,11 +71,11 @@ const resolvers = {
     },
 
     // Mutation for updating users
-    updateUser: async (parent, { userId, email, username, first, last, isMusician }) => {
+    updateUser: async (parent, { _id, email, username, first, last, isMusician }) => {
       try {
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           {
-            _id: userId,
+            _id: _id,
           },
           {
             $set: {
@@ -86,8 +86,7 @@ const resolvers = {
             new: true
           }
         );
-        const token = signToken(updatedUser);
-        return { token, updatedUser };
+        return updatedUser;
 
       } catch (err) {
         console.error("Error updating user: ", err);

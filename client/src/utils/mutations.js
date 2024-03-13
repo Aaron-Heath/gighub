@@ -121,9 +121,9 @@ mutation updateMusician(
 
 // Executing update user
 export const UPDATE_USER = gql`
-    mutation updateUser($userId: ID!) {
+    mutation updateUser($id: ID!, $email: String, $username: String, $first: String, $last: String, $isMusician: Boolean) {
         updateUser(
-            userId: $userId,
+            _id: $id,
             email: $email,
             username: $username,
             first: $first,
@@ -136,7 +136,7 @@ export const UPDATE_USER = gql`
             isMusician
         }
     }
-`
+`;
 export const ADD_TAGS = gql`
     mutation addTags($musicianId: ID!, $tagIds: [ID!]) {
         addTags(musicianId: $musicianId, tagIds: $tagIds) {

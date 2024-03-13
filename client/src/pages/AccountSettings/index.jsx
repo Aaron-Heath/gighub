@@ -8,7 +8,7 @@ import './style.css';
 import { settingVariants } from "./indexVariants";
 import { motion } from 'framer-motion'
 import SettingsForm from "../../components/SettingsForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dropdown from 'react-dropdown';
 import { GET_TAGS } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
@@ -33,15 +33,24 @@ export default function AccountSettings() {
         variables: { userId: userId }
     });
     console.log(data)
-    const userData = data.userById
-    console.log(userData)
 
-    // Sets the state according to preexisting data
-    const [email, setEmail] = useState(userData.email);
-    const [username, setUsername] = useState(userData.username);
-    const [first, setFirst] = useState(userData.first)
-    const [last, setLast] = useState(userData.last);
-    const [isMusician, setIsMusician] = useState(userData.isMusician)
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [first, setFirst] = useState('')
+    const [last, setLast] = useState('');
+    const [isMusician, setIsMusician] = useState('')
+
+    // Use effect to wait for data to load before applying it to state
+    useEffect(() => {
+        if (!loading && data) {
+            const userData = data.userById;
+            setEmail(userData.email);
+            setUsername(userData.username);
+            setFirst(userData.first);
+            setLast(userData.last);
+            setIsMusician(userData.isMusician);
+        }
+    }, [loading, data]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -70,25 +79,51 @@ export default function AccountSettings() {
 
             default:
                 break;
-        }
-    }
+        };
+    };
 
 
     const handleFormSubmit = async (e) => {
 
         e.preventDefault();
 
+        console.log(userId, email, username,first, last, isMusician)
 
         try {
+            const userResponse = await updateUser({
+                variables: {
+                    id: userId,
+                    email: email,
+                    username: username,
+                    first: first,
+                    last: last,
+                    isMusician: isMusician
+                }
+                
+            });
+
+            if (userResponse.error) {
+                throw new Error('Something went wrong');
+            };
+
+            console.log(userResponse.data);
+            const { user } = await userResponse.data.updateUser
+            console.log(user)
+
         } catch (err) {
             console.error(err)
         }
-    }
+    };
+
 
 
 
 
     storePage();
+
+    if (loading) {
+        return <div>Loading...</div>;
+    };
 
 
 
@@ -126,20 +161,20 @@ export default function AccountSettings() {
                     </motion.div>
 
 
-                    <TextField className="form" id="username" variant="outlined" value={username}
+                    <TextField className="form" id="username" variant="outlined" value={username} onChange={handleInputChange} name="username"
                         style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="email" variant="outlined" value={email}
+                    <TextField className="form" id="email" variant="outlined" value={email} onChange={handleInputChange} name="email"
                         style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="first" variant="outlined" value={first}
+                    <TextField className="form" id="first" variant="outlined" value={first} onChange={handleInputChange} name="first"
                         style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="last" variant="outlined" value={last}
+                    <TextField className="form" id="last" variant="outlined" value={last} onChange={handleInputChange} name="last"
                         style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
                     <div className="checkbox-container">
-                        <input type="checkbox" id="checkbox" className="checkbox-input" />
+                        <input type="checkbox" id="checkbox" className="checkbox-input" checked={isMusician} name="isMusician" onChange={handleInputChange}/>
                         <label htmlFor="checkbox" className="checkbox-label">Are you a musician?</label>
                     </div>
 

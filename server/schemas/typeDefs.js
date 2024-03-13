@@ -87,13 +87,13 @@ const typeDefs = `
     ): Musician
 
     updateUser(
-      userId: ID!
+      _id: ID!
       email: String,
       username: String,
       first: String,
       last: String,
       isMusician: Boolean
-    ): Auth
+    ): User
 
     addTags(
       musicianId: ID!

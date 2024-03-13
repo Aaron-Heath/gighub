@@ -41,6 +41,7 @@ export default function Search() {
             </Header>
 
             <div className="search">
+                <p className="search-header">Find your Gig!</p>
                 <label for="site-search"></label>
                 <input type="search" id="site-search" name="q" />
                 <button className="search-button">Search</button>

@@ -20,6 +20,7 @@ import { GET_USER, GET_MUSICIAN_BY_ID } from "../../utils/queries";
 
 
 export default function AccountSettings() {
+    // Get user authentication to find user data later
     const userId = Auth.getUser().data._id
     console.log(userId)
 
@@ -27,93 +28,58 @@ export default function AccountSettings() {
     const [updateMusician] = useMutation(UPDATE_MUSICIAN);
     const [createMusician] = useMutation(ADD_MUSICIAN);
 
+    // Gets user info at page load
     const { loading, data } = useQuery(GET_USER, {
-        variables: { _id: userId}
+        variables: { userId: userId }
     });
-    const user = data ? data.user : []
-    console.log(user)
-    const getMusicianById = useQuery(GET_MUSICIAN_BY_ID);
+    console.log(data)
+    const userData = data.userById
+    console.log(userData)
 
-    // Gets data for user before update
-    const getUserDetails = async (userId) => {
-        try {
-            const checkUser = await getUserData({ variables: { _id: userId } });
-            const { checkUserData } = await checkUser.data.getUser;
-            console.log(checkUserData)
+    // Sets the state according to preexisting data
+    const [email, setEmail] = useState(userData.email);
+    const [username, setUsername] = useState(userData.username);
+    const [first, setFirst] = useState(userData.first)
+    const [last, setLast] = useState(userData.last);
+    const [isMusician, setIsMusician] = useState(userData.isMusician)
 
-            if (response.error) {
-                throw new Error('Something went wrong')
-            }
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
 
-            return { checkUserData };
+        // Switch case to handle state changes
+        switch (name) {
+            case 'email':
+                setEmail(value);
+                break;
 
-        } catch (err) {
-            console.error(err)
+            case 'username':
+                setUsername(value);
+                break;
+
+            case 'first':
+                setFirst(value);
+                break;
+
+            case 'last':
+                setLast(value);
+                break;
+
+            case 'isMusician':
+                setIsMusician(e.target.checked);
+                break;
+
+            default:
+                break;
         }
     }
+
 
     const handleFormSubmit = async (e) => {
 
         e.preventDefault();
 
-        getUserDetails();
 
         try {
-            // User update function
-            const userResponse = await updateUser({
-                variables: {
-                    email: email,
-                    username: username,
-                    first: first,
-                    last: last,
-                    isMusician: isMusician
-                }
-            });
-
-            // If user was already a musician, allow that form to be updated
-            if (checkUserData.isMusician === 'true') {
-                const musicianResponse = await updateMusician({
-                    variables: {
-                        imageLink: imageLink,
-                        stageName: stageName,
-                        publicEmail: publicEmail,
-                        description: description,
-                        city: city,
-                        state: state,
-                        minCost: minCost
-                    }
-                });
-
-                console.log(musicianResponse)
-                // If user changes to a musician, allow form for creating a new musician bio
-            } else if (userResponse.isMusician === 'true') {
-                const musicianResponse = await createMusician({
-                    variables: {
-                        imageLink: imageLink,
-                        stageName: stageName,
-                        publicEmail: publicEmail,
-                        description: description,
-                        tags: tags,
-                        city: city,
-                        state: state,
-                        minCost: minCost
-                    }
-                });
-
-                console.log(musicianResponse)
-            };
-
-
-            if (response.error) {
-                throw new Error('Something went wrong')
-            };
-
-            const { token, user } = await response.data.updateUser;
-            Auth.login(token)
-            console.log('User: ', user)
-            console.log('Token: ', token)
-            console.log('Musician: ', musicianResponse)
-
         } catch (err) {
             console.error(err)
         }
@@ -160,13 +126,17 @@ export default function AccountSettings() {
                     </motion.div>
 
 
-                    <TextField className="form" id="username" label="Username" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+                    <TextField className="form" id="username" variant="outlined" value={username}
+                        style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="email" label="Email" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+                    <TextField className="form" id="email" variant="outlined" value={email}
+                        style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="first" label="First" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+                    <TextField className="form" id="first" variant="outlined" value={first}
+                        style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="last" label="Last" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+                    <TextField className="form" id="last" variant="outlined" value={last}
+                        style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
                     <div className="checkbox-container">
                         <input type="checkbox" id="checkbox" className="checkbox-input" />

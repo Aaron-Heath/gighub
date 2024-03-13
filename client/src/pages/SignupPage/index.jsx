@@ -94,10 +94,12 @@ export default function SignupPage() {
                     <TextField id="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
 
                 </div>
+                  {/* Render musician form if user is musician */}
+            {isChecked && <MuscianForm />}
                 <Button type="submit" variant="outlined" id="signupBtn">Submit</Button> {/* Use type="submit" for form submission */}
             </Box>
             {/* Render musician form if user is musician */}
-            {isChecked && <MuscianForm />}
+            {/* {isChecked && <MuscianForm />} */}
         </div>
     );
 }

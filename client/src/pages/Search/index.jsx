@@ -65,17 +65,17 @@ export default function Search() {
             >
                 <ListItem disablePadding>
                     <ListItemButton>
-                        <ListItemText inset primary="Result 1" />
+                        <ListItemText inset primary="Result 1" secondary="Genre" />
                     </ListItemButton>
                     <DollarSign/>
-                   
-
-                </ListItem>
+                   </ListItem>
                 <Divider component="li" />
+
                 <ListItem disablePadding>
                     <ListItemButton>
-                        <ListItemText inset primary="Result 2" />
+                        <ListItemText inset primary="Result 2" secondary="Genre"/>
                     </ListItemButton>
+                    <DollarSign/>
                 </ListItem>
 
                 <Divider component="li" />

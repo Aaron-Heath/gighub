@@ -8,19 +8,18 @@
     --lighter-red: #9E3845;
     --yellow: #FFE5A1;
     --pale: #FBF4E6;
-  
 }
 
 .search{
-    margin: 15px; 
-    margin-top: 2px;
+    margin-bottom: 10px;
+    margin-top: 8%;
     padding: 30px;
     background-color: #FBF4E6;
-   
+    
 }
 
 .search-button{
-    background-color: #9E3845;
+    background-color: #711F31;
     color: white;
     border-radius: 9px;
     border: none;
@@ -39,12 +38,41 @@
 .Dropdown-arrow{
     top: 12px;
 }
-
+.dollar-sign{
+    height: 15px;
+}
 .result-list{
-    border-radius: 5%;
+    border-radius: 2%;
+}
+
+.css-10hburv-MuiTypography-root{
+    font-size: 15px !important;
+    
+}
+.css-1999ls4-MuiListItemText-root{
+    padding-left: 0px !important;
+}
+
+.css-1fzmbpm-MuiListItemText-root {
+    padding-left: 0px !important;
+}
+
+.css-1fzmbpm-MuiListItemText-root {
+    padding-left: 0px !important;
+}
+
+.css-lod7fd-MuiList-root{
+    max-width: 100% !important;
 }
 #site-search{
     padding-top: 6px;
     padding-bottom: 4px;
     margin: 2px;
+    width: 80%
+}
+
+#root{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    
 }

@@ -9,12 +9,20 @@
     color: var(--yellow);
     background-color: var(--dark-red);
   }
-  
-  .musicianForm {
+
+  .musician-bio {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
     background-color: var(--pale);
-    border-radius: 10%;
-    padding: 1% 10% 10% 10%;
-    
+    border-radius: 15px;
+    padding: 3%;
+  }
+
+  .musician-bio img {
+    max-height: auto;
+    max-width: 100%;
+    border-radius: 15px 15px 0 0;
   }
 
   
@@ -28,10 +36,4 @@
   margin-top: 7%;
   color: var(--yellow);
   background-color: var(--dark-red);
-}
-
-.musicianForm {
-  background-color: var(--pale);
-  border-radius: 10%;
-  padding: 1% 10% 10% 10%
 }

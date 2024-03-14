@@ -1,10 +1,11 @@
 import { useState } from "react";
 import Dropdown from 'react-dropdown';
-import { GET_TAGS } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
-import { Box, TextField, Button } from '@mui/material';
-import SettingsChips from "../SettingsChips";
 import Stack from '@mui/material/Stack';
+import { Box, TextField, Button } from '@mui/material';
+import { useQuery } from "@apollo/client";
+import { GET_TAGS } from "../../utils/queries";
+import SettingsChips from "../SettingsChips";
+
 
 
 import "./style.css";
@@ -33,13 +34,6 @@ export default function SettingsForm() {
     console.log(selectedTags)
 
     // --------------------------------------------------------------------------
-
-    // Need code for adding selectedTags to musician bio
-
-
-    // Return statement
-
-    // Need code for regular user settings
 
     
     return (

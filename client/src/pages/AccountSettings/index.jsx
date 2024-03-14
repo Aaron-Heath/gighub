@@ -41,6 +41,9 @@ export default function AccountSettings() {
     });
     console.log('Musician data: ', musicianQueryData);
 
+    const options = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
+    const defaultOption = "State";
+
 
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
@@ -121,14 +124,14 @@ export default function AccountSettings() {
                 setCity(value);
                 break;
 
-            case 'state':
-                setState(value);
-                break;
-
             default:
                 break;
         };
     };
+
+    const handleDropdownChange = (selectedOption) => {
+        setState(selectedOption.value)
+    }
 
 
     const handleFormSubmit = async (e) => {
@@ -247,7 +250,29 @@ export default function AccountSettings() {
                     </Box>
                 </div>
 
-                <MusicianForm />
+                <div>
+            <div className='musicianSignUp-container'>
+                <Box
+                    sx={{
+                        flexGrow: 1,
+                        alignContent: "center"
+                    }}
+                    component="form"
+                    noValidate
+                    autoComplete="off"
+                >
+                    <div className='musicianForms'>
+                        <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} onChange={handleInputChange} name='stageName'/>
+                        <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} onChange={handleInputChange} name='publicEmail'/>
+                        <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city' onChange={handleInputChange}/>
+                        <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleDropdownChange}/>
+                        <p>*This will be shown on your profile</p>
+                    </div>
+                </Box>
+            </div>
+        </div>
+
+                
                 <div className='save-button'>
                     <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                         Save Changes
@@ -306,6 +331,8 @@ export default function AccountSettings() {
                             <input type="checkbox" id="checkbox" className="checkbox-input" checked={isMusician} name="isMusician" onChange={handleInputChange} />
                             <label htmlFor="checkbox" className="checkbox-label">Are you a musician?</label>
                         </div>
+
+
 
                         <div className='save-button'>
                             <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>

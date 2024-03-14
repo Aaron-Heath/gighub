@@ -66,6 +66,23 @@ export const GET_MUSICIANS_BY_TAGS = gql`
     }
 `
 
+export const GET_MUSICIAN_BY_USER_ID = gql`
+    query musicianByUserId($userId: ID!) {
+        musicianByUserId(userId: $userId) {
+            imageLink
+            stageName
+            publicEmail
+            description
+            tags
+            city
+            state
+            lat
+            lon
+            minCost
+        }
+    }
+`
+
 // Executing get tags array
 export const GET_TAGS = gql`
     query tags{

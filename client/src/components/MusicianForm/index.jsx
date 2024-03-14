@@ -8,7 +8,8 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 // import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 
-export default function MusicianForm() {
+// Props given for update functionality
+export default function MusicianForm({ stageName, publicEmail, city}) {
 
     
     const options = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
@@ -27,9 +28,9 @@ export default function MusicianForm() {
                     autoComplete="off"
                 >
                     <div className='musicianForms'>
-                        <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" />
-                        <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" />
-                        <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" />
+                        <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} name='stageName'/>
+                        <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} name='publicEmail'/>
+                        <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city'/>
                         <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option"/>
                         <p>*This will be shown on your profile</p>
                     </div>

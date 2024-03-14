@@ -23,6 +23,11 @@ const resolvers = {
       return MUSICIANS.sort(sortByDistance({lat, lon}));
     },
 
+    // Find musician using the associate userId
+    musicianByUserId: async (parent, { userId }) => {
+      return await Musician.findOne({ user: userId }).populate('user');
+    },
+
     tags: async () => {
       return await Tag.find();
     },

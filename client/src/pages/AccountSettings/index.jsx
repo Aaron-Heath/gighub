@@ -16,7 +16,8 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Auth from '../../utils/auth';
 import { UPDATE_USER, UPDATE_MUSICIAN, ADD_MUSICIAN } from "../../utils/mutations";
-import { GET_USER, GET_MUSICIAN_BY_ID } from "../../utils/queries";
+import { GET_USER, GET_MUSICIAN_BY_USER_ID } from "../../utils/queries";
+import MusicianForm from "../../components/MusicianForm";
 
 
 export default function AccountSettings() {
@@ -29,28 +30,59 @@ export default function AccountSettings() {
     const [createMusician] = useMutation(ADD_MUSICIAN);
 
     // Gets user info at page load
-    const { loading, data } = useQuery(GET_USER, {
+    const { loading: userLoading, data: userQueryData } = useQuery(GET_USER, {
         variables: { userId: userId }
     });
-    console.log(data)
+    console.log('User data: ', userQueryData)
+
+    
+    const { loading: musicianLoading, data: musicianQueryData } = useQuery(GET_MUSICIAN_BY_USER_ID, {
+        variables: { user: userId }
+    });
+    console.log('Musician data: ', musicianQueryData);
+
 
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [first, setFirst] = useState('')
     const [last, setLast] = useState('');
-    const [isMusician, setIsMusician] = useState('')
+    const [isMusician, setIsMusician] = useState(false);
+    const [stageName, setStageName] = useState('');
+    const [publicEmail, setPublicEmail] = useState('');
+    const [city, setCity] = useState('');
 
     // Use effect to wait for data to load before applying it to state
     useEffect(() => {
-        if (!loading && data) {
-            const userData = data.userById;
+        // Sets values according to existing data
+        if (!userLoading && userQueryData) {
+            const userData = userQueryData.userById;
             setEmail(userData.email);
             setUsername(userData.username);
             setFirst(userData.first);
             setLast(userData.last);
             setIsMusician(userData.isMusician);
+
+            
+            // If user is already a musician, run query and set props
+            // if (userData.isMusician) {
+            //     const { loading: musicianLoading, data: musicianQueryData } = useQuery(GET_MUSICIAN_BY_USER_ID, {
+            //         variables: { userId: userId }
+            //     });
+            //     console.log('Musician data: ', musicianQueryData);
+                
+            //     // Sets values according to existing data
+            //     if (!musicianLoading && musicianQueryData) {
+            //         const musicianData = musicianQueryData.musicianByUserId;
+            //         setStageName(musicianData.stageName);
+            //         setPublicEmail(musicianData.publicEmail);
+            //         setCity(musicianData.city);
+            //     }
+
+            // }
+
         }
-    }, [loading, data]);
+    }, [userLoading, userQueryData]);
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -77,6 +109,18 @@ export default function AccountSettings() {
                 setIsMusician(e.target.checked);
                 break;
 
+            case 'stageName':
+                setStageName(value);
+                break;
+
+            case 'publicEmail':
+                setPublicEmail(value);
+                break;
+
+            case 'city':
+                setCity(value);
+                break;
+
             default:
                 break;
         };
@@ -87,7 +131,7 @@ export default function AccountSettings() {
 
         e.preventDefault();
 
-        console.log(userId, email, username,first, last, isMusician)
+        console.log(userId, email, username, first, last, isMusician)
 
         try {
             const userResponse = await updateUser({
@@ -99,7 +143,7 @@ export default function AccountSettings() {
                     last: last,
                     isMusician: isMusician
                 }
-                
+
             });
 
             if (userResponse.error) {
@@ -121,99 +165,134 @@ export default function AccountSettings() {
 
     storePage();
 
-    if (loading) {
+    if (userLoading) {
         return <div>Loading...</div>;
     };
 
 
-
-    return (
-        <div>
-            <Header />
-            {/* {loading ? (<p>loading</p>) : ( */}
+    if (isMusician) {
+        return (
             <div>
+                <Header />
+                {/* {loading ? (<p>loading</p>) : ( */}
+                <div>
 
-                {/* <img src={gighubLogo} alt="Logo" /> */}
-                <Box
-                    className="settings-container"
-                    gap={4}
-                    sx={{
-                        // border: '4px solid #FFE5A1',
-                        borderRadius: 2,
-                        flexGrow: 1,
-                        alignContent: "center",
-                        marginTop: '10px'
-                    }}
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                >
-
-                    <motion.div
-                        className="settings"
-                        variants={settingVariants}
-                        //   initial="animate"
-                        animate='animate'
-                        whileHover='whileHover'
-                        style={{ marginTop: '30px', color: 'white' }}
+                    {/* <img src={gighubLogo} alt="Logo" /> */}
+                    <Box
+                        className="settings-container"
+                        gap={4}
+                        sx={{
+                            // border: '4px solid #FFE5A1',
+                            borderRadius: 2,
+                            flexGrow: 1,
+                            alignContent: "center",
+                            marginTop: '10px'
+                        }}
+                        component="form"
+                        noValidate
+                        autoComplete="off"
                     >
-                        Settings
-                    </motion.div>
+
+                        <motion.div
+                            className="settings"
+                            variants={settingVariants}
+                            //   initial="animate"
+                            animate='animate'
+                            whileHover='whileHover'
+                            style={{ marginTop: '30px', color: 'white' }}
+                        >
+                            Settings
+                        </motion.div>
 
 
-                    <TextField className="form" id="username" variant="outlined" value={username} onChange={handleInputChange} name="username"
-                        style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+                        <TextField className="form" id="username" variant="outlined" value={username} onChange={handleInputChange} name="username"
+                            style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="email" variant="outlined" value={email} onChange={handleInputChange} name="email"
-                        style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+                        <TextField className="form" id="email" variant="outlined" value={email} onChange={handleInputChange} name="email"
+                            style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="first" variant="outlined" value={first} onChange={handleInputChange} name="first"
-                        style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+                        <TextField className="form" id="first" variant="outlined" value={first} onChange={handleInputChange} name="first"
+                            style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <TextField className="form" id="last" variant="outlined" value={last} onChange={handleInputChange} name="last"
-                        style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+                        <TextField className="form" id="last" variant="outlined" value={last} onChange={handleInputChange} name="last"
+                            style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <div className="checkbox-container">
-                        <input type="checkbox" id="checkbox" className="checkbox-input" checked={isMusician} name="isMusician" onChange={handleInputChange}/>
-                        <label htmlFor="checkbox" className="checkbox-label">Are you a musician?</label>
-                    </div>
+                        <div className="checkbox-container">
+                            <input type="checkbox" id="checkbox" className="checkbox-input" checked={isMusician} name="isMusician" onChange={handleInputChange} />
+                            <label htmlFor="checkbox" className="checkbox-label">Are you a musician?</label>
+                        </div>
+                    </Box>
+                </div>
 
-                    {/*                    
-            
-                    
-                <TextField className="form" id="stageName" label=" Stage Name" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee'}}/>
-
-                    
-                    <TextField className="form" id="publicEmail" label=" Email" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}}/>
-
-                  
-                    <TextField className="form" id="city" label="City" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} />
-
-                    <TextField className="form" id="state" label="State" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} />
-
-                    <TextField className="form" id="imageLink" label="Image Link" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} />
-
-                    <TextField
-                        className="form"
-                        id="description"
-                        label=" Description"
-                        multiline
-                        rows={4}
-                        variant="outlined"
-                        style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}}
-                    />
-
-                    <TextField className="form" id="tags" label="Search for Tags" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} /> */}
-
-                    <div className='save-button'>
-                        <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
-                            Save Changes
-                        </Button>
-                    </div>
-                </Box>
+                <MusicianForm />
+                <div className='save-button'>
+                    <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
+                        Save Changes
+                    </Button>
+                </div>
             </div>
-            {/* )} */}
-        </div>
-    );
+        )
+    } else {
+        return (
+            <div>
+                <Header />
+                {/* {loading ? (<p>loading</p>) : ( */}
+                <div>
+
+                    {/* <img src={gighubLogo} alt="Logo" /> */}
+                    <Box
+                        className="settings-container"
+                        gap={4}
+                        sx={{
+                            // border: '4px solid #FFE5A1',
+                            borderRadius: 2,
+                            flexGrow: 1,
+                            alignContent: "center",
+                            marginTop: '10px'
+                        }}
+                        component="form"
+                        noValidate
+                        autoComplete="off"
+                    >
+
+                        <motion.div
+                            className="settings"
+                            variants={settingVariants}
+                            //   initial="animate"
+                            animate='animate'
+                            whileHover='whileHover'
+                            style={{ marginTop: '30px', color: 'white' }}
+                        >
+                            Settings
+                        </motion.div>
+
+
+                        <TextField className="form" id="username" variant="outlined" value={username} onChange={handleInputChange} name="username"
+                            style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+
+                        <TextField className="form" id="email" variant="outlined" value={email} onChange={handleInputChange} name="email"
+                            style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+
+                        <TextField className="form" id="first" variant="outlined" value={first} onChange={handleInputChange} name="first"
+                            style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+
+                        <TextField className="form" id="last" variant="outlined" value={last} onChange={handleInputChange} name="last"
+                            style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
+
+                        <div className="checkbox-container">
+                            <input type="checkbox" id="checkbox" className="checkbox-input" checked={isMusician} name="isMusician" onChange={handleInputChange} />
+                            <label htmlFor="checkbox" className="checkbox-label">Are you a musician?</label>
+                        </div>
+
+                        <div className='save-button'>
+                            <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
+                                Save Changes
+                            </Button>
+                        </div>
+                    </Box>
+                </div>
+            </div>
+        )
+    }
 }
 

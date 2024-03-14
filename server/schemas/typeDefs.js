@@ -46,6 +46,7 @@ const typeDefs = `
     users: [User]
     userById(userId: ID!): User
     musicianById(musicianId: ID!): Musician
+    musicianByUserId(userId: ID!): Musician
     musiciansByLocation(lat: Float, lon: Float): [Musician]
     musiciansByTags(tags: [TagInput!]): [Musician]
     tags: [Tag]

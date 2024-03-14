@@ -41,7 +41,8 @@ class AuthService {
     // For removing user token from localStorage on user logout
     logout() {
         // Removes token from localStorage
-        localStorage.removeItem('id_token')
+        localStorage.removeItem('id_token');
+        window.location = '/'
 
     }
 };

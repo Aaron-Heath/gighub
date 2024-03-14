@@ -2,15 +2,13 @@
 import Chip from '@mui/material/Chip';
 import "./style.css"
 
+//Component to create chips when user picks a tag in Settings
+
 
 export default function SettingsChips(selectedTags) {
 
-  // console.log(selectedTags.selectedTags)
 
   const chipTagsArray = selectedTags.selectedTags;
-
-  // console.log(chipTagsArray)
-
 
   return (
     <div>

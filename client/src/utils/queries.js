@@ -2,9 +2,12 @@ import { gql } from '@apollo/client';
 
 // Executing get user
 export const GET_USER = gql`
-    query user($username: String!) {
-        user(username: $username) {
+    query userById($userId: ID!) {
+        userById(userId: $userId) {
             _id
+            username
+            first
+            last
             email
             isMusician
             active
@@ -19,6 +22,7 @@ export const GET_MUSICIAN_BY_ID = gql`
             stageName
             publicEmail
             description
+            imageLink
             tags
             city
             state
@@ -37,6 +41,7 @@ export const GET_MUSICIANS_BY_LOCATION = gql`
             publicEmail
             description
             tags
+            imageLink
             city
             state
             lat

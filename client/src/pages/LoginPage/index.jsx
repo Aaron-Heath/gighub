@@ -8,9 +8,11 @@ import { useState } from 'react';
 import { LOGIN_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import { Button } from '@mui/material';
-import Auth from '../../utils/auth'
+import { Link } from "react-router-dom";
+import Auth from '../../utils/auth';
 
 export default function LoginPage() {
+
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -82,7 +84,7 @@ export default function LoginPage() {
 
                     <div className='sign-up-text'>
                     <h3>Don't Have an Account?</h3>
-                    <h4>Sign up Here!</h4>
+                   <Link to="/signup"><h4>Sign up Here!</h4></Link>
                     </div>
 
                     <Button className='login-button' type="submit" variant="contained" color="primary" onClick={handleFormSubmit}>

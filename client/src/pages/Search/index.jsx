@@ -12,6 +12,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import DollarSign from "../../components/DollarSign";
+import { GET_MUSICIANS_BY_LOCATION } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
+import { Button } from "@mui/material";
 
 export default function Search() {
     storePage();
@@ -20,16 +23,33 @@ export default function Search() {
         'Musician', 'Tag', 'Location'
     ];
 
-    const [selectedTags, setSelectedTags] = useState([]);
+    // const [selectedTags, setSelectedTags] = useState([]);
 
     const defaultOption = "Filter Search by";
-    const handleSearchClick = (e) => {
-        const clickedTag = e.value;
-        if (selectedTags.length && !selectedTags.includes(clickedTag)) {
-            const updatedTags = [...selectedTags, clickedTag];
-            setSelectedTags(updatedTags);
+    // const handleSearchClick = (e) => {
+    //     const clickedTag = e.value;
+    //     if (selectedTags.length && !selectedTags.includes(clickedTag)) {
+    //         const updatedTags = [...selectedTags, clickedTag];
+    //         setSelectedTags(updatedTags);
+    //     }
+    // };
+
+    const [search, setSearch] = useState('')
+    const handleDropdownChange = (selectedOption) => {
+        setSearch(selectedOption.value)
+    }
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+
+        console.log(search)
+
+        if (search === 'Location') {
+            const { loading, data } = useQuery(GET_MUSICIANS_BY_LOCATION, {
+                variables: {}
+            });
         }
-    };
+    }
 
    
 
@@ -44,7 +64,7 @@ export default function Search() {
                 <p className="search-header">Find your Gig!</p>
                 <label for="site-search"></label>
                 <input type="search" id="site-search" name="q" />
-                <button className="search-button">Search</button>
+                <Button variant='contained' className="search-button" onClick={handleFormSubmit}>Search</Button>
 
 
                 <Dropdown
@@ -53,7 +73,7 @@ export default function Search() {
                     options={options}
                     value={defaultOption}
                     placeholder="Select a Filter"
-                    onChange={handleSearchClick}
+                    onChange={handleDropdownChange}
                 />
             </div>
 

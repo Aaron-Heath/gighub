@@ -3,35 +3,59 @@ import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import React from 'react';
 import { Box, TextField, Button } from '@mui/material';
-import gighubLogo from "../../assets/images/Gighub-290px.png";
+// import gighubLogo from "../../assets/images/Gighub-290px.png";
 import './style.css';
 import { settingVariants } from "./indexVariants";
-import { motion } from 'framer-motion';
-import { useMutation, useQuery } from "@apollo/client";
-import { UPDATE_MUSICIAN, UPDATE_USER, ADD_MUSICIAN } from '../../utils/mutations';
-import { GET_USER, GET_MUSICIAN_BY_ID } from '../../utils/queries';
-import Auth from '../../utils/auth';
+import { motion } from 'framer-motion'
+import SettingsForm from "../../components/SettingsForm";
+import { useState } from "react";
+import Dropdown from 'react-dropdown';
+import { GET_TAGS } from "../../utils/queries";
+import { useQuery } from "@apollo/client";
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 
 export default function AccountSettings() {
+    const userId = Auth.getUser().data._id
+    console.log(userId)
 
     const [updateUser] = useMutation(UPDATE_USER);
     const [updateMusician] = useMutation(UPDATE_MUSICIAN);
     const [createMusician] = useMutation(ADD_MUSICIAN);
 
-    const getUser = useQuery(GET_USER);
+    const { loading, data } = useQuery(GET_USER, {
+        variables: { _id: userId}
+    });
+    const users = data?.user || []
+    console.log(users)
     const getMusicianById = useQuery(GET_MUSICIAN_BY_ID);
+
+    // Gets data for user before update
+    const getUserDetails = async (userId) => {
+        try {
+            const checkUser = await getUserData({ variables: { _id: userId } });
+            const { checkUserData } = await checkUser.data.getUser;
+            console.log(checkUserData)
+
+            if (response.error) {
+                throw new Error('Something went wrong')
+            }
+
+            return { checkUserData };
+
+        } catch (err) {
+            console.error(err)
+        }
+    }
 
     const handleFormSubmit = async (e) => {
 
         e.preventDefault();
 
-        try {
-            // Gets data for user before update, used to check if is musician already
-            const checkUser = await getUser({ variables: { username: username } });
-            const { checkUserData } = await checkUser.data.getUser;
-            console.log(checkUserData)
+        getUserDetails();
 
+        try {
             // User update function
             const userResponse = await updateUser({
                 variables: {
@@ -97,15 +121,20 @@ export default function AccountSettings() {
 
     storePage();
 
+
+
     return (
         <div>
+            <Header />
+            {/* {loading ? (<p>loading</p>) : ( */}
             <div>
+
                 {/* <img src={gighubLogo} alt="Logo" /> */}
                 <Box
                     className="settings-container"
                     gap={4}
                     sx={{
-                        border: '4px solid #FFE5A1',
+                        // border: '4px solid #FFE5A1',
                         borderRadius: 2,
                         flexGrow: 1,
                         alignContent: "center",
@@ -122,7 +151,7 @@ export default function AccountSettings() {
                         //   initial="animate"
                         animate='animate'
                         whileHover='whileHover'
-                        style={{ marginTop: '60px', color: 'white' }}
+                        style={{ marginTop: '30px', color: 'white' }}
                     >
                         Settings
                     </motion.div>
@@ -136,11 +165,10 @@ export default function AccountSettings() {
 
                     <TextField className="form" id="last" label="Last" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: '50px', fontFamily: 'Bungee' }} />
 
-                    <div class="checkbox-container">
-                        <input type="checkbox" id="checkbox" class="checkbox-input" />
-                        <label for="checkbox" class="checkbox-label">Are you a musician?</label>
+                    <div className="checkbox-container">
+                        <input type="checkbox" id="checkbox" className="checkbox-input" />
+                        <label htmlFor="checkbox" className="checkbox-label">Are you a musician?</label>
                     </div>
-
 
                     {/*                    
             
@@ -195,12 +223,13 @@ export default function AccountSettings() {
                     <TextField className="form" id="tags" label="Search for Tags" variant="outlined" style={{backgroundColor: "#711F31", color: "#FFE5A1", border:'2px solid #FFE5A1',borderRadius: '10px', width: '80%', marginBottom: '10px'}} /> */}
 
                     <div className='save-button'>
-                        <Button variant="contained" onSubmit={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
+                        <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                             Save Changes
                         </Button>
                     </div>
                 </Box>
             </div>
+            {/* )} */}
         </div>
     );
 }

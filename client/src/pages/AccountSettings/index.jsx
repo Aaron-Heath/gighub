@@ -37,7 +37,7 @@ export default function AccountSettings() {
 
     
     const { loading: musicianLoading, data: musicianQueryData } = useQuery(GET_MUSICIAN_BY_USER_ID, {
-        variables: { user: userId }
+        variables: { userId: userId }
     });
     console.log('Musician data: ', musicianQueryData);
 

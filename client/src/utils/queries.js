@@ -69,6 +69,7 @@ export const GET_MUSICIANS_BY_TAGS = gql`
 export const GET_MUSICIAN_BY_USER_ID = gql`
     query musicianByUserId($userId: ID!) {
         musicianByUserId(userId: $userId) {
+            _id
             imageLink
             stageName
             publicEmail

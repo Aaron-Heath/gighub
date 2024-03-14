@@ -86,7 +86,7 @@ export default function LoginPage() {
                    <Link to="/signup"><h4>Sign up Here!</h4></Link>
                     </div>
 
-                    <Button type="submit" variant="contained" color="primary" onClick={handleFormSubmit}>
+                    <Button className='login-button' type="submit" variant="contained" color="primary" onClick={handleFormSubmit}>
                     Submit
                     </Button>
                 </Box>

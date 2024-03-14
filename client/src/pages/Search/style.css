@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+
+:root {
+    --blue: #204B57;
+    --dark-red: #711F31;
+    --lighter-red: #9E3845;
+    --yellow: #FFE5A1;
+    --pale: #FBF4E6;
+}
+
+.search{
+    margin-bottom: 10px;
+    margin-top: 8%;
+    padding: 30px;
+    padding-top: 10px;
+    background-color: #FBF4E6;
+    
+}
+
+.search-button{
+    background-color: #711F31;
+    color: white;
+    border-radius: 9px;
+    border: none;
+    padding: 6px !important;
+    font-family: "Zen Maru Gothic", serif;
+    text-decoration: none;
+    font-size: 13px;
+}
+.dropdown{
+    background-color: white !important;
+    padding: 9px !important;
+    margin-left: 10%;
+    font-size: 14px;
+}
+
+.Dropdown-arrow{
+    top: 12px;
+}
+.dollar-sign{
+    height: 15px;
+}
+.result-list{
+    border-radius: 2%;
+}
+
+.css-10hburv-MuiTypography-root{
+    font-size: 15px !important;
+    
+}
+.css-1999ls4-MuiListItemText-root{
+    padding-left: 0px !important;
+}
+
+.css-1fzmbpm-MuiListItemText-root {
+    padding-left: 0px !important;
+}
+
+.css-1fzmbpm-MuiListItemText-root {
+    padding-left: 0px !important;
+}
+
+.css-lod7fd-MuiList-root{
+    max-width: 100% !important;
+}
+.Dropdown-root{
+    padding-left: 0 !important;
+   
+}
+.search-header{
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: bold;
+    font-size: large;
+    float: left;
+}
+#site-search{
+    padding-top: 6px;
+    padding-bottom: 4px;
+    margin: 2px;
+    width: 80%
+}
+
+#root{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    
+}

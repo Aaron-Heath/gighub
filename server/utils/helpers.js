@@ -37,6 +37,7 @@ async function geoCode(city, state, country="US") {
     
     const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=1&appid=${process.env.GEOCODE_API_KEY}`);
     const data = await response.json();
+    console.log(data);
     // Error Handling
     if(!data || data.length === 0) {
         return {

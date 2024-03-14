@@ -63,7 +63,7 @@ function Header() {
   return (
     <div style={headerStyle}>
       {/* App Bar */}
-      <AppBar position="relative" style={{ ...titleStyle, background: '#FFE5A1' }}>
+      <AppBar position="fixed" style={{ ...titleStyle, background: '#FFE5A1' }}>
         <Toolbar>
           <IconButton edge="start" style={menuButtonStyle} color="inherit" aria-label="menu">
             <MenuIcon />

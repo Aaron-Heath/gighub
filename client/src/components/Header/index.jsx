@@ -65,9 +65,9 @@ function Header() {
       {/* App Bar */}
       <AppBar position="relative" style={{ ...titleStyle, background: '#FFE5A1' }}>
         <Toolbar>
-          <IconButton edge="start" style={menuButtonStyle} color="inherit" aria-label="menu">
+          {/* <IconButton edge="start" style={menuButtonStyle} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <h3 className='title' style={titleStyle}>Gighub</h3>
           <div className='greetings' style={signedInUserStyle}>Hello, {queriedUser ? queriedUser.first : 'Guest'}</div>
           {Auth.loggedIn() ? (

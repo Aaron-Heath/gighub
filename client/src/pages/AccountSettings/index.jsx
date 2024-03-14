@@ -50,6 +50,7 @@ export default function AccountSettings() {
     const [stageName, setStageName] = useState('');
     const [publicEmail, setPublicEmail] = useState('');
     const [city, setCity] = useState('');
+    const [state, setState] = useState('');
 
     // Use effect to wait for data to load before applying it to state
     useEffect(() => {
@@ -82,6 +83,8 @@ export default function AccountSettings() {
 
         }
     }, [userLoading, userQueryData]);
+
+
 
 
     const handleInputChange = (e) => {
@@ -121,6 +124,10 @@ export default function AccountSettings() {
                 setCity(value);
                 break;
 
+            case 'state':
+                setState(state);
+                break;
+
             default:
                 break;
         };
@@ -131,7 +138,7 @@ export default function AccountSettings() {
 
         e.preventDefault();
 
-        console.log(userId, email, username, first, last, isMusician)
+        // console.log(userId, email, username, first, last, isMusician)
 
         try {
             const userResponse = await updateUser({
@@ -145,6 +152,25 @@ export default function AccountSettings() {
                 }
 
             });
+            console.log('HERE')
+            console.log(userId, stageName, publicEmail, city, state)
+
+            if (musicianQueryData.musicianByUserId === null) {
+                const musicianResponse = await createMusician({
+                    variables: {
+                        user: userId,
+                        stageName: stageName,
+                        publicEmail: publicEmail,
+                        city: city,
+                        state: state
+
+                    }
+                });
+
+                console.log(musicianResponse.data)
+                const { musician } = await musicianResponse.data.addMusician;
+                console.log(musician) 
+            };
 
             if (userResponse.error) {
                 throw new Error('Something went wrong');

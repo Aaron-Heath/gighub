@@ -43,17 +43,15 @@ export const ADD_USER = gql`
 // Executing add musician
 export const ADD_MUSICIAN = gql`
     mutation addMusician(
-        $user: UserInput!,
-        $imageLink: String!,
+        $user: ID!,
+        $imageLink: String,
         $stageName: String!,
         $publicEmail: String!,
         $description: String,
-        $tags: [String]!,
+        $tags: [ID],
         $city: String!,
         $state: String!,
-        $lat: Float!,
-        $lon: Float!,
-        $minCost: Float!
+        $minCost: Float
     ) {
         addMusician(
             user: $user,
@@ -64,8 +62,6 @@ export const ADD_MUSICIAN = gql`
             tags: $tags,
             city: $city,
             state: $state,
-            lat: $lat,
-            lon: $lon,
             minCost: $minCost
         ) {
             _id

@@ -31,7 +31,7 @@ export default function MusicianForm({ stageName, publicEmail, city}) {
                         <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} name='stageName'/>
                         <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} name='publicEmail'/>
                         <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city'/>
-                        <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option"/>
+                        <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state'/>
                         <p>*This will be shown on your profile</p>
                     </div>
                 </Box>

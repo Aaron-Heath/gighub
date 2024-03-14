@@ -41,6 +41,7 @@ export const GET_MUSICIANS_BY_LOCATION = gql`
             publicEmail
             description
             tags
+            imageLink
             city
             state
             lat

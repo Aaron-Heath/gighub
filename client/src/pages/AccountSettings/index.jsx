@@ -64,25 +64,22 @@ export default function AccountSettings() {
             setIsMusician(userData.isMusician);
 
             
-            // If user is already a musician, run query and set props
-            // if (userData.isMusician) {
-            //     const { loading: musicianLoading, data: musicianQueryData } = useQuery(GET_MUSICIAN_BY_USER_ID, {
-            //         variables: { userId: userId }
-            //     });
-            //     console.log('Musician data: ', musicianQueryData);
+            // If user is already a musician, set props
+            if (userData.isMusician && !musicianLoading && musicianQueryData.musicianByUserId !== null) {
+                console.log('Musician data: ', musicianQueryData);
                 
-            //     // Sets values according to existing data
-            //     if (!musicianLoading && musicianQueryData) {
-            //         const musicianData = musicianQueryData.musicianByUserId;
-            //         setStageName(musicianData.stageName);
-            //         setPublicEmail(musicianData.publicEmail);
-            //         setCity(musicianData.city);
-            //     }
+                // Sets values according to existing data
+                if (!musicianLoading && musicianQueryData) {
+                    const musicianData = musicianQueryData.musicianByUserId;
+                    setStageName(musicianData.stageName);
+                    setPublicEmail(musicianData.publicEmail);
+                    setCity(musicianData.city);
+                }
 
-            // }
+            }
 
         }
-    }, [userLoading, userQueryData]);
+    }, [userLoading, userQueryData, musicianLoading, musicianQueryData]);
 
 
 
@@ -125,7 +122,7 @@ export default function AccountSettings() {
                 break;
 
             case 'state':
-                setState(state);
+                setState(value);
                 break;
 
             default:

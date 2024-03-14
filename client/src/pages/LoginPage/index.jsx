@@ -52,10 +52,9 @@ export default function LoginPage() {
            
             console.log(response)
             const { token, user } = await response.data.login;
-            console.log(user.username);
+            console.log(user);
             Auth.login(token);
             console.log(token);
-            console.log(Auth.getUser().data._id)
             redirectToLast();
             
         } catch (err) {

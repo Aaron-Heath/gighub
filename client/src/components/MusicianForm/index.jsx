@@ -1,16 +1,17 @@
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import './style.css';
 import * as React from 'react';
-// import { useState } from "react";
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-// import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
+import './style.css';
+
 
 export default function MusicianForm() {
 
     
+    
+    // State options for dropdown
     const options = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
     const defaultOption = "State";
 

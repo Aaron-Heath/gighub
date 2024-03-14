@@ -35,13 +35,6 @@ export default function SettingsForm() {
 
     // --------------------------------------------------------------------------
 
-    // Need code for adding selectedTags to musician bio
-
-
-    // Return statement
-
-    // Need code for regular user settings
-
     
     return (
         <div>

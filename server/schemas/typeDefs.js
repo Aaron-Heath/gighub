@@ -60,7 +60,8 @@ const typeDefs = `
       username: String!,
       first: String!,
       last: String!,
-      isMusician: Boolean!
+      isMusician: Boolean!,
+      password: String!
     ): Auth
 
     addMusician(

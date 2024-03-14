@@ -7,9 +7,13 @@ const resolvers = {
     users: async () => {
       return await User.find();
     },
+    userById: async(parent, { userId }) => {
+      return await User.findOne({_id: userId});
+    }
+    ,
 
-    userById: async (parent, { userId }) => {
-      return await User.findOne({ _id: userId });
+    userByUsername: async (parent, { username }) => {
+      return await User.findOne({ username: username });
     },
 
     musicianById: async (parent, { musicianId }) => {
@@ -45,8 +49,8 @@ const resolvers = {
 
   Mutation: {
 
-    addUser: async (parent, { userData }) => {
-      const user = await User.create({ userData });
+    addUser: async (parent, { email, username, first, last, isMusician, password }) => {
+      const user = await User.create({ email, username, first, last, isMusician, password });
       const token = signToken(user);
       return { token, user };
     },

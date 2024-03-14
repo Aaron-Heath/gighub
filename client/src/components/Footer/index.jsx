@@ -10,13 +10,13 @@ import "./style.css"
 
   const menuButtonStyle = {
     marginRight: '-900px',
-    color: '#204B57' // Adjust the value according to your preference
+    color: '#204B57' 
   };
 
   const titleStyle = {
     flexGrow: 1,
     color: '#711F31',
-    fontFamily: 'Bungee' //text color   
+    fontFamily: 'Bungee' 
   };
 
 
@@ -70,7 +70,7 @@ export default function Footer() {
           onChange={handleChange}
 
         >
-          <BottomNavigationAction id="settingsNav" label="Settings" icon={<SettingsIcon />} sx={{ color: "textColor.darkRed" }} />
+          <BottomNavigationAction id="settingsNav" label="Settings" icon={<SettingsIcon />} sx={{ color: "textColor.darkRed", fontFamily: "Bungee, sans-serif"}} />
           <BottomNavigationAction id="favoritesNav" label="Favorites" icon={<FavoritesIcon />} sx={{ color: "textColor.darkRed" }} />
           <BottomNavigationAction id="searchNav" label="Search" icon={<SearchIcon />} sx={{ color: "textColor.darkRed" }} />
 

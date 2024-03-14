@@ -59,6 +59,8 @@ function App() {
     <>
       <main>
         {/* <Header /> */}
+        {/* <MusicianBio /> */}
+        {/* < AccountSettings /> */}
         <Outlet />
       </main>
     </>

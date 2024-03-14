@@ -9,6 +9,8 @@ import { useQuery } from '@apollo/client';
 // import { useParams } from 'react-router-dom';
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
+import Auth from "../../utils/auth"
+import './style.css'
 
 
 const MusicianBio = () => {
@@ -26,85 +28,55 @@ const MusicianBio = () => {
 
 
   console.log(data);
+  const musicianData = data ? data.musicianById : null;
 
+  const styles = {
+    stageName: {
+      lineHeight: "30px"
+    }
+  }
+  if(loading) {
+    return (
+      <div>
+        <Header />
+        <div className="musician-bio">
+          <Box
+              height={300}
+              width={300}
+              my={4}
+              gap={2}
+              borderRadius={10}
+              p={5}
+              sx={{ 
+                border: '4px solid #FBF4E6' ,
+                flexGrow: 1,
+                alignContent: 'center',}}
+          
+            component="form"
+            noValidate
+            autoComplete="off"
+          >
+            <h2 style={styles.stageName}>Loading</h2>
 
+          </Box>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
-  const [musicianData, setMusicianData] = useState({
-    user: 'John Doe',
-    stageName: 'The Doodlebobs',
-    city: 'City',
-    state: 'State',
-    minCost: 'minCost',
-    imageLink: 'string',
-    description: 'string',
-    tags: 'tags',
-  });
-
-  // useEffect(() => {
-  //   const response = { user: 'John Doe', stageName: 'The DoodleBobs', city: 'City', state: 'State', minCost: 'minCost', imageLink: 'string', description: 'string', tags: 'tags' }; 
-
-  //   // const fetchMusicianData = async () => {
-  //   //     try {
-  //   //       const response = await fetch('/api/musician', {
-  //   //         method: 'GET',
-  //   //         // You can include headers if needed, such as authorization headers
-  //   //       });
-  //   //       const data = await response.json();
-  //   //       setMusicianData(data);
-  //   //     } catch (error) {
-  //   //       console.error('Error fetching musician data:', error);
-  //   //     }
-  //   //   };
-
-    
-  //   setMusicianData(response); // Replace with actual response data
-  //       const fetchMusicianData = async () => {
-  //           try {
-  //               // const response = await fetch('/api/musician'); // Replace with the actual API endpoint
-  //               const data = await response.json();
-  //               setMusicianData(data);
-  //           } catch (error) {
-  //               console.error('Error fetching musician data:', error);
-  //           }
-  //       };
-
-  //       fetchMusicianData();
-
-  // }, []);
-
-    // const { loading, data } = useQuery(GET_MUSICIAN_BY_ID)
-    // {
-    //   // variables: { id: musicianId },
-    // }
   return (
     <div>
       <Header />
       <div className="musician-bio">
-        <Box
-            height={300}
-            width={300}
-            my={4}
-            gap={2}
-            borderRadius={10}
-            p={5}
-            sx={{ 
-              border: '4px solid #FBF4E6' ,
-              flexGrow: 1,
-              alignContent: 'center',}}
-        
-          component="form"
-          noValidate
-          autoComplete="off"
-        >
-          
-          <div className="musicianForm">
+        <Box>    
           <img src={musicianData.imageLink} alt="Musician" />
-            <h2>{musicianData.stageName}</h2>
+            <h2 style={styles.stageName}>{musicianData.stageName}</h2>
             <ul>
               <li>{`${musicianData.city}, ${musicianData.state}`}</li>
               <li>{musicianData.minCost}</li>
             </ul>
-            <Button variant="outlined" size='small' id="tagsBtn">{musicianData.tags}</Button>
+            {/* <Button variant="outlined" size='small' id="tagsBtn">{musicianData.tags}</Button> */}
             <Divider orientation="horizontal" flexItem />
             <p>{musicianData.description}</p>
             <Button
@@ -116,7 +88,6 @@ const MusicianBio = () => {
             >
               Login to Contact
             </Button>
-          </div>
         </Box>
       </div>
       <Footer />

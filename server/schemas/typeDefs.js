@@ -45,6 +45,7 @@ const typeDefs = `
   type Query {
     users: [User]
     userById(userId: ID!): User
+    userByUsername(username: String!): User
     musicianById(musicianId: ID!): Musician
     musicianByUserId(userId: ID!): Musician
     musiciansByLocation(lat: Float, lon: Float): [Musician]
@@ -60,7 +61,8 @@ const typeDefs = `
       username: String!,
       first: String!,
       last: String!,
-      isMusician: Boolean!
+      isMusician: Boolean!,
+      password: String!
     ): Auth
 
     addMusician(

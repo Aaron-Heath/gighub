@@ -7,9 +7,13 @@ const resolvers = {
     users: async () => {
       return await User.find();
     },
+    userById: async(parent, { userId }) => {
+      return await User.findOne({_id: userId});
+    }
+    ,
 
-    userById: async (parent, { userId }) => {
-      return await User.findOne({ _id: userId });
+    userByUsername: async (parent, { username }) => {
+      return await User.findOne({ username: username });
     },
 
     musicianById: async (parent, { musicianId }) => {

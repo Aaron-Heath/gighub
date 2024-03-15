@@ -21,7 +21,10 @@ class AuthService {
             // Checks for time remaining before token expiration
             if (decoded.exp < Date.now() / 1000) {
                 return true;
-            } else return false;
+            } else {
+                localStorage.removeItem('id_token', null)
+                return false;
+            }
         } catch (err) {
             return false;
         };

@@ -21,6 +21,9 @@ import MusicianForm from "../../components/MusicianForm";
 
 
 export default function AccountSettings() {
+    // redirect if not logged in
+    if (!Auth.loggedIn()) window.location = '/login';
+
     // Get user authentication to find user data later
     const userId = Auth.getUser().data._id
     console.log(userId)
@@ -200,10 +203,7 @@ export default function AccountSettings() {
         return (
             <div>
                 <Header />
-                {/* {loading ? (<p>loading</p>) : ( */}
                 <div>
-
-                    {/* <img src={gighubLogo} alt="Logo" /> */}
                     <Box
                         className="settings-container"
                         gap={4}
@@ -278,6 +278,7 @@ export default function AccountSettings() {
                         Save Changes
                     </Button>
                 </div>
+                <Footer/>
             </div>
         )
     } else {
@@ -341,6 +342,7 @@ export default function AccountSettings() {
                         </div>
                     </Box>
                 </div>
+                <Footer/>
             </div>
         )
     }

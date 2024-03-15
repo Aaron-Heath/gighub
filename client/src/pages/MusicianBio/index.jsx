@@ -11,6 +11,7 @@ import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import Auth from "../../utils/auth"
 import './style.css'
+import ErrorPage from "../ErrorPage";
 
 
 const MusicianBio = () => {
@@ -63,6 +64,8 @@ const MusicianBio = () => {
         <Footer />
       </div>
     );
+  } else if (!musicianData) {
+    return <ErrorPage error="404"/>
   }
 
   return (

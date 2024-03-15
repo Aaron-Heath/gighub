@@ -88,15 +88,30 @@ const MusicianBio = () => {
             <Divider orientation="horizontal" flexItem />
             <p>{musicianData.description}</p>
             
-            <Link to="./login">
-              <Button
-                variant="outlined"
-                id="loginBtn"
-              >
-              Login to Contact
-              </Button>
-            </Link>
-        </Box>
+            {Auth.loggedIn() ? (
+              <div>
+                <h3>{`Contact ${musicianData.stageName} at ${musicianData.publicEmail}`}</h3>
+              </div>
+            
+            ) : (
+
+              <div>
+              <Link to="./login">
+                <Button
+                  variant="outlined"
+                  id="loginBtn"
+                >
+                Login to Contact
+                </Button>
+              </Link>
+            </div>
+
+            )}
+
+            
+            
+        
+            </Box>
       </div>
       <Footer />
     </div>

@@ -30,7 +30,7 @@ const typeDefs = `
     state: String!
     lat: Float!
     lon: Float!
-    minCost: Float!
+    minCost: Float
   }
 
   type Tag {

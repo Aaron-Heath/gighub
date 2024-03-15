@@ -19,16 +19,19 @@ import { Button } from "@mui/material";
 export default function Search() {
     storePage();
 
+    // Search types
     const searchOptions = [
         'Musician', 'Tag', 'Location'
     ];
-
-    // const [selectedTags, setSelectedTags] = useState([]);
-
     const defaultSearchOption = "Filter Search by";
 
+    // For searching by location
     const stateOptions = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
     const defaultStateOption = "State";
+
+    
+    // const [selectedTags, setSelectedTags] = useState([]);
+
     // const handleSearchClick = (e) => {
     //     const clickedTag = e.value;
     //     if (selectedTags.length && !selectedTags.includes(clickedTag)) {
@@ -55,7 +58,7 @@ export default function Search() {
     }
 
 
-    const { data } = useQuery(GET_MUSICIANS_BY_LOCATION,
+    const { data, loading } = useQuery(GET_MUSICIANS_BY_LOCATION,
         {
             variables: { city: searchData, state: state },
             skip: !locationSearchBtn
@@ -74,8 +77,6 @@ export default function Search() {
             const location = { searchData, state}
             console.log(location)
             setLocationSearchBtn(true);
-
-            console.log(data)
         }
     };
 
@@ -84,6 +85,9 @@ export default function Search() {
         setSearchData(value);
     }
 
+    if (data && !loading ) {
+        console.log(data)
+    }
 
 
     return (
@@ -100,6 +104,7 @@ export default function Search() {
                 <Button variant='contained' className="search-button" onClick={handleFormSubmit}>Search</Button>
 
                 
+                {/* If searching by location, creates a dropdown of states */}
                 {search === 'Location' && (
                     <Dropdown 
                     controlClassName="dropdown" 
@@ -113,7 +118,7 @@ export default function Search() {
 
                 )}
 
-
+                {/* Search type dropdown */}
                 <Dropdown
                     controlClassName="dropdown"
                     menuClassName="dropdown"
@@ -125,7 +130,13 @@ export default function Search() {
                 />
             </div>
 
-            <List className="result-list"
+            {data && !loading && (
+                <div>
+                    <p>It works</p>
+                    </div>
+            )}
+
+            {/* <List className="result-list"
                 sx={{
                     width: '100%', maxWidth: 360, bgcolor: 'background.paper', border: '1px solid',
                     borderColor: 'divider'
@@ -149,7 +160,7 @@ export default function Search() {
 
                 <Divider component="li" />
             </List>
-
+ */}
 
 
             <div>

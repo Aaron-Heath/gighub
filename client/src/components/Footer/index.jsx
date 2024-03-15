@@ -45,14 +45,14 @@ export default function Footer() {
 // --------------------------------------
 
   const theme = createTheme({
-    palette: {
-      background: {
-        default: '#FFE5A1', // Set background color to the specified shade of yellow
-      },
-    },
+    // palette: {
+    //   background: {
+    //     default: '#FFE5A1', // Set background color 
+    //   },
+    // },
     typography: {
-      fontFamily: 'Bungee, sans-serif',
-      fontSize: '10' // Set custom font family for text
+      fontFamily: 'Bungee, sans-serif', // Set custom font family for text
+      fontSize: '10' // Set custom font size for text
     },
     components: {
       MuiBottomNavigation: {

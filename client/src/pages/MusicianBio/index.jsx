@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -15,11 +16,11 @@ import Auth from "../../utils/auth"
 
 import './style.css'
 
-
 const MusicianBio = () => {
 
   storePage();
 
+// Retrieving musician data
   const { musicianId } = useParams();
 
   // query Musician ID
@@ -32,7 +33,7 @@ const MusicianBio = () => {
 
   console.log(data);
   const musicianData = data ? data.musicianById : null;
-
+// ------------------------------------------------------
   
 
   const styles = {
@@ -86,15 +87,15 @@ const MusicianBio = () => {
             {/* <Button variant="outlined" size='small' id="tagsBtn">{musicianData.tags}</Button> */}
             <Divider orientation="horizontal" flexItem />
             <p>{musicianData.description}</p>
-            <Button
-              onClick={() => {
-                alert('You need to login to contact this musician');
-              }}
-              variant="outlined"
-              id="loginBtn"
-            >
+            
+            <Link to="./login">
+              <Button
+                variant="outlined"
+                id="loginBtn"
+              >
               Login to Contact
-            </Button>
+              </Button>
+            </Link>
         </Box>
       </div>
       <Footer />

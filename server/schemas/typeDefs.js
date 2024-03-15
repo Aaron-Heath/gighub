@@ -48,7 +48,7 @@ const typeDefs = `
     userByUsername(username: String!): User
     musicianById(musicianId: ID!): Musician
     musicianByUserId(userId: ID!): Musician
-    musiciansByLocation(location: String!): [Musician]
+    musiciansByLocation(city: String!, state: String!): [Musician]
     musiciansByTags(tags: [TagInput!]): [Musician]
     tags: [Tag]
   }

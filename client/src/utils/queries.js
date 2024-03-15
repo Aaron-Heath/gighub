@@ -35,7 +35,7 @@ export const GET_MUSICIAN_BY_ID = gql`
 
 export const GET_MUSICIANS_BY_LOCATION = gql`
     query musiciansByLocation($city: String!, $state: String!) {
-        musiciansByLocation(location: $location) {
+        musiciansByLocation(city: $city, state: $state) {
             _id
             stageName
             publicEmail

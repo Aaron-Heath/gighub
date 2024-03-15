@@ -20,10 +20,10 @@ const resolvers = {
       return await Musician.findOne({ _id: musicianId });
     },
 
-    musiciansByLocation: async (parent, { location }) => {
+    musiciansByLocation: async (parent, { city, state }) => {
       const MUSICIANS = await Musician.find();
 
-      const { lat, lon } = await geoCode(location.city, location.state);
+      const { lat, lon } = await geoCode(city, state);
       console.log(lat, lon);
 
       if (lat === null || lon === null) {

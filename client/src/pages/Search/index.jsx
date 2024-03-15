@@ -57,7 +57,7 @@ export default function Search() {
 
     const { data } = useQuery(GET_MUSICIANS_BY_LOCATION,
         {
-            variables: { location },
+            variables: { city: searchData, state: state },
             skip: !locationSearchBtn
         })
 

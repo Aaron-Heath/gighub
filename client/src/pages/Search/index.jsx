@@ -5,16 +5,10 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { useState } from "react";
 import './style.css'
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import Divider from '@mui/material/Divider';
-import DollarSign from "../../components/DollarSign";
 import { GET_MUSICIANS_BY_LOCATION } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import { Button } from "@mui/material";
+import ResultsList from "../../components/ResultsList";
 
 export default function Search() {
     storePage();
@@ -132,37 +126,11 @@ export default function Search() {
 
             {data && !loading && (
                 <div>
-                    <p>It works</p>
+                    <ResultsList results={data.musiciansByLocation} />
                     </div>
+
+                
             )}
-
-            {/* <List className="result-list"
-                sx={{
-                    width: '100%', maxWidth: 360, bgcolor: 'background.paper', border: '1px solid',
-                    borderColor: 'divider'
-                }}
-                aria-label="contacts"
-            >
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemText inset primary="Result 1" secondary="Genre" />
-                    </ListItemButton>
-                    <DollarSign />
-                </ListItem>
-                <Divider component="li" />
-
-                <ListItem disablePadding>
-                    <ListItemButton>
-                        <ListItemText inset primary="Result 2" secondary="Genre" />
-                    </ListItemButton>
-                    <DollarSign />
-                </ListItem>
-
-                <Divider component="li" />
-            </List>
- */}
-
-
             <div>
                 <Footer>
                 </Footer>

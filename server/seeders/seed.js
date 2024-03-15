@@ -16,12 +16,58 @@ db.once('open', async () => {
     const seededUsers = await User.create(userSeeds);
     const seededTags = await Tag.create(tagSeeds);
     const seededMusicians = await Musician.create(musicianSeeds);
-
-    console.log('all done!');
-    console.log(seededUsers);
-    console.log(seededTags);
+    console.log("Seeded users", "Seeded musicians", "Seedes tags");
     console.log(seededMusicians);
-    process.exit(0);
+
+
+    // seededMusicians.forEach(async (musician) => {
+    //   console.log(musician)
+    //   console.log(musician._id.toString());
+    //   console.log(seededTags[8]);
+    //   const updatedMusician = await Musician.findOneAndUpdate({_id: musician._id.toString()}, 
+    //     {
+    //       $addToSet: {tags: seededTags[8]._id.toString()},
+          
+    //     },{new: true})
+    //     console.log(updatedMusician);
+    // })
+
+    async function seedJawn() {
+    for(let i=0; i<seededMusicians.length; i++) {
+      console.log(`Run ${[i]}`)
+      console.log(seededMusicians[i].stageName)
+      const bandId = seededMusicians[i]._id.toString();
+      // console.log(bandId);
+        try {
+          console.log("Start try");
+
+          // const updatedMusician = seededMusicians[i].tags.push(seededTags[8]._id)
+          
+
+          const updatedMusician = await Musician.findOneAndUpdate({_id: bandId},
+          {
+            $push: {tags: seededTags[8]._id.toString()}
+          }, {new: true});
+          console.log("End try")
+          console.log(updatedMusician)
+          return updatedMusician;
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      // console.log(updatedMusician)
+      process.exit(0)
+    }
+
+    seedJawn();
+    
+
+
+    // console.log('all done!');
+    // console.log(seededUsers);
+    // console.log(seededTags);
+    // console.log(seededMusicians);
+    // process.exit(0);
   } catch (err) {
     throw err;
   }

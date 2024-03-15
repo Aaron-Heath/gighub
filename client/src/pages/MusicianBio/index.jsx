@@ -9,7 +9,10 @@ import { useQuery } from '@apollo/client';
 // import { useParams } from 'react-router-dom';
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
+import DollarSign from "../../components/DollarSign";
+// import BioChips from "../../components/BioChips"
 import Auth from "../../utils/auth"
+
 import './style.css'
 
 
@@ -29,6 +32,8 @@ const MusicianBio = () => {
 
   console.log(data);
   const musicianData = data ? data.musicianById : null;
+
+  
 
   const styles = {
     stageName: {
@@ -72,10 +77,12 @@ const MusicianBio = () => {
         <Box>    
           <img src={musicianData.imageLink} alt="Musician" />
             <h2 style={styles.stageName}>{musicianData.stageName}</h2>
-            <ul>
-              <li>{`${musicianData.city}, ${musicianData.state}`}</li>
-              <li>{musicianData.minCost}</li>
-            </ul>
+            <h3>{`${musicianData.city}, ${musicianData.state}`}</h3>
+            <div className="dollar">
+              <DollarSign cost={musicianData.minCost}/>
+              {/* <BioChips bioTags={musicianData.tags} /> */}
+            </div>
+            
             {/* <Button variant="outlined" size='small' id="tagsBtn">{musicianData.tags}</Button> */}
             <Divider orientation="horizontal" flexItem />
             <p>{musicianData.description}</p>

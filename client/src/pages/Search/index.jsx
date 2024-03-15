@@ -5,7 +5,7 @@ import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import { useState } from "react";
 import './style.css'
-import { GET_MUSICIANS_BY_LOCATION } from "../../utils/queries";
+import { GET_MUSICIANS_BY_LOCATION, GET_MUSICIANS_BY_TAGS, GET_TAGS } from "../../utils/queries";
 import { useQuery } from "@apollo/client";
 import { Button } from "@mui/material";
 import ResultsList from "../../components/ResultsList";
@@ -23,7 +23,7 @@ export default function Search() {
     const stateOptions = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
     const defaultStateOption = "State";
 
-    
+
     // const [selectedTags, setSelectedTags] = useState([]);
 
     // const handleSearchClick = (e) => {
@@ -37,6 +37,7 @@ export default function Search() {
     const [search, setSearch] = useState('');
     const [searchData, setSearchData] = useState('');
     const [locationSearchBtn, setLocationSearchBtn] = useState(false);
+    const [tagSearchBtn, setTagSearchBtn] = useState(false)
     const [state, setState] = useState('');
 
     const handleDropdownChange = (selectedOption) => {
@@ -45,20 +46,35 @@ export default function Search() {
 
         if (value === 'Location') {
             setSearch(value);
+        } else if (value === 'Tag') {
+            setSearch(value)
+            console.log(search)
         } else {
             setState(value)
             console.log(state)
         }
     }
 
-
-    const { data, loading } = useQuery(GET_MUSICIANS_BY_LOCATION,
+    const { locationData, locationLoading } = useQuery(GET_MUSICIANS_BY_LOCATION,
         {
             variables: { city: searchData, state: state },
             skip: !locationSearchBtn
-        })
+        });
 
-    console.log(data)
+    const { tagData, tagLoading } = useQuery(GET_MUSICIANS_BY_TAGS,
+        {
+            variables: {},
+            skip: !tagSearchBtn
+        });
+
+    const { tagListData, tagListLoading } = useQuery(GET_TAGS);
+
+    // console.log(tagListData.data)
+
+    if (search === 'Tag' && tagListData && !tagListLoading) {
+        console.log(tagListData.data)
+    } 
+
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -68,20 +84,16 @@ export default function Search() {
         console.log(state)
 
         if (search === 'Location') {
-            const location = { searchData, state}
-            console.log(location)
             setLocationSearchBtn(true);
+        } else if (search === 'Tag') {
+            setTagSearchBtn(true);
         }
     };
 
     const handleInputChange = async (e) => {
         const { value } = e.target;
         setSearchData(value);
-    }
-
-    if (data && !loading ) {
-        console.log(data)
-    }
+    };
 
 
     return (
@@ -97,20 +109,31 @@ export default function Search() {
                 <input type="search" id="site-search" name="q" onChange={handleInputChange} />
                 <Button variant='contained' className="search-button" onClick={handleFormSubmit}>Search</Button>
 
-                
+
                 {/* If searching by location, creates a dropdown of states */}
                 {search === 'Location' && (
-                    <Dropdown 
-                    controlClassName="dropdown" 
-                    menuClassName="dropdown" 
-                    options={stateOptions} 
-                    value={defaultStateOption} 
-                    placeholder="Select an option" 
-                    name='state'
-                    onChange={handleDropdownChange}
-                     />
-
+                    <Dropdown
+                        controlClassName="dropdown"
+                        menuClassName="dropdown"
+                        options={stateOptions}
+                        value={defaultStateOption}
+                        placeholder="Select an option"
+                        name='state'
+                        onChange={handleDropdownChange}
+                    />
                 )}
+
+                {/* {search === 'Tag' && (
+                     <Dropdown
+                     controlClassName="dropdown"
+                     menuClassName="dropdown"
+                     options={tagOptions}
+                     value='Tag'
+                     placeholder="Select an option"
+                     name='state'
+                     onChange={handleDropdownChange}
+                 />
+                )} */}
 
                 {/* Search type dropdown */}
                 <Dropdown
@@ -124,13 +147,12 @@ export default function Search() {
                 />
             </div>
 
-            {data && !loading && (
+            {locationData && !locationLoading && (
                 <div>
-                    <ResultsList results={data.musiciansByLocation} />
-                    </div>
-
-                
+                    <ResultsList results={locationData.musiciansByLocation} />
+                </div>
             )}
+
             <div>
                 <Footer>
                 </Footer>

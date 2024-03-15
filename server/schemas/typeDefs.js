@@ -30,7 +30,7 @@ const typeDefs = `
     state: String!
     lat: Float!
     lon: Float!
-    minCost: Float!
+    minCost: Float
   }
 
   type Tag {
@@ -47,7 +47,8 @@ const typeDefs = `
     userById(userId: ID!): User
     userByUsername(username: String!): User
     musicianById(musicianId: ID!): Musician
-    musiciansByLocation(lat: Float, lon: Float): [Musician]
+    musicianByUserId(userId: ID!): Musician
+    musiciansByLocation(city: String!, state: String!): [Musician]
     musiciansByTags(tags: [TagInput!]): [Musician]
     tags: [Tag]
   }
@@ -89,13 +90,13 @@ const typeDefs = `
     ): Musician
 
     updateUser(
-      userId: ID!
+      _id: ID!
       email: String,
       username: String,
       first: String,
       last: String,
       isMusician: Boolean
-    ): Auth
+    ): User
 
     addTags(
       musicianId: ID!

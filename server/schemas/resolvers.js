@@ -20,11 +20,22 @@ const resolvers = {
       return await Musician.findOne({ _id: musicianId });
     },
 
-    musiciansByLocation: async (parent, { lat, lon }) => {
-      const MUSICIANS = await Musicians.find({});
+    musiciansByLocation: async (parent, { city, state }) => {
+      const MUSICIANS = await Musician.find();
 
+      const { lat, lon } = await geoCode(city, state);
+      console.log(lat, lon);
+
+      if (lat === null || lon === null) {
+        throw new Error("Location not found");
+      }
       // Sort musicians by their distance from the inputted location
       return MUSICIANS.sort(sortByDistance({lat, lon}));
+    },
+
+    // Find musician using the associate userId
+    musicianByUserId: async (parent, { userId }) => {
+      return await Musician.findOne({ user: userId }).populate('user');
     },
 
     tags: async () => {
@@ -75,11 +86,11 @@ const resolvers = {
     },
 
     // Mutation for updating users
-    updateUser: async (parent, { userId, email, username, first, last, isMusician }) => {
+    updateUser: async (parent, { _id, email, username, first, last, isMusician }) => {
       try {
-        const updatedUser = await User.findOneAndUpdate(
+        const updatedUser = await User.findByIdAndUpdate(
           {
-            _id: userId,
+            _id: _id,
           },
           {
             $set: {
@@ -90,8 +101,7 @@ const resolvers = {
             new: true
           }
         );
-        const token = signToken(updatedUser);
-        return { token, updatedUser };
+        return updatedUser;
 
       } catch (err) {
         console.error("Error updating user: ", err);

@@ -7,6 +7,10 @@
     margin-top: 15px;
 }
 
+.error-main {
+    margin-top:50px !important;
+}
+
 p {
     font-family: 'Zen', 'Serif';
     font-size: 20px;

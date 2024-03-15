@@ -6,14 +6,15 @@ import './style.css'
 import Box from '@mui/material/Box';
 
 export default function ErrorPage({error}) {
+    
+
 return (
-    <div>
+    <div className='error-main'>
         <Header />
         <div className="musician-bio">
         <Box
             width={300}
             borderRadius={10}
-            p={5}
             sx={{ 
                 border: '4px solid #FBF4E6' ,
                 flexGrow: 1,
@@ -23,9 +24,9 @@ return (
             noValidate
             autoComplete="off"
         >
-            <h2>Error: {error}</h2>
+            {error ? <h2>Error: {error}</h2> : <h2>Error</h2>}
             <img className='error-image' src={workingCats1} alt="ErrorImage"/>
-            <p>Oops! Something went wrong!</p>
+            <p>{error === "404" ? "Oops! We didn't find what you were looking for. Please try again" : "Pardon our mess. Construction in progress!"}</p>
 
         </Box>
         </div>

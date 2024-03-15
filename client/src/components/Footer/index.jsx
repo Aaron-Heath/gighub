@@ -44,12 +44,37 @@ export default function Footer() {
  }
 // --------------------------------------
 
-
-  // Handle colors of Navigation footer
   const theme = createTheme({
     palette: {
-      textColor: { darkRed: '#711F31' },
-      background: { yellow: '#FFE5A1' }
+      background: {
+        default: '#FFE5A1', // Set background color to the specified shade of yellow
+      },
+    },
+    typography: {
+      fontFamily: 'Bungee, sans-serif',
+      fontSize: '10' // Set custom font family for text
+    },
+    components: {
+      MuiBottomNavigation: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#FFE5A1', // Set background color for BottomNavigation
+          },
+        },
+      },
+      MuiBottomNavigationAction: {
+        styleOverrides: {
+          root: {
+            color: '#204B57', // Set the color for unselected icons
+          },
+          selected: {
+            color: '#204B57', // Set the color for selected icons
+          },
+          label: {
+            color: '#711F31', // Set the color for text
+          },
+        },
+      },
     },
   });
   // ----------------------------------------

@@ -20,9 +20,15 @@ const resolvers = {
       return await Musician.findOne({ _id: musicianId });
     },
 
-    musiciansByLocation: async (parent, { lat, lon }) => {
-      const MUSICIANS = await Musicians.find({});
+    musiciansByLocation: async (parent, { location }) => {
+      const MUSICIANS = await Musician.find();
 
+      const { lat, lon } = await geoCode(location.city, location.state);
+      console.log(lat, lon);
+
+      if (lat === null || lon === null) {
+        throw new Error("Location not found");
+      }
       // Sort musicians by their distance from the inputted location
       return MUSICIANS.sort(sortByDistance({lat, lon}));
     },

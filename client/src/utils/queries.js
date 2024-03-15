@@ -34,8 +34,8 @@ export const GET_MUSICIAN_BY_ID = gql`
 `;
 
 export const GET_MUSICIANS_BY_LOCATION = gql`
-    query musiciansByLocation($lat: Float, $lon: Float) {
-        musiciansByLocation(lat: $lat, lon: $lon) {
+    query musiciansByLocation($city: String!, $state: String!) {
+        musiciansByLocation(location: $location) {
             _id
             stageName
             publicEmail

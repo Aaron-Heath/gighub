@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+:root {
+    --blue: #204B57;
+    --dark-red: #711F31;
+    --lighter-red: #9E3845;
+    --yellow: #FFE5A1;
+    --pale: #FBF4E6;
+  
+  }
+.fav-title{
+    font-family: 'Bungee';
+    color: var(--lighter-red)
+}
+.fav-container{
+    background-color: aliceblue;
+    height: 40vh;
+    margin-top: 10%;
+   
+}
+
+.fav-heart{
+    width:25px;
+}

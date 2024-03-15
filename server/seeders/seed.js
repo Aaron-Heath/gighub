@@ -19,19 +19,7 @@ db.once('open', async () => {
     console.log("Seeded users", "Seeded musicians", "Seedes tags");
     console.log(seededMusicians);
 
-
-    // seededMusicians.forEach(async (musician) => {
-    //   console.log(musician)
-    //   console.log(musician._id.toString());
-    //   console.log(seededTags[8]);
-    //   const updatedMusician = await Musician.findOneAndUpdate({_id: musician._id.toString()}, 
-    //     {
-    //       $addToSet: {tags: seededTags[8]._id.toString()},
-          
-    //     },{new: true})
-    //     console.log(updatedMusician);
-    // })
-
+  // To seed Musicians with Tags
     async function seedJawn() {
     for(let i=0; i<seededMusicians.length; i++) {
       console.log(`Run ${[i]}`)
@@ -40,14 +28,12 @@ db.once('open', async () => {
       // console.log(bandId);
         try {
           console.log("Start try");
-
-          // const updatedMusician = seededMusicians[i].tags.push(seededTags[8]._id)
           
-
           const updatedMusician = await Musician.findOneAndUpdate({_id: bandId},
           {
             $push: {tags: seededTags[8]._id.toString()}
           }, {new: true});
+
           console.log("End try")
           console.log(updatedMusician)
           return updatedMusician;

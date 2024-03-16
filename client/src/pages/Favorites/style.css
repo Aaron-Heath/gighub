@@ -11,10 +11,23 @@
   }
 .fav-title{
     font-family: 'Bungee';
-    color: var(--lighter-red)
+    color: #FFE5A1;
+    text-shadow: 5px 2px 5px #711F31 ;
+    /* text-decoration: underline wavy; */
+}
+
+.fav-list{
+    margin-top: 25% !important;
+    background-color: #FBF4E6 !important;
+    font-family: "Zen Maru Gothic", serif !important;
+    
+}
+.css-10hburv-MuiTypography-root{
+    font-family: "Zen Maru Gothic", serif !important;
+    font-weight: 600 !important;
+    font-size: 18px !important;
 }
 .fav-container{
-    background-color: aliceblue;
     height: 40vh;
     margin-top: 10%;
    

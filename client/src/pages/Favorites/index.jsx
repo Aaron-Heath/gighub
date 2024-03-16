@@ -13,10 +13,11 @@ export default function Favorites() {
     storePage();
     return(
         <>
+        
         <Header/>
         <div className="fav-container">
-        <h1 className="fav-title">My Favorites</h1>
-        <List className="result-list"
+        <h1 className="fav-title">Saved Gigs</h1>
+        <List className="fav-list"
                 sx={{
                     width: '100%', maxWidth: 360, bgcolor: 'background.paper', border: '1px solid',
                     borderColor: 'divider'

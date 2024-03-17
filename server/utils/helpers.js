@@ -61,6 +61,7 @@ async function geoCode(city, state, country="US") {
 }
 
 const geoCodev2 = async (city, state, country = "US") => {
+    console.log(process.env.GEOCODEV2_KEY);
     const requestString = `https://api.api-ninjas.com/v1/geocoding?city=${city}&state=${state}&country=${country}`
     const response = await fetch(requestString,{
         headers: {

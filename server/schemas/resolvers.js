@@ -68,8 +68,8 @@ const resolvers = {
 
     addMusician: async (parent, { user: user, stageName, publicEmail, tags, city, state, description = null, imageLink = null, minCost = null }) => {
       console.log(user);
-      // const { lat, lon } = await geoCode(city, state);
-      const { lat , lon } = await geoCodev2(city, state);
+      const { lat, lon } = await geoCode(city, state);
+
       console.log(lat, lon);
 
       if (lat === null || lon === null) {

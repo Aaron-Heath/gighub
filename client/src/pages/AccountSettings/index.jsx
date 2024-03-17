@@ -278,6 +278,7 @@ export default function AccountSettings() {
                         Save Changes
                     </Button>
                 </div>
+                <Footer />
             </div>
         )
     } else {
@@ -341,6 +342,7 @@ export default function AccountSettings() {
                         </div>
                     </Box>
                 </div>
+                <Footer />
             </div>
         )
     }

@@ -118,5 +118,4 @@ const MusicianBio = () => {
   );
 };
 
-
 export default MusicianBio;

@@ -11,7 +11,7 @@
   }
 
   .musician-bio {
-    margin-top: 25px;
+    margin-top: 15%;
     display: flex;
     justify-content: center;
     background-color: var(--pale);
@@ -23,6 +23,17 @@
     max-height: auto;
     max-width: 100%;
     border-radius: 15px 15px 0 0;
+  }
+
+  .musician-bio h2, .musician-bio h3 {
+    text-align: start;
+  }
+
+  .dollar {
+    position: relative;
+    left: 35%;
+    bottom: 17%
+
   }
 
   

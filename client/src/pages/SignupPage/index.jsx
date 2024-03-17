@@ -80,13 +80,6 @@ export default function SignupPage() {
                         onChange={handleOnChange}
                     />
                     <label htmlFor="yesCheck"> Yes</label><br />
-                    <input
-                        type="checkbox"
-                        id="noCheck"
-                        name="noCheck"
-                        value="No"
-                    />
-                    <label htmlFor="noCheck"> No</label>
                     <TextField id="outlined-basic" label="First Name" variant="outlined" margin="dense" />
                     <TextField id="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
                     <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense" />

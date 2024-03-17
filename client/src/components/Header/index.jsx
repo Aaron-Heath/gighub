@@ -15,7 +15,7 @@ import { GET_USER } from '../../utils/queries';
 function Header() {
 
   // Store current user from token or null
-  const curUserId = Auth.getToken() ? Auth.getUser().data._id : null;
+  const curUserId = Auth.getToken() && Auth.loggedIn() ? Auth.getUser().data._id : null;
   console.log(`User ID: ${curUserId}`);
   
   const { loading, data } = useQuery(GET_USER, {

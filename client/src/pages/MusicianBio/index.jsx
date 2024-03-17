@@ -83,13 +83,14 @@ const MusicianBio = () => {
             <div className="dollar">
               <DollarSign cost={musicianData.minCost}/>
             </div>
-            <Chip className="chip" id="bioChip" label={musicianData.tags[0].tag} />
+            <Chip className="bioChip" id="bioChip" label={musicianData.tags[0].tag} />
             <Divider orientation="horizontal" flexItem />
             <p>{musicianData.description}</p>
+            <Divider orientation="horizontal" flexItem />
             
             {Auth.loggedIn() ? (
               <div>
-                <h3>{`Contact ${musicianData.stageName} at ${musicianData.publicEmail}`}</h3>
+                <h3 className="contact-text">{`Contact ${musicianData.stageName} at ${musicianData.publicEmail}`}</h3>
               </div>
             
             ) : (

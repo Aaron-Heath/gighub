@@ -89,7 +89,7 @@ const MusicianBio = () => {
             </div>
             <Chip className="bioChip" id="bioChip" label={musicianData.tags[0].tag} />
             <Divider orientation="horizontal" flexItem />
-            <p>{musicianData.description}</p>
+            <p className="description">{musicianData.description}</p>
             <Divider orientation="horizontal" flexItem />
             
             {Auth.loggedIn() ? (

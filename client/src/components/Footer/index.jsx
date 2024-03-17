@@ -91,7 +91,7 @@ export default function Footer() {
         <BottomNavigation
           showLabels
           value={value}
-          sx={{ backgroundColor: "background.yellow" }}
+          sx={{ backgroundColor: "background.yellow", paddingTop: "2%"}}
           onChange={handleChange}
 
         >

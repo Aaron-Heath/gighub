@@ -6,9 +6,10 @@ import 'react-dropdown/style.css';
 import { useState } from "react";
 import './style.css'
 import { GET_MUSICIANS_BY_LOCATION } from "../../utils/queries";
-import { useQuery } from "@apollo/client";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import { Button } from "@mui/material";
 import ResultsList from "../../components/ResultsList";
+import StateDropdown from "./components/StateDropdown";
 
 export default function Search() {
     storePage();
@@ -23,114 +24,88 @@ export default function Search() {
     const stateOptions = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
     const defaultStateOption = "State";
 
-    
-    // const [selectedTags, setSelectedTags] = useState([]);
-
-    // const handleSearchClick = (e) => {
-    //     const clickedTag = e.value;
-    //     if (selectedTags.length && !selectedTags.includes(clickedTag)) {
-    //         const updatedTags = [...selectedTags, clickedTag];
-    //         setSelectedTags(updatedTags);
-    //     }
-    // };
-
-    const [search, setSearch] = useState('');
-    const [searchData, setSearchData] = useState('');
-    const [locationSearchBtn, setLocationSearchBtn] = useState(false);
+    const [city, setCityData] = useState('');
     const [state, setState] = useState('');
+    const [responseData, setResponseData] = useState('');
 
-    const handleDropdownChange = (selectedOption) => {
-        const { value } = selectedOption
-        console.log(value)
+    const [getMusicians, { data, loading }] = useLazyQuery(GET_MUSICIANS_BY_LOCATION);
 
-        if (value === 'Location') {
-            setSearch(value);
-        } else {
-            setState(value)
-            console.log(state)
-        }
+
+    const handleDropdownChange = (e) => {
+        const selectedState = e.target.value;
+        setState(selectedState);
     }
-
-
-    const { data, loading } = useQuery(GET_MUSICIANS_BY_LOCATION,
-        {
-            variables: { city: searchData, state: state },
-            skip: !locationSearchBtn
-        })
-
-    console.log(data)
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
-        console.log(search)
-        console.log(searchData)
-        console.log(state)
-
-        if (search === 'Location') {
-            const location = { searchData, state}
-            console.log(location)
-            setLocationSearchBtn(true);
+        if(!city || !state) {
+            alert("Must provide city and state");
+            return;
         }
+
+        console.log(city);
+        console.log(state);
+
+        const responseData = await getMusicians({variables: {
+            city: city,
+            state: state
+        }});
+
+        console.log(responseData);
+
+
+
+        // const { data, loading } = useQuery(GET_MUSICIANS_BY_LOCATION,
+        //     {
+        //         variables: { city: city, state: state },
+        //         skip: !state
+        //     });
+
+        if(data) {
+            setResponseData(data);
+        }
+
     };
 
     const handleInputChange = async (e) => {
+        // console.log(e.target.value);
         const { value } = e.target;
-        setSearchData(value);
-    }
-
-    if (data && !loading ) {
-        console.log(data)
+        console.log(value);
+        setCityData(value);
     }
 
 
     return (
-
-
         <div>
             <Header>
             </Header>
 
             <div className="search">
                 <p className="search-header">Find your Gig!</p>
-                <label for="site-search"></label>
-                <input type="search" id="site-search" name="q" onChange={handleInputChange} />
+                <div className="search-bar">
+                    <label for="site-search"></label>
+                    <input type="search" id="site-search" name="q" placeholder="City" onChange={handleInputChange} />
+                    <StateDropdown onChange={handleDropdownChange} />
+                </div>
                 <Button variant='contained' className="search-button" onClick={handleFormSubmit}>Search</Button>
 
-                
-                {/* If searching by location, creates a dropdown of states */}
-                {search === 'Location' && (
-                    <Dropdown 
-                    controlClassName="dropdown" 
-                    menuClassName="dropdown" 
-                    options={stateOptions} 
-                    value={defaultStateOption} 
-                    placeholder="Select an option" 
-                    name='state'
-                    onChange={handleDropdownChange}
-                     />
-
-                )}
-
-                {/* Search type dropdown */}
-                <Dropdown
-                    controlClassName="dropdown"
-                    menuClassName="dropdown"
-                    options={searchOptions}
-                    value={defaultSearchOption}
-                    placeholder="Select a Filter"
-                    onChange={handleDropdownChange}
-                    name='searchType'
-                />
             </div>
 
-            {data && !loading && (
+            {responseData ? 
+            <div>
+                <ResultsList results={responseData.musiciansByLocation} />
+            </div>
+            :
+            <></>
+                }
+
+            {/* {responseData && !loading && (
                 <div>
-                    <ResultsList results={data.musiciansByLocation} />
-                    </div>
+                    <ResultsList results={responseData.musiciansByLocation} />
+            </div>
 
                 
-            )}
+            )} */}
             <div>
                 <Footer>
                 </Footer>

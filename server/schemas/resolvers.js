@@ -21,7 +21,11 @@ const resolvers = {
     },
 
     musiciansByLocation: async (parent, { city, state }) => {
-      const MUSICIANS = await Musician.find();
+      const MUSICIANS = await Musician.find().populate("tags");
+
+      console.log(city);
+      console.log(state);
+      console.log(MUSICIANS);
 
       const { lat, lon } = await geoCode(city, state);
       console.log(lat, lon);

@@ -35,9 +35,17 @@ function milesFromCoord(lat1, lon1, lat2, lon2) {
  */
 async function geoCode(city, state, country="US") {
     
-    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=1&appid=${process.env.GEOCODE_API_KEY}`);
-    const data = await response.json();
-    console.log(data);
+    let response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=1&appid=${process.env.GEOCODE_API_KEY}`);
+    let data = await response.json();
+    
+    // if API key is rejected, attempt request with second key
+    if(data.cod === 401) {
+        response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=1&appid=${process.env.GEOCODE_API_KEY2}`);
+
+        let data = await response.json();
+    }
+
+
     // Error Handling
     if(!data || data.length === 0) {
         return {

@@ -8,10 +8,10 @@ import SettingsIcon from './SettingsIcon';
 import { useNavigate } from "react-router-dom";
 import "./style.css"
 
-  const menuButtonStyle = {
-    marginRight: '-900px',
-    color: '#204B57' 
-  };
+  // const menuButtonStyle = {
+  //   marginRight: '-900px',
+  //   color: '#204B57' 
+  // }
 
   const titleStyle = {
     flexGrow: 1,

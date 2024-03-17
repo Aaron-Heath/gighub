@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import { storePage } from "../../utils/pages";
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
@@ -8,7 +9,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import Heart from '../../assets/images/favorites.png'
+import Heart from '../../assets/images/favorites.png';
 export default function Favorites() {
     storePage();
     return(
@@ -16,7 +17,7 @@ export default function Favorites() {
         
         <Header/>
         <div className="fav-container">
-        <h1 className="fav-title">Saved Gigs</h1>
+        <h1 className="fav-title">My Favorites</h1>
         <List className="fav-list"
                 sx={{
                     width: '100%', maxWidth: 360, bgcolor: 'background.paper', border: '1px solid',

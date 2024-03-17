@@ -23,6 +23,8 @@ const MusicianBio = () => {
 // Retrieving musician data
   const { musicianId } = useParams();
 
+  console.log(musicianId);
+
   // query Musician ID
   const { loading, data } = useQuery(
     GET_MUSICIAN_BY_ID,

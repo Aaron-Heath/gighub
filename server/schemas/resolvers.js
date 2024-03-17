@@ -17,7 +17,7 @@ const resolvers = {
     },
 
     musicianById: async (parent, { musicianId }) => {
-      return await Musician.findOne({ _id: musicianId });
+      return await Musician.findOne({ _id: musicianId }).populate("tags");
     },
 
     musiciansByLocation: async (parent, { city, state }) => {

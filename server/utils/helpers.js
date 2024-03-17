@@ -42,7 +42,7 @@ async function geoCode(city, state, country="US") {
     if(data.cod === 401) {
         response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${city},${state},${country}&limit=1&appid=${process.env.GEOCODE_API_KEY2}`);
 
-        let data = await response.json();
+        data = await response.json();
     }
 
 
@@ -53,6 +53,24 @@ async function geoCode(city, state, country="US") {
             lon: null
         }
     };
+
+    return {
+        lat: data[0].lat,
+        lon: data[0].lon
+    }
+}
+
+const geoCodev2 = async (city, state, country = "US") => {
+    const requestString = `https://api.api-ninjas.com/v1/geocoding?city=${city}&state=${state}&country=${country}`
+    const response = await fetch(requestString,{
+        headers: {
+            "x-api-key": process.env.GEOCODEV2_KEY
+        }
+    }
+    );
+
+    const data = await response.json();
+    console.log(data);
 
     return {
         lat: data[0].lat,
@@ -72,4 +90,4 @@ const sortByDistance = (latLon) => {
 
 }
 
-module.exports = { milesFromCoord, geoCode, sortByDistance }
+module.exports = { milesFromCoord, geoCode, geoCodev2, sortByDistance }

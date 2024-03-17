@@ -25,7 +25,7 @@ const typeDefs = `
     stageName: String!
     publicEmail: String!
     description: String
-    tags: [String]
+    tags: [Tag]
     city: String!
     state: String!
     lat: Float!

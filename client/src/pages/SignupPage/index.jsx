@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useMutation } from '@apollo/client'; // Import useMutation
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import MuscianForm from "../../components/MusicianForm"
+import MusicianForm from "../../components/MusicianForm"
 import Button from '@mui/material/Button';
 import gighubLogo from "../../assets/images/Gighub-290px.png";
 import "./style.css";
@@ -24,15 +24,29 @@ export default function SignupPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const first = document.getElementById("first-name").value;
+        const last = document.getElementById("last-name").value;
+        const username = document.getElementById("username").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const password2 = document.getElementById("password2").value;
+        const isMusician = document.getElementById("yesCheck").checked;
+
+        console.log(password);
+
+        if (password!== password2) {
+            alert("passwords must match");
+            return;
+        }
+
         // Form submission logic to create a new user and optionally a musician profile
         try {
-            // Perform form validation and gather form data
-            const formData = {
-                // Collect form data
-            };
-
             // Execute addUser mutation
-            const { data: { addUser: { user } } } = await addUser({ variables: formData });
+            const { data } = await addUser({ 
+                variables: { email, password, username, first, last, isMusician }
+            });
+
+            console.log(data);
 
             // If user is a musician, execute addMusician mutation
             if (isChecked) {
@@ -80,15 +94,16 @@ export default function SignupPage() {
                         onChange={handleOnChange}
                     />
                     <label htmlFor="yesCheck"> Yes</label><br />
-                    <TextField id="outlined-basic" label="First Name" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
+                    <TextField id="first-name" className="outlined-basic" label="First Name" variant="outlined" margin="dense" />
+                    <TextField id="last-name" className="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
+                    <TextField id="username" className="outlined-basic" label="Username" variant="outlined" margin="dense" />
+                    <TextField id="email" className="outlined-basic" label="Email" variant="outlined" margin="dense" />
+                    <TextField id="password" className="outlined-basic" label="Password" variant="outlined" margin="dense" />
+                    <TextField id="password2" className="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
 
                 </div>
                   {/* Render musician form if user is musician */}
-            {isChecked && <MuscianForm />}
+            {isChecked && <MusicianForm />}
                 <Button type="submit" variant="outlined" id="signupBtn">Submit</Button> {/* Use type="submit" for form submission */}
             </Box>
             {/* Render musician form if user is musician */}

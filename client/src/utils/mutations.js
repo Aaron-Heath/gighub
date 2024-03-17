@@ -19,6 +19,7 @@ export const ADD_USER = gql`
     mutation addUser(
         $email: String!,
         $username: String!,
+        $password: String!,
         $first: String!,
         $last: String!,
         $isMusician: Boolean!
@@ -29,6 +30,7 @@ export const ADD_USER = gql`
             first: $first,
             last: $last,
             isMusician: $isMusician
+            password: $password
         ) {
             token
             user {

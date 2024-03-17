@@ -50,19 +50,23 @@ export default function SignupPage() {
 
             // If user is a musician, execute addMusician mutation
             if (isChecked) {
-                // Prepare musician data
-                const musicianData = {
-                    user: { ...user }, // Pass user object received from addUser mutation
-                    // Collect musician form data
-                };
-
-                // Execute addMusician mutation
-                const { data: { addMusician: musician } } = await addMusician({ variables: musicianData });
-                console.log('Musician added:', musician);
+                // Process MusicianData
+                const stageName = document.getElementById("stageName").value;
+                const publicEmail = document.getElementById("publicEmail").value;
+                const city = document.getElementById("city").value;
+                const state = document.getElementById("state-select").value;
+                const user = data.addUser.user._id;
+                console.log(state);
+                
+                const result = await addMusician({
+                    variables: { user ,stageName, publicEmail, city, state}
+                });
+                
+                console.log(result);
             }
 
-            console.log('User added:', user);
-            // Handle success (e.g., redirect to another page)
+
+
         } catch (error) {
             // Handle error
             console.error('Error:', error);
@@ -102,12 +106,10 @@ export default function SignupPage() {
                     <TextField id="password2" className="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
 
                 </div>
-                  {/* Render musician form if user is musician */}
             {isChecked && <MusicianForm />}
                 <Button type="submit" variant="outlined" id="signupBtn">Submit</Button> {/* Use type="submit" for form submission */}
             </Box>
-            {/* Render musician form if user is musician */}
-            {/* {isChecked && <MuscianForm />} */}
+
         </div>
     );
 }

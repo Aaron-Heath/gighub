@@ -50,7 +50,7 @@ export const ADD_MUSICIAN = gql`
         $stageName: String!,
         $publicEmail: String!,
         $description: String,
-        $tags: [ID],
+
         $city: String!,
         $state: String!,
         $minCost: Float
@@ -61,7 +61,7 @@ export const ADD_MUSICIAN = gql`
             stageName: $stageName,
             publicEmail: $publicEmail,
             description: $description,
-            tags: $tags,
+
             city: $city,
             state: $state,
             minCost: $minCost
@@ -70,7 +70,7 @@ export const ADD_MUSICIAN = gql`
             stageName
             publicEmail
             description
-            tags
+
             city
             state
             lat

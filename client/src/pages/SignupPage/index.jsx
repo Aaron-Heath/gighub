@@ -98,20 +98,12 @@ export default function SignupPage() {
                         onChange={handleOnChange}
                     />
                     <label htmlFor="yesCheck"> Yes</label><br />
-<<<<<<< HEAD
-                    <TextField id="outlined-basic" label="First Name" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense" />
-                    <TextField type="password" id="outlined-basic" label="Password" variant="outlined" margin="dense" />
-                    <TextField type="password" id="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
-=======
                     <TextField id="first-name" className="outlined-basic" label="First Name" variant="outlined" margin="dense" />
                     <TextField id="last-name" className="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
                     <TextField id="username" className="outlined-basic" label="Username" variant="outlined" margin="dense" />
                     <TextField id="email" className="outlined-basic" label="Email" variant="outlined" margin="dense" />
                     <TextField id="password" className="outlined-basic" label="Password" variant="outlined" margin="dense" />
                     <TextField id="password2" className="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
->>>>>>> bcc76b8c045186f5dd5c1ea99e9da844a58c8331
 
                 </div>
             {isChecked && <MusicianForm />}

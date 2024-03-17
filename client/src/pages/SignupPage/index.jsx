@@ -83,8 +83,8 @@ export default function SignupPage() {
                     <TextField id="outlined-basic" label="First Name" variant="outlined" margin="dense" />
                     <TextField id="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
                     <TextField id="outlined-basic" label="Email" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Password" variant="outlined" margin="dense" />
-                    <TextField id="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
+                    <TextField type="password" id="outlined-basic" label="Password" variant="outlined" margin="dense" />
+                    <TextField type="password" id="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
 
                 </div>
                   {/* Render musician form if user is musician */}

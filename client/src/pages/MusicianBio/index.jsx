@@ -11,7 +11,7 @@ import { useQuery } from '@apollo/client';
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import DollarSign from "../../components/DollarSign";
-// import BioChips from "../../components/BioChips"
+import Chip from '@mui/material/Chip';
 import Auth from "../../utils/auth"
 
 import './style.css'
@@ -35,8 +35,9 @@ const MusicianBio = () => {
 
   console.log(data);
   const musicianData = data ? data.musicianById : null;
+
+  console.log(musicianData)
 // ------------------------------------------------------
-  
 
   const styles = {
     stageName: {
@@ -83,10 +84,8 @@ const MusicianBio = () => {
             <h3>{`${musicianData.city}, ${musicianData.state}`}</h3>
             <div className="dollar">
               <DollarSign cost={musicianData.minCost}/>
-              {/* <BioChips bioTags={musicianData.tags} /> */}
             </div>
-            
-            {/* <Button variant="outlined" size='small' id="tagsBtn">{musicianData.tags}</Button> */}
+            <Chip className="chip" label={musicianData.tags[0].tag} />
             <Divider orientation="horizontal" flexItem />
             <p>{musicianData.description}</p>
             
@@ -98,7 +97,7 @@ const MusicianBio = () => {
             ) : (
 
               <div>
-              <Link to="./login">
+              <Link to="/login">
                 <Button
                   variant="outlined"
                   id="loginBtn"

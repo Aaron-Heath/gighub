@@ -8,10 +8,10 @@ import SettingsIcon from './SettingsIcon';
 import { useNavigate } from "react-router-dom";
 import "./style.css"
 
-  const menuButtonStyle = {
-    marginRight: '-900px',
-    color: '#204B57' 
-  };
+  // const menuButtonStyle = {
+  //   marginRight: '-900px',
+  //   color: '#204B57' 
+  // }
 
   const titleStyle = {
     flexGrow: 1,
@@ -44,12 +44,37 @@ export default function Footer() {
  }
 // --------------------------------------
 
-
-  // Handle colors of Navigation footer
   const theme = createTheme({
-    palette: {
-      textColor: { darkRed: '#711F31' },
-      background: { yellow: '#FFE5A1' }
+    // palette: {
+    //   background: {
+    //     default: '#FFE5A1', // Set background color 
+    //   },
+    // },
+    typography: {
+      fontFamily: 'Bungee, sans-serif', // Set custom font family for text
+      fontSize: '10' // Set custom font size for text
+    },
+    components: {
+      MuiBottomNavigation: {
+        styleOverrides: {
+          root: {
+            backgroundColor: '#FFE5A1', // Set background color for BottomNavigation
+          },
+        },
+      },
+      MuiBottomNavigationAction: {
+        styleOverrides: {
+          root: {
+            color: '#204B57', // Set the color for unselected icons
+          },
+          selected: {
+            color: '#204B57', // Set the color for selected icons
+          },
+          label: {
+            color: '#711F31', // Set the color for text
+          },
+        },
+      },
     },
   });
   // ----------------------------------------

@@ -15,7 +15,7 @@ import { GET_USER } from '../../utils/queries';
 function Header() {
 
   // Store current user from token or null
-  const curUserId = Auth.getToken() ? Auth.getUser().data._id : null;
+  const curUserId = Auth.getToken() && Auth.loggedIn() ? Auth.getUser().data._id : null;
   console.log(`User ID: ${curUserId}`);
   
   const { loading, data } = useQuery(GET_USER, {
@@ -65,9 +65,9 @@ function Header() {
       {/* App Bar */}
       <AppBar position="fixed" style={{ ...titleStyle, background: '#FFE5A1' }}>
         <Toolbar>
-          <IconButton edge="start" style={menuButtonStyle} color="inherit" aria-label="menu">
+          {/* <IconButton edge="start" style={menuButtonStyle} color="inherit" aria-label="menu">
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
           <h3 className='title' style={titleStyle}>Gighub</h3>
           <div className='greetings' style={signedInUserStyle}>Hello, {queriedUser ? queriedUser.first : 'Guest'}</div>
           {Auth.loggedIn() ? (

@@ -42,7 +42,10 @@ export const GET_MUSICIANS_BY_LOCATION = gql`
             stageName
             publicEmail
             description
-            tags
+            tags {
+                _id
+                tag
+            }
             imageLink
             city
             state

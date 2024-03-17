@@ -13,6 +13,8 @@ import Header from "../../components/Header"
 import DollarSign from "../../components/DollarSign";
 import Chip from '@mui/material/Chip';
 import Auth from "../../utils/auth"
+import './style.css'
+import ErrorPage from "../ErrorPage";
 
 import './style.css'
 
@@ -70,6 +72,8 @@ const MusicianBio = () => {
         <Footer />
       </div>
     );
+  } else if (!musicianData) {
+    return <ErrorPage error="404"/>
   }
 
   return (

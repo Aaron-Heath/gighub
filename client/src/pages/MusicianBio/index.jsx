@@ -35,8 +35,6 @@ const MusicianBio = () => {
 
   console.log(data);
   const musicianData = data ? data.musicianById : null;
-
-  console.log(musicianData)
 // ------------------------------------------------------
 
   const styles = {
@@ -85,7 +83,7 @@ const MusicianBio = () => {
             <div className="dollar">
               <DollarSign cost={musicianData.minCost}/>
             </div>
-            <Chip className="chip" label={musicianData.tags[0].tag} />
+            <Chip className="chip" id="bioChip" label={musicianData.tags[0].tag} />
             <Divider orientation="horizontal" flexItem />
             <p>{musicianData.description}</p>
             

@@ -65,13 +65,12 @@ export default function Footer() {
       MuiBottomNavigationAction: {
         styleOverrides: {
           root: {
-            color: '#204B57', // Set the color for unselected icons
-          },
-          selected: {
-            color: '#204B57', // Set the color for selected icons
-          },
-          label: {
-            color: '#711F31', // Set the color for text
+            "&.Mui-selected": {
+              color: '#204B57', // Set the color for selected icons
+            },
+            label: {
+              color: '#711F31', // Set the color for text
+            },
           },
         },
       },

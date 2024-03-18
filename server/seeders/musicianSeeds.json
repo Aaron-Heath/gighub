@@ -6,11 +6,11 @@
         "publicEmail": "trolls@trolls.com",
         "description": "Bethany's favorite band",
         "tags": [],
-        "city": "Troll City",
-        "state": "Troll State",
-        "lat": 234,
-        "lon": 123,
-        "minCost": 21
+        "city": "Boston",
+        "state": "MA",
+        "lat": 42.361145,
+        "lon": -71.057083,
+        "minCost": 50
     },
     {
         "user": "612345678901234567890127",
@@ -19,10 +19,23 @@
         "publicEmail": "penguins@penguins.com",
         "description": "High school garage metal band",
         "tags": [],
-        "city": "Penguinopolis",
-        "state": "Antartica (the state)",
-        "lat": 116,
-        "lon": 452,
-        "minCost": 33
+        "city": "Lancaster",
+        "state": "PA",
+        "lat": 	40.044437,
+        "lon": -76.306229,
+        "minCost": 1000
+    },
+    {
+        "user": "861234565555234567890127",
+        "imageLink": "https://images.squarespace-cdn.com/content/v1/551ca607e4b0f86de55b5dfc/1621379521204-5E9XZ60KZIY5DBY6JHRV/Dustbowl+2021+Promo+1+by+Bob+Turton.jpeg?format=1500w",
+        "stageName": "Dustbowl Revival",
+        "publicEmail": "chris@minttalentgroup.com",
+        "description": "Dustbowl Revival is an American roots orchestra that plays a variety of genres and styles. Watch their live and official music videos, listen to their new album Is It You, Is It Me, and pre-order their merch and vinyl.",
+        "tags": [],
+        "city": "Silver Spring",
+        "state": "MD",
+        "lat": 	38.994373,
+        "lon": -77.029778,
+        "minCost": 7000
     }
 ]

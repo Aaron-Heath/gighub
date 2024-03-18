@@ -7,12 +7,11 @@ import { Box, TextField, Button } from '@mui/material';
 import './style.css';
 import { settingVariants } from "./indexVariants";
 import { motion } from 'framer-motion'
-import SettingsForm from "../../components/SettingsForm";
+import SettingsChips from "../../components/SettingsChips";
 import { useState, useEffect } from "react";
 import Dropdown from 'react-dropdown';
 import { GET_TAGS } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
-import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import Auth from '../../utils/auth';
 import { UPDATE_USER, UPDATE_MUSICIAN, ADD_MUSICIAN } from "../../utils/mutations";
@@ -38,7 +37,7 @@ export default function AccountSettings() {
     });
     console.log('User data: ', userQueryData)
 
-    
+
     const { loading: musicianLoading, data: musicianQueryData } = useQuery(GET_MUSICIAN_BY_USER_ID, {
         variables: { userId: userId }
     });
@@ -69,11 +68,11 @@ export default function AccountSettings() {
             setLast(userData.last);
             setIsMusician(userData.isMusician);
 
-            
+
             // If user is already a musician, set props
             if (userData.isMusician && !musicianLoading && musicianQueryData.musicianByUserId !== null) {
                 console.log('Musician data: ', musicianQueryData);
-                
+
                 // Sets values according to existing data
                 if (!musicianLoading && musicianQueryData) {
                     const musicianData = musicianQueryData.musicianByUserId;
@@ -132,7 +131,7 @@ export default function AccountSettings() {
         };
     };
 
-    const handleDropdownChange = (selectedOption) => {
+    const handleStateDropdownChange = (selectedOption) => {
         setState(selectedOption.value)
     }
 
@@ -165,14 +164,18 @@ export default function AccountSettings() {
                         stageName: stageName,
                         publicEmail: publicEmail,
                         city: city,
-                        state: state
+                        state: state,
+                        // imageLink: imageLink,
+                        // description: description,
+                        // tags: tags,
+                        // minCost: minCost
 
                     }
                 });
 
                 console.log(musicianResponse.data)
                 const { musician } = await musicianResponse.data.addMusician;
-                console.log(musician) 
+                console.log(musician)
             };
 
             if (userResponse.error) {
@@ -187,8 +190,6 @@ export default function AccountSettings() {
             console.error(err)
         }
     };
-
-
 
 
 
@@ -251,34 +252,35 @@ export default function AccountSettings() {
                 </div>
 
                 <div>
-            <div className='musicianSignUp-container'>
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        alignContent: "center"
-                    }}
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                >
-                    <div className='musicianForms'>
-                        <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} onChange={handleInputChange} name='stageName'/>
-                        <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} onChange={handleInputChange} name='publicEmail'/>
-                        <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city' onChange={handleInputChange}/>
-                        <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleDropdownChange}/>
-                        <p>*This will be shown on your profile</p>
+                    <div className='musicianSignUp-container'>
+                        <Box
+                            sx={{
+                                flexGrow: 1,
+                                alignContent: "center"
+                            }}
+                            component="form"
+                            noValidate
+                            autoComplete="off"
+                        >
+                            <div className='musicianForms'>
+                                <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} onChange={handleInputChange} name='stageName' />
+                                <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} onChange={handleInputChange} name='publicEmail' />
+                                <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city' onChange={handleInputChange} />
+                                <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleStateDropdownChange} />
+                               
+                                <p>*This will be shown on your profile</p>
+                            </div>
+                        </Box>
                     </div>
-                </Box>
-            </div>
-        </div>
+                </div>
 
-                
+
                 <div className='save-button'>
                     <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                         Save Changes
                     </Button>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         )
     } else {
@@ -342,7 +344,7 @@ export default function AccountSettings() {
                         </div>
                     </Box>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         )
     }

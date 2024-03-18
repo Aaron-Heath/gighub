@@ -8,13 +8,18 @@ import Button from '@mui/material/Button';
 import gighubLogo from "../../assets/images/Gighub-290px.png";
 import "./style.css";
 import { ADD_MUSICIAN, ADD_USER } from '../../utils/mutations';
+import { useNavigate } from "react-router-dom";
 
 export default function SignupPage() {
     const [isChecked, setIsChecked] = useState(false);
 
+    const navigate = useNavigate();
+
     const handleOnChange = () => {
         setIsChecked(!isChecked);
     };
+
+    
 
     // Mutation for adding user
     const [addUser] = useMutation(ADD_USER);
@@ -45,8 +50,14 @@ export default function SignupPage() {
             const { data } = await addUser({ 
                 variables: { email, password, username, first, last, isMusician }
             });
-
             console.log(data);
+
+            if(data) {
+                alert("User created!");
+                navigate("/login");
+            }
+            
+           
 
             // If user is a musician, execute addMusician mutation
             if (isChecked) {
@@ -72,6 +83,7 @@ export default function SignupPage() {
         } catch (error) {
             // Handle error
             console.error('Error:', error);
+            alert("Error creating user!")
         }
     };
 
@@ -110,7 +122,10 @@ export default function SignupPage() {
                 </div>
             {isChecked && <MusicianForm />}
                 <Button type="submit" variant="outlined" id="signupBtn">Submit</Button> {/* Use type="submit" for form submission */}
+                
             </Box>
+
+
 
         </div>
     );

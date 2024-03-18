@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './style.css';
 import gighubLogo from "../../assets/images/Gighub-290px.png";
-import { redirectToLast } from '../../utils/pages';
+import { redirectToLast, getLastPage } from '../../utils/pages';
 import { useState } from 'react';
 import { LOGIN_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
@@ -65,8 +65,8 @@ export default function LoginPage() {
             console.log(user);
             Auth.login(token);
             console.log(token);
-            // redirectToLast();
-            navigate("/");
+
+            navigate(getLastPage());
 
         } catch (err) {
             console.error(err);

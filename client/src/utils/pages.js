@@ -14,5 +14,8 @@ export function storePage(){
 export function redirectToLast() {
     const redirectLocation = localStorage.getItem(storageKey) || '/';
     window.location = redirectLocation;
-    
+}
+
+export function getLastPage() {
+    return localStorage.getItem(storageKey) || '/';
 }

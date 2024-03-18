@@ -46,13 +46,15 @@ export default function Search() {
         console.log(city);
         console.log(state);
 
-        const responseData = await getMusicians({variables: {
+        const { data } = await getMusicians({variables: {
             city: city,
             state: state
         }});
 
+        console.log(data.musiciansByLocation);
+
         if(data) {
-            setResponseData(data);
+            setResponseData(data.musiciansByLocation);
         }
 
     };
@@ -86,16 +88,7 @@ export default function Search() {
                 <ResultsList results={responseData.musiciansByLocation} />
             </div>
             :
-            <></>
-                }
-
-            {/* {responseData && !loading && (
-                <div>
-                    <ResultsList results={responseData.musiciansByLocation} />
-            </div>
-
-                
-            )} */}
+            <></>}
             <div>
                 <Footer>
                 </Footer>

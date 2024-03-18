@@ -1,3 +1,4 @@
+<div align='center'>
 # Gighub
 <strong>Dev Team</strong>
 
@@ -8,6 +9,7 @@
 * [rnahill](https://github.com/rnahill)
 
  ![Github license](https://img.shields.io/badge/license-MIT-yellowgreen.svg)
+ </div>
 ## Description
 
 Dive into the vibrant world of music like never before with Gighub! 🎶

@@ -15,7 +15,7 @@
 ## Description
 
 Dive into the vibrant world of music like never before with <strong><strong>Gighub!</strong>!</strong> 🎶
-The live deployment can be found [here]().
+The live deployment can be found [here](https://gighub-v82p.onrender.com/).
 
 Unleash your inner rhythm and passion as you explore the endless possibilities of musical expression. Whether you're a seasoned music enthusiast or just dipping your toes into the melodic waters, <strong>Gighub</strong> is your ultimate companion in this sonic adventure.
 

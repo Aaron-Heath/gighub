@@ -55,11 +55,13 @@ export default function SignupPage() {
                 const publicEmail = document.getElementById("publicEmail").value;
                 const city = document.getElementById("city").value;
                 const state = document.getElementById("state-select").value;
+                const password = document.getElementById("password").value;
+                const password2 = document.getElementById("password2").value;
                 const user = data.addUser.user._id;
                 console.log(state);
                 
                 const result = await addMusician({
-                    variables: { user ,stageName, publicEmail, city, state}
+                    variables: { user ,stageName, publicEmail, city, state, password, password2}
                 });
                 
                 console.log(result);
@@ -102,8 +104,8 @@ export default function SignupPage() {
                     <TextField id="last-name" className="outlined-basic" label="Last Name" variant="outlined" margin="dense" />
                     <TextField id="username" className="outlined-basic" label="Username" variant="outlined" margin="dense" />
                     <TextField id="email" className="outlined-basic" label="Email" variant="outlined" margin="dense" />
-                    <TextField id="password" className="outlined-basic" label="Password" variant="outlined" margin="dense" />
-                    <TextField id="password2" className="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
+                    <TextField type="password" id="password" className="outlined-basic" label="Password" variant="outlined" margin="dense" />
+                    <TextField type="password" id="password2" className="outlined-basic" label="Confirm password" variant="outlined" margin="dense" />
 
                 </div>
             {isChecked && <MusicianForm />}

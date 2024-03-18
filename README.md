@@ -1,6 +1,8 @@
 <div align='center'>
-<h1><strong>Gighub!</strong></h1>
-<strong>Dev Team</strong>
+<h1>Gighub!</h1>
+</div>
+
+### Dev Team
 <ul style="list-style-type: none;">
   <li><a href="https://github.com/Aaron-Heath">Aaron-Heath</a></li>
   <li><a href="https://github.com/AnthonyRqqq">AnthonyRqqq</a></li>

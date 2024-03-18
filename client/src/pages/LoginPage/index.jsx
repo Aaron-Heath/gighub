@@ -8,14 +8,18 @@ import { useState } from 'react';
 import { LOGIN_USER } from '../../utils/mutations';
 import { useMutation } from '@apollo/client';
 import { Button } from '@mui/material';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import Auth from '../../utils/auth';
 
 export default function LoginPage() {
 
 
+    const [badLogin, setBadLogin] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const navigate = useNavigate();
 
 
     // Define mutation
@@ -27,6 +31,8 @@ export default function LoginPage() {
         const inputType = target.name;
         const inputValue = target.value;
 
+        setBadLogin(false);
+
         if (inputType === 'email') {
             setEmail(inputValue);
         } else {
@@ -35,6 +41,8 @@ export default function LoginPage() {
     };
 
     const handleFormSubmit = async (e) => {
+
+        setBadLogin(false);
 
         e.preventDefault();
         
@@ -45,20 +53,24 @@ export default function LoginPage() {
                  email: email, password: password
                 }
                 });
-
+console.log(JSON.stringify(response));
             if (response.error) {
+                setBadLogin(true);
                 throw new Error('Something went wrong')
+                
             };
            
-            console.log(response)
+            // console.log(response)
             const { token, user } = await response.data.login;
             console.log(user);
             Auth.login(token);
             console.log(token);
-            redirectToLast();
+            // redirectToLast();
+            navigate(-1);
             
         } catch (err) {
             console.error(err);
+            setBadLogin(true);
         }
     }
 
@@ -80,7 +92,12 @@ export default function LoginPage() {
                     <h2>Login</h2>
                     <TextField className="form" id="outlined-basic" name='email' type="email" value={email} label="Email" variant="outlined" onChange={handleInputChange}/>
                     <TextField className="form" id="outlined-basic" name='password' type="password" value={password} label="Password" variant="outlined" onChange={handleInputChange}/>
-
+        {badLogin ? (
+            <div className='errorText'>Error</div>
+        ) : (
+            <></>
+        )}
+        
                     <div className='sign-up-text'>
                     <h3>Don't Have an Account?</h3>
                    <Link to="/signup"><h4>Sign up Here!</h4></Link>

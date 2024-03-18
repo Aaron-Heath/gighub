@@ -5,3 +5,11 @@
 
 }
 
+.css-1b699gc-MuiBottomNavigationAction-label.Mui-selected{
+    font-size: 0rem !important;
+    font-size: 11px !important;
+}
+
+.css-1b699gc-MuiBottomNavigationAction-label{
+    font-size: 11px !important;
+}

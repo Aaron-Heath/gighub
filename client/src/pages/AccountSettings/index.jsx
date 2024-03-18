@@ -190,6 +190,8 @@ export default function AccountSettings() {
         } catch (err) {
             console.error(err)
         }
+
+        navigate("/error");
     };
 
 
@@ -293,7 +295,7 @@ export default function AccountSettings() {
 
 
                 <div className='save-button'>
-                    <Button variant="contained" onClick={navigate("/error")} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
+                    <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                         Save Changes
                     </Button>
                 </div>

@@ -52,7 +52,7 @@ export default function Footer() {
     // },
     typography: {
       fontFamily: 'Bungee, sans-serif', // Set custom font family for text
-      fontSize: '10' // Set custom font size for text
+      fontSize: '12' // Set custom font size for text
     },
     components: {
       MuiBottomNavigation: {

@@ -51,16 +51,6 @@ export default function Search() {
             state: state
         }});
 
-        console.log(responseData);
-
-
-
-        // const { data, loading } = useQuery(GET_MUSICIANS_BY_LOCATION,
-        //     {
-        //         variables: { city: city, state: state },
-        //         skip: !state
-        //     });
-
         if(data) {
             setResponseData(data);
         }

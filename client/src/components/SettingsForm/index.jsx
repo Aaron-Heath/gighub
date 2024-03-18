@@ -64,17 +64,17 @@
 
 //                 <TextField className="form" id="state" label="State" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }} />
 
-//                 <TextField className="form" id="imageLink" label="Image Link" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }} />
+                // <TextField className="form" id="imageLink" label="Image Link" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }} />
 
-//                 <TextField
-//                     className="form"
-//                     id="description"
-//                     label=" Description"
-//                     multiline
-//                     rows={4}
-//                     variant="outlined"
-//                     style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}
-//                 />
+                // <TextField
+                //     className="form"
+                //     id="description"
+                //     label=" Description"
+                //     multiline
+                //     rows={4}
+                //     variant="outlined"
+                //     style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}
+                // />
 //             {/* Where chips will appear after user chooses them */}
 //                 <Stack className="chip-container" direction="row" spacing={1}>
 //                     <SettingsChips selectedTags={selectedTags} />

@@ -7,16 +7,17 @@ import { Box, TextField, Button } from '@mui/material';
 import './style.css';
 import { settingVariants } from "./indexVariants";
 import { motion } from 'framer-motion'
-import SettingsChips from "../../components/SettingsChips";
+// import SettingsForm from "../../components/SettingsForm";
 import { useState, useEffect } from "react";
 import Dropdown from 'react-dropdown';
-import { GET_TAGS } from "../../utils/queries";
+// import { GET_TAGS } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
-import Stack from '@mui/material/Stack';
+// import Chip from '@mui/material/Chip';
+// import Stack from '@mui/material/Stack';
 import Auth from '../../utils/auth';
 import { UPDATE_USER, UPDATE_MUSICIAN, ADD_MUSICIAN } from "../../utils/mutations";
 import { GET_USER, GET_MUSICIAN_BY_USER_ID } from "../../utils/queries";
-import MusicianForm from "../../components/MusicianForm";
+// import MusicianForm from "../../components/MusicianForm";
 
 
 export default function AccountSettings() {
@@ -70,12 +71,12 @@ export default function AccountSettings() {
 
 
             // If user is already a musician, set props
-            if (userData.isMusician && !musicianLoading && musicianQueryData.musicianByUserId !== null) {
+            if (userData.isMusician && !musicianLoading && musicianQueryData !== null) {
                 console.log('Musician data: ', musicianQueryData);
 
                 // Sets values according to existing data
                 if (!musicianLoading && musicianQueryData) {
-                    const musicianData = musicianQueryData.musicianByUserId;
+                    const musicianData = musicianQueryData;
                     setStageName(musicianData.stageName);
                     setPublicEmail(musicianData.publicEmail);
                     setCity(musicianData.city);
@@ -131,7 +132,7 @@ export default function AccountSettings() {
         };
     };
 
-    const handleStateDropdownChange = (selectedOption) => {
+    const handleDropdownChange = (selectedOption) => {
         setState(selectedOption.value)
     }
 
@@ -157,18 +158,14 @@ export default function AccountSettings() {
             console.log('HERE')
             console.log(userId, stageName, publicEmail, city, state)
 
-            if (musicianQueryData.musicianByUserId === null) {
+            if (musicianQueryData === null) {
                 const musicianResponse = await createMusician({
                     variables: {
                         user: userId,
                         stageName: stageName,
                         publicEmail: publicEmail,
                         city: city,
-                        state: state,
-                        // imageLink: imageLink,
-                        // description: description,
-                        // tags: tags,
-                        // minCost: minCost
+                        state: state
 
                     }
                 });
@@ -190,6 +187,8 @@ export default function AccountSettings() {
             console.error(err)
         }
     };
+
+
 
 
 
@@ -266,8 +265,22 @@ export default function AccountSettings() {
                                 <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} onChange={handleInputChange} name='stageName' />
                                 <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} onChange={handleInputChange} name='publicEmail' />
                                 <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city' onChange={handleInputChange} />
-                                <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleStateDropdownChange} />
-                               
+                                <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleDropdownChange} />
+                                {/* -------- */}
+
+                                <TextField className="form" id="imageLink" label="Image Link" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }} />
+
+                                <TextField
+                                    className="form"
+                                    id="description"
+                                    label=" Description"
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                    style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}
+                                />
+
+                                {/* -------- */}
                                 <p>*This will be shown on your profile</p>
                             </div>
                         </Box>

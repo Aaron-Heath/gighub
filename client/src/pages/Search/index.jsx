@@ -85,7 +85,7 @@ export default function Search() {
 
             {responseData ? 
             <div>
-                <ResultsList results={responseData.musiciansByLocation} />
+                <ResultsList results={responseData} />
             </div>
             :
             <></>}

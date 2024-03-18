@@ -85,9 +85,9 @@ const MusicianBio = () => {
             <h2 style={styles.stageName}>{musicianData.stageName}</h2>
             <h3>{`${musicianData.city}, ${musicianData.state}`}</h3>
             <div className="dollar">
-              <DollarSign cost={musicianData.minCost}/>
+            <DollarSign cost={musicianData.minCost}/>
             </div>
-            <Chip className="bioChip" id="bioChip" label={musicianData.tags[0].tag} />
+            {/* <Chip className="bioChip" id="bioChip" label={musicianData.tags[0].tag} /> */}
             <Divider orientation="horizontal" flexItem />
             <p className="description">{musicianData.description}</p>
             <Divider orientation="horizontal" flexItem />

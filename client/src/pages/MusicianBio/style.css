@@ -38,9 +38,8 @@
   }
 
   .dollar {
-    position: relative;
-    left: 35%;
-    bottom: 15%;
+    display: flex;
+    margin: 3px 3px 3px 0;
   }
 
   

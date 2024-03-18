@@ -18,9 +18,13 @@ import Auth from '../../utils/auth';
 import { UPDATE_USER, UPDATE_MUSICIAN, ADD_MUSICIAN } from "../../utils/mutations";
 import { GET_USER, GET_MUSICIAN_BY_USER_ID } from "../../utils/queries";
 // import MusicianForm from "../../components/MusicianForm";
+import { useNavigate } from "react-router-dom";
 
 
 export default function AccountSettings() {
+
+    const navigate = useNavigate();
+
     // redirect if not logged in
     if (!Auth.loggedIn()) window.location = '/login';
 
@@ -289,7 +293,7 @@ export default function AccountSettings() {
 
 
                 <div className='save-button'>
-                    <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
+                    <Button variant="contained" onClick={navigate("/error")} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                         Save Changes
                     </Button>
                 </div>

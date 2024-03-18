@@ -8,6 +8,7 @@ import SignupPage from './pages/SignupPage';
 import FavoritesPage from "./pages/Favorites"
 import SettingsPage from "./pages/AccountSettings"
 import MusicianBio from './pages/MusicianBio';
+import ErrorPage from "./pages/ErrorPage";
 import './index.css';
 import { StateProvider } from './StateProvider';
 import reducer, { initialState } from './reducer'
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-  //   errorElement: <Error />,
+  
     children: [
       {
         index: true,
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: '/musician/:musicianId',
         element: <MusicianBio />,
+      },
+      {
+        path: '/error',
+        element: <ErrorPage />,
       },
     ],
   },

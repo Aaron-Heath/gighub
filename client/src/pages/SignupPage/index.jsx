@@ -9,7 +9,6 @@ import gighubLogo from "../../assets/images/Gighub-290px.png";
 import "./style.css";
 import { ADD_MUSICIAN, ADD_USER } from '../../utils/mutations';
 import { useNavigate } from "react-router-dom";
-import Alert from '@mui/material/Alert';
 
 export default function SignupPage() {
     const [isChecked, setIsChecked] = useState(false);

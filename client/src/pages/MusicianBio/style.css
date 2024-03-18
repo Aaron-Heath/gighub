@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+
+
+.description {
+  font-family: "Zen Maru Gothic", serif;
+  font-size: 18px;
+}
+
 #loginBtn {
     margin-top: 7%;
     color: var(--yellow);
@@ -11,7 +20,7 @@
   }
 
   .musician-bio {
-    margin-top: 25px;
+    margin-top: 15%;
     display: flex;
     justify-content: center;
     background-color: var(--pale);
@@ -25,6 +34,16 @@
     border-radius: 15px 15px 0 0;
   }
 
+  .musician-bio h2, .musician-bio h3 {
+    text-align: start;
+  }
+
+  .dollar {
+    position: relative;
+    left: 35%;
+    bottom: 15%;
+  }
+
   
 #loginBtn {
   margin-top: 7%;
@@ -36,4 +55,15 @@
   margin-top: 7%;
   color: var(--yellow);
   background-color: var(--dark-red);
+}
+
+#bioChip {
+  margin-bottom: 4%;
+  margin-right: 70%;
+  color: var(--yellow);
+  background-color: var(--dark-red);
+}
+
+.contact-text {
+  margin: 5%
 }

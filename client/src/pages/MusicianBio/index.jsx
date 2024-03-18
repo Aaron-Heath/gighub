@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'react-router-dom'
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
@@ -9,15 +10,22 @@ import { useQuery } from '@apollo/client';
 // import { useParams } from 'react-router-dom';
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
+import DollarSign from "../../components/DollarSign";
+import Chip from '@mui/material/Chip';
 import Auth from "../../utils/auth"
 import './style.css'
+import ErrorPage from "../ErrorPage";
 
+import './style.css'
 
 const MusicianBio = () => {
 
   storePage();
 
+// Retrieving musician data
   const { musicianId } = useParams();
+
+  console.log(musicianId);
 
   // query Musician ID
   const { loading, data } = useQuery(
@@ -29,6 +37,7 @@ const MusicianBio = () => {
 
   console.log(data);
   const musicianData = data ? data.musicianById : null;
+// ------------------------------------------------------
 
   const styles = {
     stageName: {
@@ -63,6 +72,8 @@ const MusicianBio = () => {
         <Footer />
       </div>
     );
+  } else if (!musicianData) {
+    return <ErrorPage error="404"/>
   }
 
   return (
@@ -72,28 +83,43 @@ const MusicianBio = () => {
         <Box>    
           <img src={musicianData.imageLink} alt="Musician" />
             <h2 style={styles.stageName}>{musicianData.stageName}</h2>
-            <ul>
-              <li>{`${musicianData.city}, ${musicianData.state}`}</li>
-              <li>{musicianData.minCost}</li>
-            </ul>
-            {/* <Button variant="outlined" size='small' id="tagsBtn">{musicianData.tags}</Button> */}
+            <h3>{`${musicianData.city}, ${musicianData.state}`}</h3>
+            <div className="dollar">
+              <DollarSign cost={musicianData.minCost}/>
+            </div>
+            {/* <Chip className="bioChip" id="bioChip" label={musicianData.tags[0].tag} /> */}
             <Divider orientation="horizontal" flexItem />
-            <p>{musicianData.description}</p>
-            <Button
-              onClick={() => {
-                alert('You need to login to contact this musician');
-              }}
-              variant="outlined"
-              id="loginBtn"
-            >
-              Login to Contact
-            </Button>
-        </Box>
+            <p className="description">{musicianData.description}</p>
+            <Divider orientation="horizontal" flexItem />
+            
+            {Auth.loggedIn() ? (
+              <div>
+                <h3 className="contact-text">{`Contact ${musicianData.stageName} at ${musicianData.publicEmail}`}</h3>
+              </div>
+            
+            ) : (
+
+              <div>
+              <Link to="/login">
+                <Button
+                  variant="outlined"
+                  id="loginBtn"
+                >
+                Login to Contact
+                </Button>
+              </Link>
+            </div>
+
+            )}
+
+            
+            
+        
+            </Box>
       </div>
       <Footer />
     </div>
   );
 };
-
 
 export default MusicianBio;

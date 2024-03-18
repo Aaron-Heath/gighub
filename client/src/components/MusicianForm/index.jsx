@@ -5,6 +5,7 @@ import * as React from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './style.css';
+import StateDropdown from '../../pages/Search/components/StateDropdown';
 
 
 // Props given for update functionality
@@ -12,9 +13,15 @@ export default function MusicianForm({ stageName, publicEmail, city}) {
 
     
     
-    // State options for dropdown
-    const options = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"];
-    const defaultOption = "State";
+    // State dropdown styling
+    const style = {
+        "backgroundColor": "white",
+        "color":"black",
+        "fontWeight": "normal",
+        "width": "70%",
+        "border": "1px grey solid",
+        "borderRadius": "4px"
+    }
 
     return (
         <div>
@@ -29,10 +36,11 @@ export default function MusicianForm({ stageName, publicEmail, city}) {
                     autoComplete="off"
                 >
                     <div className='musicianForms'>
-                        <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} name='stageName'/>
-                        <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} name='publicEmail'/>
-                        <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city'/>
-                        <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state'/>
+                        <TextField id="stageName" className="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} name='stageName'/>
+                        <TextField id="publicEmail" className="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} name='publicEmail'/>
+                        <TextField id="city" className="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city'/>
+                        <StateDropdown style={style}/>
+                        {/* <Dropdown onChange={handleClick} id="state" controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state'/> */}
                         <p>*This will be shown on your profile</p>
                     </div>
                 </Box>

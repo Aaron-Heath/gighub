@@ -1,6 +1,6 @@
 const { signToken, AuthenticationError } = require('../utils/auth');
 const { User, Musician, Tag } = require("../models")
-const { geoCode, sortByDistance } = require('../utils/helpers');
+const { geoCode, sortByDistance, geoCodev2 } = require('../utils/helpers');
 
 const resolvers = {
   Query: {
@@ -17,11 +17,15 @@ const resolvers = {
     },
 
     musicianById: async (parent, { musicianId }) => {
-      return await Musician.findOne({ _id: musicianId });
+      return await Musician.findOne({ _id: musicianId }).populate("tags");
     },
 
     musiciansByLocation: async (parent, { city, state }) => {
-      const MUSICIANS = await Musician.find();
+      const MUSICIANS = await Musician.find().populate("tags");
+
+      console.log(city);
+      console.log(state);
+      console.log(MUSICIANS);
 
       const { lat, lon } = await geoCode(city, state);
       console.log(lat, lon);
@@ -65,6 +69,7 @@ const resolvers = {
     addMusician: async (parent, { user: user, stageName, publicEmail, tags, city, state, description = null, imageLink = null, minCost = null }) => {
       console.log(user);
       const { lat, lon } = await geoCode(city, state);
+
       console.log(lat, lon);
 
       if (lat === null || lon === null) {

@@ -3,14 +3,19 @@ const decode = jwtDecode.default || jwtDecode;
 
 class AuthService {
     getUser() {
-        return decode(this.getToken());
+        try {
+            return decode(this.getToken());
+        } catch(err){
+            return null;
+        }
+        
     };
 
     // Checks if user is still logged in
     loggedIn() {
         // Checks for saved token and whether it's still valid
         const token = this.getToken();
-        return !!token && !this.isTokenExpired(token);
+        return token && !this.isTokenExpired(token);
     };
 
     // Check for expired token
@@ -19,11 +24,19 @@ class AuthService {
             // Decodes token
             const decoded = decode(token);
             // Checks for time remaining before token expiration
-            if (decoded.exp < Date.now() / 1000) {
+
+            console.log(decoded);
+            console.log(Date.now())
+
+            if (decoded.exp > Date.now() / 1000) {
+                return false;
+            } else {
+                console.log("Logging out")
+                localStorage.removeItem('id_token', null)
                 return true;
-            } else return false;
+            }
         } catch (err) {
-            return false;
+            return true;
         };
     };
 
@@ -42,7 +55,8 @@ class AuthService {
     logout() {
         // Removes token from localStorage
         localStorage.removeItem('id_token');
-        window.location = '/'
+        // window.location = '/'
+        
 
     }
 };

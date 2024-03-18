@@ -19,6 +19,7 @@ export const ADD_USER = gql`
     mutation addUser(
         $email: String!,
         $username: String!,
+        $password: String!,
         $first: String!,
         $last: String!,
         $isMusician: Boolean!
@@ -29,6 +30,7 @@ export const ADD_USER = gql`
             first: $first,
             last: $last,
             isMusician: $isMusician
+            password: $password
         ) {
             token
             user {
@@ -48,7 +50,7 @@ export const ADD_MUSICIAN = gql`
         $stageName: String!,
         $publicEmail: String!,
         $description: String,
-        $tags: [ID],
+
         $city: String!,
         $state: String!,
         $minCost: Float
@@ -59,7 +61,7 @@ export const ADD_MUSICIAN = gql`
             stageName: $stageName,
             publicEmail: $publicEmail,
             description: $description,
-            tags: $tags,
+
             city: $city,
             state: $state,
             minCost: $minCost
@@ -68,7 +70,7 @@ export const ADD_MUSICIAN = gql`
             stageName
             publicEmail
             description
-            tags
+
             city
             state
             lat

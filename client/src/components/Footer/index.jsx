@@ -8,10 +8,10 @@ import SettingsIcon from './SettingsIcon';
 import { useNavigate } from "react-router-dom";
 import "./style.css"
 
-  const menuButtonStyle = {
-    marginRight: '-900px',
-    color: '#204B57' 
-  };
+  // const menuButtonStyle = {
+  //   marginRight: '-900px',
+  //   color: '#204B57' 
+  // }
 
   const titleStyle = {
     flexGrow: 1,
@@ -52,7 +52,7 @@ export default function Footer() {
     // },
     typography: {
       fontFamily: 'Bungee, sans-serif', // Set custom font family for text
-      fontSize: '10' // Set custom font size for text
+      fontSize: '12' // Set custom font size for text
     },
     components: {
       MuiBottomNavigation: {
@@ -90,7 +90,7 @@ export default function Footer() {
         <BottomNavigation
           showLabels
           value={value}
-          sx={{ backgroundColor: "background.yellow" }}
+          sx={{ backgroundColor: "background.yellow", paddingTop: "2%"}}
           onChange={handleChange}
 
         >

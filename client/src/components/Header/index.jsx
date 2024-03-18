@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar';
 import { Toolbar } from '@mui/material';
 import { IconButton } from '@mui/material';
@@ -15,7 +15,10 @@ import { GET_USER } from '../../utils/queries';
 function Header() {
 
   // Store current user from token or null
-  const curUserId = Auth.getToken() ? Auth.getUser().data._id : null;
+  const curUserId = Auth.getToken() && Auth.loggedIn() ? Auth.getUser().data._id : null;
+  console.log(Auth.getToken());
+  console.log(Auth.loggedIn());
+  console.log(Auth.getUser());
   console.log(`User ID: ${curUserId}`);
   
   const { loading, data } = useQuery(GET_USER, {
@@ -25,10 +28,12 @@ function Header() {
   // set queried user to null if no data returned
   const queriedUser = data ? data.userById : null
 
+  const navigate = useNavigate();
   //handle logout
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
+    navigate("/")
   }
 
   const headerStyle = {

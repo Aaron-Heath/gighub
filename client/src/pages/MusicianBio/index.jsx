@@ -11,7 +11,7 @@ import { useQuery } from '@apollo/client';
 import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import DollarSign from "../../components/DollarSign";
-// import BioChips from "../../components/BioChips"
+import Chip from '@mui/material/Chip';
 import Auth from "../../utils/auth"
 import './style.css'
 import ErrorPage from "../ErrorPage";
@@ -38,7 +38,6 @@ const MusicianBio = () => {
   console.log(data);
   const musicianData = data ? data.musicianById : null;
 // ------------------------------------------------------
-  
 
   const styles = {
     stageName: {
@@ -87,22 +86,21 @@ const MusicianBio = () => {
             <h3>{`${musicianData.city}, ${musicianData.state}`}</h3>
             <div className="dollar">
               <DollarSign cost={musicianData.minCost}/>
-              {/* <BioChips bioTags={musicianData.tags} /> */}
             </div>
-            
-            {/* <Button variant="outlined" size='small' id="tagsBtn">{musicianData.tags}</Button> */}
+            <Chip className="bioChip" id="bioChip" label={musicianData.tags[0].tag} />
             <Divider orientation="horizontal" flexItem />
-            <p>{musicianData.description}</p>
+            <p className="description">{musicianData.description}</p>
+            <Divider orientation="horizontal" flexItem />
             
             {Auth.loggedIn() ? (
               <div>
-                <h3>{`Contact ${musicianData.stageName} at ${musicianData.publicEmail}`}</h3>
+                <h3 className="contact-text">{`Contact ${musicianData.stageName} at ${musicianData.publicEmail}`}</h3>
               </div>
             
             ) : (
 
               <div>
-              <Link to="./login">
+              <Link to="/login">
                 <Button
                   variant="outlined"
                   id="loginBtn"
@@ -123,6 +121,5 @@ const MusicianBio = () => {
     </div>
   );
 };
-
 
 export default MusicianBio;

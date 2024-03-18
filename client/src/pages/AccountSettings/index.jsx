@@ -3,21 +3,15 @@ import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import React from 'react';
 import { Box, TextField, Button } from '@mui/material';
-// import gighubLogo from "../../assets/images/Gighub-290px.png";
 import './style.css';
 import { settingVariants } from "./indexVariants";
 import { motion } from 'framer-motion'
-// import SettingsForm from "../../components/SettingsForm";
 import { useState, useEffect } from "react";
 import Dropdown from 'react-dropdown';
-// import { GET_TAGS } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
-// import Chip from '@mui/material/Chip';
-// import Stack from '@mui/material/Stack';
 import Auth from '../../utils/auth';
 import { UPDATE_USER, UPDATE_MUSICIAN, ADD_MUSICIAN } from "../../utils/mutations";
 import { GET_USER, GET_MUSICIAN_BY_USER_ID } from "../../utils/queries";
-// import MusicianForm from "../../components/MusicianForm";
 import { useNavigate } from "react-router-dom";
 
 
@@ -261,20 +255,21 @@ export default function AccountSettings() {
                         <Box
                             sx={{
                                 flexGrow: 1,
-                                alignContent: "center"
+                                alignContent: "center",
+                                background: "var(--blue)"
                             }}
                             component="form"
                             noValidate
                             autoComplete="off"
                         >
                             <div className='musicianForms'>
-                                <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} onChange={handleInputChange} name='stageName' />
-                                <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} onChange={handleInputChange} name='publicEmail' />
-                                <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city' onChange={handleInputChange} />
-                                <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleDropdownChange} />
+                                <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} onChange={handleInputChange} name='stageName' style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}/>
+                                <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} onChange={handleInputChange} name='publicEmail' style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}/>
+                                <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city' onChange={handleInputChange} style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}/>
+                                <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleDropdownChange}/>
                                 {/* -------- */}
 
-                                <TextField className="form" id="imageLink" label="Image Link" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }} />
+                                <TextField className="form" id="imageLink" label="Image Link" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: "10px"}} />
 
                                 <TextField
                                     className="form"

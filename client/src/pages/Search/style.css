@@ -24,11 +24,12 @@
 }
 
 .search-button{
-    background-color: #711F31;
+    background-color: #711F31 !important;
     color: white;
     border-radius: 9px;
     border: none;
     padding: 6px !important;
+    margin-top: 3% !important;
     font-family: "Zen Maru Gothic", serif;
     text-decoration: none;
     font-size: 13px;

@@ -3,24 +3,22 @@ import Footer from "../../components/Footer"
 import Header from "../../components/Header"
 import React from 'react';
 import { Box, TextField, Button } from '@mui/material';
-// import gighubLogo from "../../assets/images/Gighub-290px.png";
 import './style.css';
 import { settingVariants } from "./indexVariants";
 import { motion } from 'framer-motion'
-import SettingsForm from "../../components/SettingsForm";
 import { useState, useEffect } from "react";
 import Dropdown from 'react-dropdown';
-import { GET_TAGS } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/client";
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 import Auth from '../../utils/auth';
 import { UPDATE_USER, UPDATE_MUSICIAN, ADD_MUSICIAN } from "../../utils/mutations";
 import { GET_USER, GET_MUSICIAN_BY_USER_ID } from "../../utils/queries";
-import MusicianForm from "../../components/MusicianForm";
+import { useNavigate } from "react-router-dom";
 
 
 export default function AccountSettings() {
+
+    const navigate = useNavigate();
+
     // redirect if not logged in
     if (!Auth.loggedIn()) window.location = '/login';
 
@@ -38,7 +36,7 @@ export default function AccountSettings() {
     });
     console.log('User data: ', userQueryData)
 
-    
+
     const { loading: musicianLoading, data: musicianQueryData } = useQuery(GET_MUSICIAN_BY_USER_ID, {
         variables: { userId: userId }
     });
@@ -69,14 +67,14 @@ export default function AccountSettings() {
             setLast(userData.last);
             setIsMusician(userData.isMusician);
 
-            
+
             // If user is already a musician, set props
-            if (userData.isMusician && !musicianLoading && musicianQueryData.musicianByUserId !== null) {
+            if (userData.isMusician && !musicianLoading && musicianQueryData !== null) {
                 console.log('Musician data: ', musicianQueryData);
-                
+
                 // Sets values according to existing data
                 if (!musicianLoading && musicianQueryData) {
-                    const musicianData = musicianQueryData.musicianByUserId;
+                    const musicianData = musicianQueryData;
                     setStageName(musicianData.stageName);
                     setPublicEmail(musicianData.publicEmail);
                     setCity(musicianData.city);
@@ -158,7 +156,7 @@ export default function AccountSettings() {
             console.log('HERE')
             console.log(userId, stageName, publicEmail, city, state)
 
-            if (musicianQueryData.musicianByUserId === null) {
+            if (musicianQueryData === null) {
                 const musicianResponse = await createMusician({
                     variables: {
                         user: userId,
@@ -172,7 +170,7 @@ export default function AccountSettings() {
 
                 console.log(musicianResponse.data)
                 const { musician } = await musicianResponse.data.addMusician;
-                console.log(musician) 
+                console.log(musician)
             };
 
             if (userResponse.error) {
@@ -186,6 +184,8 @@ export default function AccountSettings() {
         } catch (err) {
             console.error(err)
         }
+
+        navigate("/error");
     };
 
 
@@ -251,34 +251,50 @@ export default function AccountSettings() {
                 </div>
 
                 <div>
-            <div className='musicianSignUp-container'>
-                <Box
-                    sx={{
-                        flexGrow: 1,
-                        alignContent: "center"
-                    }}
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                >
-                    <div className='musicianForms'>
-                        <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} onChange={handleInputChange} name='stageName'/>
-                        <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} onChange={handleInputChange} name='publicEmail'/>
-                        <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city' onChange={handleInputChange}/>
-                        <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleDropdownChange}/>
-                        <p>*This will be shown on your profile</p>
-                    </div>
-                </Box>
-            </div>
-        </div>
+                    <div className='musicianSignUp-container'>
+                        <Box
+                            sx={{
+                                flexGrow: 1,
+                                alignContent: "center",
+                                background: "var(--blue)"
+                            }}
+                            component="form"
+                            noValidate
+                            autoComplete="off"
+                        >
+                            <div className='musicianForms'>
+                                <TextField id="outlined-basic" label="Stage Name" variant="outlined" margin="dense" value={stageName} onChange={handleInputChange} name='stageName' style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}/>
+                                <TextField id="outlined-basic" label="Public Email" variant="outlined" margin="dense" value={publicEmail} onChange={handleInputChange} name='publicEmail' style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}/>
+                                <TextField id="outlined-basic" label="City" variant="outlined" margin="dense" value={city} name='city' onChange={handleInputChange} style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}/>
+                                <Dropdown controlClassName="dropdown" menuClassName="dropdown" options={options} value={defaultOption} placeholder="Select an option" name='state' onChange={handleDropdownChange}/>
+                                {/* -------- */}
 
-                
+                                <TextField className="form" id="imageLink" label="Image Link" variant="outlined" style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px', marginTop: "10px"}} />
+
+                                <TextField
+                                    className="form"
+                                    id="description"
+                                    label=" Description"
+                                    multiline
+                                    rows={4}
+                                    variant="outlined"
+                                    style={{ backgroundColor: "#711F31", color: "#FFE5A1", border: '2px solid #FFE5A1', borderRadius: '10px', width: '80%', marginBottom: '10px' }}
+                                />
+
+                                {/* -------- */}
+                                <p>*This will be shown on your profile</p>
+                            </div>
+                        </Box>
+                    </div>
+                </div>
+
+
                 <div className='save-button'>
                     <Button variant="contained" onClick={handleFormSubmit} style={{ backgroundColor: "#711F31", color: "#FFE5A1", borderRadius: '10px', marginTop: '50px', marginBottom: '50px' }}>
                         Save Changes
                     </Button>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         )
     } else {
@@ -342,7 +358,7 @@ export default function AccountSettings() {
                         </div>
                     </Box>
                 </div>
-                <Footer/>
+                <Footer />
             </div>
         )
     }

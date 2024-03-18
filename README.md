@@ -1,4 +1,13 @@
-# gighub
+# Gighub
+<strong>Dev Team</strong>
+
+* [Aaron-Heath](https://github.com/Aaron-Heath)
+* [AnthonyRqqq](https://github.com/AnthonyRqqq)
+* [BarkleyRhoat](https://github.com/BarkleyRhoat)
+* [bcolo24](https://github.com/bcolo24)
+* [rnahill](https://github.com/rnahill)
+
+ ![Github license](https://img.shields.io/badge/license-MIT-yellowgreen.svg)
 ## Description
 
 Dive into the vibrant world of music like never before with Gighub! 🎶
@@ -29,9 +38,15 @@ Once logged in or signed up, users gain access to several features, including th
 * Bookmark favorite musicians
 * Explore musicians based on the city of interest. 
   
+## About Project
+### Built with 
+* React
+* Material UI
+* GraphQl
+* Mongoose
+* Framer Motion
 
-
-## Credits
+## Contributors
 * [Aaron-Heath](https://github.com/Aaron-Heath)
 * [AnthonyRqqq](https://github.com/AnthonyRqqq)
 * [BarkleyRhoat](https://github.com/BarkleyRhoat)

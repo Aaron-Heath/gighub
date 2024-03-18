@@ -24,7 +24,7 @@ return (
             noValidate
             autoComplete="off"
         >
-            {error ? <h2>Error: {error}</h2> : <h2>Error</h2>}
+            {error ? <h2>Error: {error}</h2> : <h2>Oops</h2>}
             <img className='error-image' src={workingCats1} alt="ErrorImage"/>
             <p>{error === "404" ? "Oops! We didn't find what you were looking for. Please try again" : "Pardon our mess. Construction in progress!"}</p>
 

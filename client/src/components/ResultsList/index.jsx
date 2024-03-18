@@ -30,7 +30,7 @@ export default function ResultsList({ results }) {
                         <ListItemButton onClick={() => handleBandSearch(result._id)}> {/* Pass result._id to handleBandSearch */}
                             <ListItemText inset primary={result.stageName} secondary={`${result.city}, ${result.state}`} />
                         </ListItemButton>
-                        <DollarSign />
+                        <DollarSign cost={result.minCost}/>
                     </ListItem>
                     <Divider component="li" />
                 </React.Fragment>
